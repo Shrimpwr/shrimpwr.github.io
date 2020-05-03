@@ -22,11 +22,15 @@
     <title>攻防世界Crypto新手练习区WriteUp</title>
     <url>/2020/05/03/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8CCrypto%E6%96%B0%E6%89%8B%E7%BB%83%E4%B9%A0%E5%8C%BAWriteUp/</url>
     <content><![CDATA[<h2 id="001-base64"><a href="#001-base64" class="headerlink" title="001 base64"></a>001 base64</h2><p>朴实无华且枯燥的base64（<br>直接解密得到flag</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;Welcome_to_new_World!&#125;</span><br><span class="line">&#96;&#96;&#96;  </span><br><span class="line">## 002 Caesar</span><br><span class="line">恺撒移位，偏移量为12，解密得到flag</span><br></pre></td></tr></table></figure>
-<p>cyberpeace{you_have_learned_caesar_encryption}</p>
-<pre><code></code></pre>]]></content>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;Welcome_to_new_World!&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="002-Caesar"><a href="#002-Caesar" class="headerlink" title="002 Caesar"></a>002 Caesar</h2><p>恺撒移位，偏移量为12，解密得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;you_have_learned_caesar_encryption&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <tags>
-        <tag>-CTF -Crypto</tag>
+        <tag>CTF</tag>
+        <tag>Crypto</tag>
       </tags>
   </entry>
 </search>
