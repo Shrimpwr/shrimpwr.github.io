@@ -10,12 +10,13 @@
 <h2 id="002-Caesar"><a href="#002-Caesar" class="headerlink" title="002 Caesar"></a>002 Caesar</h2><p>恺撒移位，偏移量为12，解密得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;you_have_learned_caesar_encryption&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="003-Morse"><a href="#003-Morse" class="headerlink" title="003 Morse"></a>003 Morse</h2><p>将题目附件中1当作 - ，0当作 . ，空格分隔，解码  </p>
-<img src="/.top//05/04/WAD-Crypto-Noob-WP/Morse.png" class>  
+<img src="/2020/05/04/WAD-Crypto-Noob-WP/Morse.png" class="">  
 <p>得到flag</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;MORSECODEISSOINTERESTING&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="004"><a href="#004" class="headerlink" title="004"></a>004</h2><p>先将题目给的摩斯电码解码得到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;morsecodeissointeresting&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="008-不仅仅是Morse"><a href="#008-不仅仅是Morse" class="headerlink" title="008 不仅仅是Morse"></a>008 不仅仅是Morse</h2><p>先将题目给的摩斯电码解码得到</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAY_BE_HAVE_ANOTHER_DECODEHHHHAAAAABAABBBAABBAAAAAAAABAABABAAAAAAABBABAAABBAAABBAABAAAABABAABAAABBABAAABAAABAABABBAABBBABAAABABABBAAABBABAAABAABAABAAAABBABBAABBAABAABAAABAABAABAABABAABBABAAAABBABAABBA</span><br></pre></td></tr></table></figure>
-<p>看形式很显然是培根密码 把HHHH后面的部分拿去解密得到flag</p>
+<p>看形式显然是培根密码 把HHHH后面的部分拿去解密得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;attackanddefenceworldisinteresting&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>CTF</tag>
