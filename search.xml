@@ -28,10 +28,12 @@
 
 <h1 id="002-Caesar"><a href="#002-Caesar" class="headerlink" title="002 Caesar"></a>002 Caesar</h1><p>恺撒移位，偏移量为12，解密得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;you_have_learned_caesar_encryption&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="003-Morse"><a href="#003-Morse" class="headerlink" title="003 Morse"></a>003 Morse</h1><p>将题目附件中1当作 - ，0当作 . ，空格分隔，解码  </p>
 <img src="/2020/05/04/WAD-Crypto-Noob-WP/Morse.png" class="">  
 <p>得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;morsecodeissointeresting&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="004-混合编码"><a href="#004-混合编码" class="headerlink" title="004 混合编码"></a>004 混合编码</h1><p>题目打开首先是base64，解码得到</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#79;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#69;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#52;&amp;#76;&amp;#122;&amp;#107;&amp;#53;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#77;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#107;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#105;&amp;#56;&amp;#120;&amp;#77;&amp;#84;&amp;#69;&amp;#118;&amp;#79;&amp;#84;&amp;#99;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#50;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#105;&amp;#56;&amp;#53;&amp;#78;&amp;#121;&amp;#56;&amp;#53;&amp;#79;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#99;&amp;#118;&amp;#79;&amp;#84;&amp;#99;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#119;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#67;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#65;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#105;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#69;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#119;&amp;#76;&amp;#122;&amp;#107;&amp;#53;&amp;#76;&amp;#122;&amp;#69;&amp;#119;&amp;#77;&amp;#83;&amp;#56;&amp;#120;&amp;#77;&amp;#84;&amp;#107;&amp;#118;&amp;#77;&amp;#84;&amp;#69;&amp;#120;&amp;#76;&amp;#122;&amp;#69;&amp;#120;&amp;#78;&amp;#67;&amp;#56;&amp;#120;&amp;#77;&amp;#68;&amp;#103;&amp;#118;&amp;#77;&amp;#84;&amp;#65;&amp;#119;</span><br></pre></td></tr></table></figure>
 <p>看形式是unicode，再解码</p>
@@ -40,12 +42,15 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;119&#x2F;101&#x2F;108&#x2F;99&#x2F;111&#x2F;109&#x2F;101&#x2F;116&#x2F;111&#x2F;97&#x2F;116&#x2F;116&#x2F;97&#x2F;99&#x2F;107&#x2F;97&#x2F;110&#x2F;100&#x2F;100&#x2F;101&#x2F;102&#x2F;101&#x2F;110&#x2F;99&#x2F;101&#x2F;119&#x2F;111&#x2F;114&#x2F;108&#x2F;100</span><br></pre></td></tr></table></figure>
 <p>是ASCII码，解码得flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;welcometoattackanddefenceworld&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="005-幂数加密"><a href="#005-幂数加密" class="headerlink" title="005 幂数加密"></a>005 幂数加密</h1><p>先百度一下幂数加密的概念，就是并且将任意的十进制数用2^n或2^n+2^m+……的形式，题目提示flag是八位大写字母，就以密文中的7个0为分隔</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">884210 1220 480 22440 40 1422420 2480 122</span><br></pre></td></tr></table></figure>
 <p>不难看出8,4,2,1都是2的幂，分别加起来，再对应ASCII码得flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;WELLDONE&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="006-Railfence"><a href="#006-Railfence" class="headerlink" title="006 Railfence"></a>006 Railfence</h1><p>W型栅栏密码，用<a href="http://www.atoolbox.net/Tool.php?Id=777.com" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777.com</a>解密，栏数为5，得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cyberpeace&#123;railfence_cipher_gogogo&#125;</span><br></pre></td></tr></table></figure>
+
 <h1 id="008-不仅仅是Morse"><a href="#008-不仅仅是Morse" class="headerlink" title="008 不仅仅是Morse"></a>008 不仅仅是Morse</h1><p>先将题目给的摩斯电码解码得到</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MAY_BE_HAVE_ANOTHER_DECODEHHHHAAAAABAABBBAABBAAAAAAAABAABABAAAAAAABBABAAABBAAABBAABAAAABABAABAAABBABAAABAAABAABABBAABBBABAAABABABBAAABBABAAABAABAABAAAABBABBAABBAABAABAAABAABAABAABABAABBABAAAABBABAABBA</span><br></pre></td></tr></table></figure>
 <p>看形式显然是培根密码 把HHHH后面的部分拿去解密得到flag</p>
@@ -53,7 +58,7 @@
 
 <h1 id="009-easychallenge"><a href="#009-easychallenge" class="headerlink" title="009 easychallenge"></a>009 easychallenge</h1><p>（之前新生赛有这题）<br>附件为pyc文件，需要反编译出py文件，之前第一次做用的是EasyPythonDecompiler，后来百度发现大家都用uncompyle6  </p>
 <img src="/2020/05/04/WAD-Crypto-Noob-WP/2.png" class="">  
-<img src="/2020/05/04/WAD-Crypto-Noob-WP/3.png" class="">
+<img src="/2020/05/04/WAD-Crypto-Noob-WP/3.png" class="">  
 <p>得到的代码就是上面这样，按着加密代码写一遍逆过程解密就可以得到flag</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import base64</span><br><span class="line"></span><br><span class="line">def decode1(ans):</span><br><span class="line">    s &#x3D; &#39;&#39;</span><br><span class="line">    for i in ans:</span><br><span class="line">        x &#x3D; ord(i) - 25</span><br><span class="line">        x &#x3D; x ^ 36</span><br><span class="line">        s +&#x3D; chr(x)</span><br><span class="line"></span><br><span class="line">    return s</span><br><span class="line"></span><br><span class="line">def decode2(ans):</span><br><span class="line">    s &#x3D; &#39;&#39;</span><br><span class="line">    for i in ans:</span><br><span class="line">        x &#x3D; ord(i) ^ 36</span><br><span class="line">        x &#x3D; x - 36</span><br><span class="line">        s +&#x3D; chr(x)</span><br><span class="line"></span><br><span class="line">    return s</span><br><span class="line"></span><br><span class="line">def decode3(ans):</span><br><span class="line">    return base64.b32decode(ans)</span><br><span class="line"></span><br><span class="line">flag &#x3D; &#39;&#39;</span><br><span class="line">final &#x3D; &#39;UC7KOWVXWVNKNIC2XCXKHKK2W5NLBKNOUOSK3LNNVWW3E&#x3D;&#x3D;&#x3D;&#39;</span><br><span class="line">t &#x3D; decode3(final)</span><br><span class="line">for i in t:</span><br><span class="line">    flag +&#x3D; chr(i) #这里t的类型是bytes，直接丢进decode2里会报错，所以先转成str</span><br><span class="line">flag &#x3D; decode1(decode2(flag)) </span><br><span class="line">print(flag)</span><br><span class="line"></span><br><span class="line">#flag：cyberpeace&#123;interestinghhhhh&#125;</span><br></pre></td></tr></table></figure>
 
