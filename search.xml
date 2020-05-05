@@ -50,6 +50,12 @@
 <h1 id="010-Normal-RSA"><a href="#010-Normal-RSA" class="headerlink" title="010 Normal_RSA"></a>010 Normal_RSA</h1><p>题目给了pem格式的公钥文件和enc格式的被加密的flag，可以用RsaCtfTool直接解密<br>项目地址：<a href="https://github.com/Ganapati/RsaCtfTool" target="_blank" rel="noopener">RsaCtfTool</a>  </p>
 <img src="/2020/05/04/WAD-Crypto-Noob-WP/4.png" class="">  
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">PCTF&#123;256b_i5_m3dium&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="011-转轮机加密"><a href="#011-转轮机加密" class="headerlink" title="011 转轮机加密"></a>011 转轮机加密</h1><p>小学时读的可怕的科学系列里的《密码全攻略》里提到过这种加密方式，印象深刻  </p>
+  
+<p>这道题中，将横行按密钥顺序排列对齐，每一横行看作一个转盘，将密文中每个字母按顺序转到每一行的第一列，然后一列列看过去，可读的那列就是flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag: fireinthehole(这题不需要cyberpeace&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <tags>
         <tag>CTF</tag>

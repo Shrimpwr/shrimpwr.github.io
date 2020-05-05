@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/04/WAD-Crypto-Noob-WP/3.png">
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/04/WAD-Crypto-Noob-WP/4.png">
 <meta property="article:published_time" content="2020-05-04T00:37:37.000Z">
-<meta property="article:modified_time" content="2020-05-04T08:08:39.737Z">
+<meta property="article:modified_time" content="2020-05-05T02:48:05.982Z">
 <meta property="article:author" content="Shrimpwr">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -208,10 +208,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-04 08:37:37 / 修改时间：16:08:39" itemprop="dateCreated datePublished" datetime="2020-05-04T08:37:37+08:00">2020-05-04</time>
+              <time title="创建时间：2020-05-04 08:37:37" itemprop="dateCreated datePublished" datetime="2020-05-04T08:37:37+08:00">2020-05-04</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-05 10:48:05" itemprop="dateModified" datetime="2020-05-05T10:48:05+08:00">2020-05-05</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -225,7 +231,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>4k</span>
+              <span>4.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -290,6 +296,12 @@
 <h1 id="010-Normal-RSA"><a href="#010-Normal-RSA" class="headerlink" title="010 Normal_RSA"></a>010 Normal_RSA</h1><p>题目给了pem格式的公钥文件和enc格式的被加密的flag，可以用RsaCtfTool直接解密<br>项目地址：<a href="https://github.com/Ganapati/RsaCtfTool" target="_blank" rel="noopener">RsaCtfTool</a>  </p>
 <img src="/2020/05/04/WAD-Crypto-Noob-WP/4.png" class="">  
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PCTF&#123;256b_i5_m3dium&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="011-转轮机加密"><a href="#011-转轮机加密" class="headerlink" title="011 转轮机加密"></a>011 转轮机加密</h1><p>小学时读的可怕的科学系列里的《密码全攻略》里提到过这种加密方式，印象深刻  </p>
+  
+<p>这道题中，将横行按密钥顺序排列对齐，每一横行看作一个转盘，将密文中每个字母按顺序转到每一行的第一列，然后一列列看过去，可读的那列就是flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag: fireinthehole(这题不需要cyberpeace&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -377,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#001-base64"><span class="nav-number">1.</span> <span class="nav-text">001 base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#002-Caesar"><span class="nav-number">2.</span> <span class="nav-text">002 Caesar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#003-Morse"><span class="nav-number">3.</span> <span class="nav-text">003 Morse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#004-混合编码"><span class="nav-number">4.</span> <span class="nav-text">004 混合编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#005-幂数加密"><span class="nav-number">5.</span> <span class="nav-text">005 幂数加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#006-Railfence"><span class="nav-number">6.</span> <span class="nav-text">006 Railfence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#007-easy-RSA"><span class="nav-number">7.</span> <span class="nav-text">007 easy_RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#008-不仅仅是Morse"><span class="nav-number">8.</span> <span class="nav-text">008 不仅仅是Morse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#009-easychallenge"><span class="nav-number">9.</span> <span class="nav-text">009 easychallenge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#010-Normal-RSA"><span class="nav-number">10.</span> <span class="nav-text">010 Normal_RSA</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#001-base64"><span class="nav-number">1.</span> <span class="nav-text">001 base64</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#002-Caesar"><span class="nav-number">2.</span> <span class="nav-text">002 Caesar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#003-Morse"><span class="nav-number">3.</span> <span class="nav-text">003 Morse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#004-混合编码"><span class="nav-number">4.</span> <span class="nav-text">004 混合编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#005-幂数加密"><span class="nav-number">5.</span> <span class="nav-text">005 幂数加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#006-Railfence"><span class="nav-number">6.</span> <span class="nav-text">006 Railfence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#007-easy-RSA"><span class="nav-number">7.</span> <span class="nav-text">007 easy_RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#008-不仅仅是Morse"><span class="nav-number">8.</span> <span class="nav-text">008 不仅仅是Morse</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#009-easychallenge"><span class="nav-number">9.</span> <span class="nav-text">009 easychallenge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#010-Normal-RSA"><span class="nav-number">10.</span> <span class="nav-text">010 Normal_RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#011-转轮机加密"><span class="nav-number">11.</span> <span class="nav-text">011 转轮机加密</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -435,7 +447,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">4k</span>
+    <span title="站点总字数">5k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
