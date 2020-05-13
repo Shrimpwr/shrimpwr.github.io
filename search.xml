@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>notes</title>
-    <url>/2020/05/13/notes/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>攻防世界Crypto新手练习区WriteUp</title>
     <url>/2020/05/04/WAD-Crypto-Noob-WP/</url>
     <content><![CDATA[<h1 id="001-base64"><a href="#001-base64" class="headerlink" title="001 base64"></a>001 base64</h1><p>朴实无华且枯燥的base64（<br>直接解码得到flag</p>
@@ -78,6 +73,14 @@
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Blog搭建笔记</title>
+    <url>/2020/04/27/notes/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>notes</tag>
       </tags>
   </entry>
 </search>
