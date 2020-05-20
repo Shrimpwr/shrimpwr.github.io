@@ -73,6 +73,7 @@
       <tags>
         <tag>CTF</tag>
         <tag>Crypto</tag>
+        <tag>WP</tag>
       </tags>
   </entry>
   <entry>
@@ -93,6 +94,60 @@
 <img src="/2020/04/27/blogbuilding/1.png" class="">]]></content>
       <tags>
         <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>BUUCTF Crypto部分WriteUp</title>
+    <url>/2020/05/18/BUUCTFCryptoWP/</url>
+    <content><![CDATA[<h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>随便找个解密MD5的网站，结果包上flag提交就行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;admin1&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Url编码"><a href="#Url编码" class="headerlink" title="Url编码"></a>Url编码</h1><p>同上 不过这个解码出来自带flag{}</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;and 1&#x3D;1&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="看我回旋踢"><a href="#看我回旋踢" class="headerlink" title="看我回旋踢"></a>看我回旋踢</h1><p>密文是synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}，ROT13  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;5cd1004d-86a5-46d8-b720-beb5ba0417e1&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="一眼就解密"><a href="#一眼就解密" class="headerlink" title="一眼就解密"></a>一眼就解密</h1><p>裸的base64</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;THE_FLAG_OF_THIS_STRING&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="摩丝"><a href="#摩丝" class="headerlink" title="摩丝"></a>摩丝</h1><p>裸的摩斯电码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;ILOVEYOU&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="BJDCTF-2nd-签到-y1ng"><a href="#BJDCTF-2nd-签到-y1ng" class="headerlink" title="[BJDCTF 2nd]签到-y1ng"></a>[BJDCTF 2nd]签到-y1ng</h1><p>裸的base64 x 2</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">BJD&#123;W3lc0me_T0_BJDCTF&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="password"><a href="#password" class="headerlink" title="password"></a>password</h1><p>姓名张三，生日19900315<br>题面明明说的是key  结果提交还是得用flag啊kora！</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;zs19900315&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="变异凯撒"><a href="#变异凯撒" class="headerlink" title="变异凯撒"></a>变异凯撒</h1><p>给出密文afZ_r9VYfScOeO_UL^RWUc，提示形式是flag{}<br>可以发现当整体偏移量是5，6，7，8，9时，密文前5位分别得到f, l, a, g, {<br>按照这个规律写个脚本搞一下，得到flag</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;Caesar_variation&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Quoted-printable"><a href="#Quoted-printable" class="headerlink" title="Quoted-printable"></a>Quoted-printable</h1><p><em>Quoted-printable可译为“可打印字符引用编码”，编码常用在电子邮件中，如：Content-Transfer-Encoding: quoted-printable ，它是MIME编码常见一种表示方法。在邮件里面我们常需要用可打印的ASCII字符 (如字母、数字与”=”)表示各种编码格式下的字符。Quoted-printable将任何8-bit字节值可编码为3个字符：一个等号”=”后跟随两个十六进制数字(0–9或A–F)表示该字节的数值。</em>  </p>
+<p>直接丢到cyberchef的fromhex里面就行了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;那你也很棒哦&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="zip伪加密"><a href="#zip伪加密" class="headerlink" title="zip伪加密"></a>zip伪加密</h1><p>如题 就是zip伪加密（话说这是misc吧  </p>
+<img src="/2020/05/18/BUUCTFCryptoWP/1.png" class="">  
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;Adm1N-B2G-kU-SZIP&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Rabbit"><a href="#Rabbit" class="headerlink" title="Rabbit"></a>Rabbit</h1><p>Rabbit密码 直接在线解密  </p>
+<img src="/2020/05/18/BUUCTFCryptoWP/2.png" class="">  
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;Cute_Rabbit&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1><p>已知p，q，e求d，用脚本（第三次做这题了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;125631357777427553&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="篱笆墙的影子"><a href="#篱笆墙的影子" class="headerlink" title="篱笆墙的影子"></a>篱笆墙的影子</h1><p>栅栏密码，栏数13</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;wethinkwehavetheflag&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="丢失的MD5"><a href="#丢失的MD5" class="headerlink" title="丢失的MD5"></a>丢失的MD5</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import hashlib   </span><br><span class="line">for i in range(32,127):</span><br><span class="line">    for j in range(32,127):</span><br><span class="line">        for k in range(32,127):</span><br><span class="line">            m&#x3D;hashlib.md5()</span><br><span class="line">            m.update(&#39;TASC&#39;+chr(i)+&#39;O3RJMV&#39;+chr(j)+&#39;WDJKX&#39;+chr(k)+&#39;ZM&#39;)</span><br><span class="line">            des&#x3D;m.hexdigest()</span><br><span class="line">            if &#39;e9032&#39; in des and &#39;da&#39; in des and &#39;911513&#39; in des:</span><br><span class="line">                print des</span><br></pre></td></tr></table></figure>
+<p>跑一下就出来了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;e9032994dabac08080091151380478a2&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Alice与Bob"><a href="#Alice与Bob" class="headerlink" title="Alice与Bob"></a>Alice与Bob</h1><p>分解大整数98554799767，用factordb</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;101999966233&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="BJDCTF-2nd-老文盲了"><a href="#BJDCTF-2nd-老文盲了" class="headerlink" title="[BJDCTF 2nd]老文盲了"></a>[BJDCTF 2nd]老文盲了</h1><p>（丈育说的就是我 爬了</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">罼雧締眔擴灝淛匶襫黼瀬鎶軄鶛驕鳓哵眔鞹鰝</span><br></pre></td></tr></table></figure>
+<p>一开始以为是佛曰加密，发现无法解密后就没头绪了<br>没得法 网上找了篇WP看 遂恍然大悟  </p>
+<img src="/2020/05/18/BUUCTFCryptoWP/3.jpg" class="">  
+<p>flag隐藏在这几个字的读音里，把拼音写出来就是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bi ji di da kuo hao zhe jiu shi fu lai ge zhi jie jiao le ba da kuo hao</span><br><span class="line">即 BJD&#123;这就是flag直接交了吧&#125;</span><br></pre></td></tr></table></figure>
+<p>最后flag是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;淛匶襫黼瀬鎶軄鶛驕鳓哵&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="rsarsa"><a href="#rsarsa" class="headerlink" title="rsarsa"></a>rsarsa</h1><p>已知p，q，e，c，直接脚本求m</p>
+<figure class="highlight plain"><figcaption><span>gmpy2</span></figcaption><table><tr><td class="code"><pre><span class="line">p &#x3D; 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483</span><br><span class="line">q &#x3D; 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407</span><br><span class="line">e &#x3D; 65537</span><br><span class="line">c &#x3D; 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034</span><br><span class="line">n &#x3D; p * q</span><br><span class="line">phi_n &#x3D; (p-1)*(q-1)</span><br><span class="line">d &#x3D; gmpy2.invert(e,phi_n)</span><br><span class="line">m &#x3D; pow(c,d,n)</span><br><span class="line">print(&quot;m&#x3D;\n%s&quot;%m)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">flag&#123;5577446633554466577768879988&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Crypto</tag>
+        <tag>WP</tag>
       </tags>
   </entry>
   <entry>

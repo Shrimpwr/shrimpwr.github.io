@@ -20,31 +20,39 @@
     var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="无数渺小的思考填满了人的一生">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Shrimpwr&#39;s Blog">
-<meta property="og:url" content="http://moe.lovmayoi.top/index.html">
+  <meta name="description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行 1flag&amp;#123;admin1&amp;#125; Url编码同上 不过这个解码出来自带flag{} 1flag&amp;#123;and 1&#x3D;1&amp;#125; 看我回旋踢密文是synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}，ROT13   1flag&amp;#123;5cd1004d-86a5-46d8-b72">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUCTF Crypto部分WriteUp">
+<meta property="og:url" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/index.html">
 <meta property="og:site_name" content="Shrimpwr&#39;s Blog">
-<meta property="og:description" content="无数渺小的思考填满了人的一生">
+<meta property="og:description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行 1flag&amp;#123;admin1&amp;#125; Url编码同上 不过这个解码出来自带flag{} 1flag&amp;#123;and 1&#x3D;1&amp;#125; 看我回旋踢密文是synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}，ROT13   1flag&amp;#123;5cd1004d-86a5-46d8-b72">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/1.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/2.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/3.jpg">
+<meta property="article:published_time" content="2020-05-17T23:38:13.000Z">
+<meta property="article:modified_time" content="2020-05-20T12:09:08.389Z">
 <meta property="article:author" content="Shrimpwr">
-<meta property="article:tag" content="CTF ACG Shrimpwr">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/1.png">
 
-<link rel="canonical" href="http://moe.lovmayoi.top/">
+<link rel="canonical" href="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Shrimpwr's Blog - Welcome to VA-11 Hall-A.</title>
+  <title>BUUCTF Crypto部分WriteUp | Shrimpwr's Blog</title>
   
 
 
@@ -172,9 +180,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -190,10 +199,9 @@
       <meta itemprop="name" content="Shrimpwr's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/18/BUUCTFCryptoWP/" class="post-title-link" itemprop="url">BUUCTF Crypto部分WriteUp</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          BUUCTF Crypto部分WriteUp
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -213,6 +221,13 @@
               </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
@@ -235,7 +250,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>随便找个解密MD5的网站，结果包上flag提交就行</p>
+        <h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>随便找个解密MD5的网站，结果包上flag提交就行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;admin1&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Url编码"><a href="#Url编码" class="headerlink" title="Url编码"></a>Url编码</h1><p>同上 不过这个解码出来自带flag{}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;and 1&#x3D;1&#125;</span><br></pre></td></tr></table></figure>
@@ -280,281 +295,47 @@
 <h1 id="rsarsa"><a href="#rsarsa" class="headerlink" title="rsarsa"></a>rsarsa</h1><p>已知p，q，e，c，直接脚本求m</p>
 <figure class="highlight plain"><figcaption><span>gmpy2</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">p &#x3D; 9648423029010515676590551740010426534945737639235739800643989352039852507298491399561035009163427050370107570733633350911691280297777160200625281665378483</span><br><span class="line">q &#x3D; 11874843837980297032092405848653656852760910154543380907650040190704283358909208578251063047732443992230647903887510065547947313543299303261986053486569407</span><br><span class="line">e &#x3D; 65537</span><br><span class="line">c &#x3D; 83208298995174604174773590298203639360540024871256126892889661345742403314929861939100492666605647316646576486526217457006376842280869728581726746401583705899941768214138742259689334840735633553053887641847651173776251820293087212885670180367406807406765923638973161375817392737747832762751690104423869019034</span><br><span class="line">n &#x3D; p * q</span><br><span class="line">phi_n &#x3D; (p-1)*(q-1)</span><br><span class="line">d &#x3D; gmpy2.invert(e,phi_n)</span><br><span class="line">m &#x3D; pow(c,d,n)</span><br><span class="line">print(&quot;m&#x3D;\n%s&quot;%m)</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;5577446633554466577768879988&#125;</span><br></pre></td></tr></table></figure>
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/05/10/cryptotools/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shrimpwr">
-      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shrimpwr's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/10/cryptotools/" class="post-title-link" itemprop="url">Crypto常用在线工具个人向总结</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
+              <a href="/tags/WP/" rel="tag"><i class="fa fa-tag"></i> WP</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-10 16:45:54" itemprop="dateCreated datePublished" datetime="2020-05-10T16:45:54+08:00">2020-05-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-17 16:48:34" itemprop="dateModified" datetime="2020-05-17T16:48:34+08:00">2020-05-17</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>632</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Cyberchef"><a href="#Cyberchef" class="headerlink" title="Cyberchef"></a>Cyberchef</h2><p><a href="http://cyber.hitwh.club/" target="_blank" rel="noopener">http://cyber.hitwh.club/</a> (镜像站)<br>没啥好说的，功能丰富且强大，牛逼就完事了</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/10/cryptotools/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/05/04/WAD-Crypto-Noob-WP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shrimpwr">
-      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shrimpwr's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/04/WAD-Crypto-Noob-WP/" class="post-title-link" itemprop="url">攻防世界Crypto新手练习区WriteUp</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-04 08:37:37" itemprop="dateCreated datePublished" datetime="2020-05-04T08:37:37+08:00">2020-05-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-20 07:42:50" itemprop="dateModified" datetime="2020-05-20T07:42:50+08:00">2020-05-20</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>5.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="001-base64"><a href="#001-base64" class="headerlink" title="001 base64"></a>001 base64</h1><p>朴实无华且枯燥的base64（<br>直接解码得到flag</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/04/WAD-Crypto-Noob-WP/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/10/cryptotools/" rel="prev" title="Crypto常用在线工具个人向总结">
+      <i class="fa fa-chevron-left"></i> Crypto常用在线工具个人向总结
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/04/27/blogbuilding/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Shrimpwr">
-      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Shrimpwr's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/27/blogbuilding/" class="post-title-link" itemprop="url">Hexo Blog搭建笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-27 18:46:00" itemprop="dateCreated datePublished" datetime="2020-04-27T18:46:00+08:00">2020-04-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-13 19:45:31" itemprop="dateModified" datetime="2020-05-13T19:45:31+08:00">2020-05-13</time>
-              </span>
-
-          
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-              <span>258</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="2020-04-27"><a href="#2020-04-27" class="headerlink" title="2020.04.27"></a>2020.04.27</h3><p>第一次将blog部署到github 并设置了个人域名</p>
-<h3 id="2020-04-28"><a href="#2020-04-28" class="headerlink" title="2020.04.28"></a>2020.04.28</h3><p>使用了NexT主题  </p>
-<img src="/2020/04/27/blogbuilding/2.png" class="">
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/27/blogbuilding/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
 
           </div>
           
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTg5Ny8yNjM4OA=="></div>
+  </div>
+  
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -601,6 +382,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MD5"><span class="nav-number">1.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Url编码"><span class="nav-number">2.</span> <span class="nav-text">Url编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看我回旋踢"><span class="nav-number">3.</span> <span class="nav-text">看我回旋踢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一眼就解密"><span class="nav-number">4.</span> <span class="nav-text">一眼就解密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#摩丝"><span class="nav-number">5.</span> <span class="nav-text">摩丝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-签到-y1ng"><span class="nav-number">6.</span> <span class="nav-text">[BJDCTF 2nd]签到-y1ng</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#password"><span class="nav-number">7.</span> <span class="nav-text">password</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变异凯撒"><span class="nav-number">8.</span> <span class="nav-text">变异凯撒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quoted-printable"><span class="nav-number">9.</span> <span class="nav-text">Quoted-printable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zip伪加密"><span class="nav-number">10.</span> <span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rabbit"><span class="nav-number">11.</span> <span class="nav-text">Rabbit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">12.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#篱笆墙的影子"><span class="nav-number">13.</span> <span class="nav-text">篱笆墙的影子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丢失的MD5"><span class="nav-number">14.</span> <span class="nav-text">丢失的MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alice与Bob"><span class="nav-number">15.</span> <span class="nav-text">Alice与Bob</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-老文盲了"><span class="nav-number">16.</span> <span class="nav-text">[BJDCTF 2nd]老文盲了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rsarsa"><span class="nav-number">17.</span> <span class="nav-text">rsarsa</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -744,6 +526,21 @@
 
   
 
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
 
 </body>
 </html>
