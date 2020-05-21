@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行 1flag&amp;#123;admin1&amp;#125; Url编码同上 不过这个解码出来自带flag{} 1flag&amp;#123;and 1&#x3D;1&amp;#125; 看我回旋踢密文是synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}，ROT13   1flag&amp;#123;5cd1004d-86a5-46d8-b72">
+  <meta name="description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BUUCTF Crypto部分WriteUp">
 <meta property="og:url" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/index.html">
 <meta property="og:site_name" content="Shrimpwr&#39;s Blog">
-<meta property="og:description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行 1flag&amp;#123;admin1&amp;#125; Url编码同上 不过这个解码出来自带flag{} 1flag&amp;#123;and 1&#x3D;1&amp;#125; 看我回旋踢密文是synt{5pq1004q-86n5-46q8-o720-oro5on0417r1}，ROT13   1flag&amp;#123;5cd1004d-86a5-46d8-b72">
+<meta property="og:description" content="MD5随便找个解密MD5的网站，结果包上flag提交就行">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/1.png">
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/2.png">
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/3.jpg">
 <meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/4.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2020/05/18/BUUCTFCryptoWP/5.gif">
 <meta property="article:published_time" content="2020-05-17T23:38:13.000Z">
-<meta property="article:modified_time" content="2020-05-20T13:31:34.264Z">
+<meta property="article:modified_time" content="2020-05-21T01:38:47.731Z">
 <meta property="article:author" content="Shrimpwr">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
@@ -218,7 +219,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-20 21:31:34" itemprop="dateModified" datetime="2020-05-20T21:31:34+08:00">2020-05-20</time>
+                <time title="修改时间：2020-05-21 09:38:47" itemprop="dateModified" datetime="2020-05-21T09:38:47+08:00">2020-05-21</time>
               </span>
 
           
@@ -233,7 +234,7 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>3.1k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -252,6 +253,7 @@
 
       
         <h1 id="MD5"><a href="#MD5" class="headerlink" title="MD5"></a>MD5</h1><p>随便找个解密MD5的网站，结果包上flag提交就行</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;admin1&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Url编码"><a href="#Url编码" class="headerlink" title="Url编码"></a>Url编码</h1><p>同上 不过这个解码出来自带flag{}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;and 1&#x3D;1&#125;</span><br></pre></td></tr></table></figure>
@@ -305,6 +307,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;PbzrPuvan&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="传统知识-古典密码"><a href="#传统知识-古典密码" class="headerlink" title="传统知识+古典密码"></a>传统知识+古典密码</h1><p>辛卯，癸巳，丙戌，辛未，庚辰，癸酉，己卯，癸巳 转成整数是<br>28，30，23，8，17，10，16，30<br>再+甲子（60）=<br>88，90，83，68，77，70，76，90<br>按ASCII码转成字符就是 XZSDMFLZ<br>然后是古典密码，凯撒移位，偏移量21 和 栏数为2的栅栏</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;SHUANGYU&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="BJDCTF-2nd-cat-flag"><a href="#BJDCTF-2nd-cat-flag" class="headerlink" title="[BJDCTF 2nd]cat_flag"></a>[BJDCTF 2nd]cat_flag</h1><img src="/2020/05/18/BUUCTFCryptoWP/5.gif" class="">  
+<p>很明显是二进制 每一行分别按ASCII码转成字符得到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;M!a0~&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="BJDCTF-2nd-燕言燕语-y1ng"><a href="#BJDCTF-2nd-燕言燕语-y1ng" class="headerlink" title="[BJDCTF 2nd]燕言燕语-y1ng"></a>[BJDCTF 2nd]燕言燕语-y1ng</h1><p>79616E7A69205A4A517B78696C7A765F6971737375686F635F73757A6A677D20<br>16进制转字符得到 yanzi ZJQ{xilzv_iqssuhoc_suzjg}，给了key是yanzi，推测是维吉尼亚密码，解密得到flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;yanzi_jiushige_shabi&#125;</span><br></pre></td></tr></table></figure>
+
+
+
     </div>
 
     
@@ -392,7 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MD5"><span class="nav-number">1.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Url编码"><span class="nav-number">2.</span> <span class="nav-text">Url编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看我回旋踢"><span class="nav-number">3.</span> <span class="nav-text">看我回旋踢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一眼就解密"><span class="nav-number">4.</span> <span class="nav-text">一眼就解密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#摩丝"><span class="nav-number">5.</span> <span class="nav-text">摩丝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-签到-y1ng"><span class="nav-number">6.</span> <span class="nav-text">[BJDCTF 2nd]签到-y1ng</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#password"><span class="nav-number">7.</span> <span class="nav-text">password</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变异凯撒"><span class="nav-number">8.</span> <span class="nav-text">变异凯撒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quoted-printable"><span class="nav-number">9.</span> <span class="nav-text">Quoted-printable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zip伪加密"><span class="nav-number">10.</span> <span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rabbit"><span class="nav-number">11.</span> <span class="nav-text">Rabbit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">12.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#篱笆墙的影子"><span class="nav-number">13.</span> <span class="nav-text">篱笆墙的影子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丢失的MD5"><span class="nav-number">14.</span> <span class="nav-text">丢失的MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alice与Bob"><span class="nav-number">15.</span> <span class="nav-text">Alice与Bob</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-老文盲了"><span class="nav-number">16.</span> <span class="nav-text">[BJDCTF 2nd]老文盲了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rsarsa"><span class="nav-number">17.</span> <span class="nav-text">rsarsa</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows系统密码"><span class="nav-number">18.</span> <span class="nav-text">Windows系统密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大帝的密码武器"><span class="nav-number">19.</span> <span class="nav-text">大帝的密码武器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统知识-古典密码"><span class="nav-number">20.</span> <span class="nav-text">传统知识+古典密码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MD5"><span class="nav-number">1.</span> <span class="nav-text">MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Url编码"><span class="nav-number">2.</span> <span class="nav-text">Url编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看我回旋踢"><span class="nav-number">3.</span> <span class="nav-text">看我回旋踢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一眼就解密"><span class="nav-number">4.</span> <span class="nav-text">一眼就解密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#摩丝"><span class="nav-number">5.</span> <span class="nav-text">摩丝</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-签到-y1ng"><span class="nav-number">6.</span> <span class="nav-text">[BJDCTF 2nd]签到-y1ng</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#password"><span class="nav-number">7.</span> <span class="nav-text">password</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变异凯撒"><span class="nav-number">8.</span> <span class="nav-text">变异凯撒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quoted-printable"><span class="nav-number">9.</span> <span class="nav-text">Quoted-printable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zip伪加密"><span class="nav-number">10.</span> <span class="nav-text">zip伪加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rabbit"><span class="nav-number">11.</span> <span class="nav-text">Rabbit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">12.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#篱笆墙的影子"><span class="nav-number">13.</span> <span class="nav-text">篱笆墙的影子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#丢失的MD5"><span class="nav-number">14.</span> <span class="nav-text">丢失的MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alice与Bob"><span class="nav-number">15.</span> <span class="nav-text">Alice与Bob</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-老文盲了"><span class="nav-number">16.</span> <span class="nav-text">[BJDCTF 2nd]老文盲了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rsarsa"><span class="nav-number">17.</span> <span class="nav-text">rsarsa</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows系统密码"><span class="nav-number">18.</span> <span class="nav-text">Windows系统密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#大帝的密码武器"><span class="nav-number">19.</span> <span class="nav-text">大帝的密码武器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#传统知识-古典密码"><span class="nav-number">20.</span> <span class="nav-text">传统知识+古典密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-cat-flag"><span class="nav-number">21.</span> <span class="nav-text">[BJDCTF 2nd]cat_flag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF-2nd-燕言燕语-y1ng"><span class="nav-number">22.</span> <span class="nav-text">[BJDCTF 2nd]燕言燕语-y1ng</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
