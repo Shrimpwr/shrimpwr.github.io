@@ -181,7 +181,7 @@ body {
   background: var(--body-bg-color);
   color: var(--text-color);
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 1em;
+  font-size: 0.98em;
   line-height: 2;
 }
 @media (max-width: 991px) {
@@ -950,7 +950,7 @@ pre .javascript .function {
 }
 .main-inner {
   margin: 0 auto;
-  width: calc(100% - 20px);
+  width: 900px;
 }
 @media (min-width: 1200px) {
   .main-inner {
@@ -972,7 +972,7 @@ pre .javascript .function {
 }
 .header-inner {
   margin: 0 auto;
-  width: calc(100% - 20px);
+  width: 900px;
 }
 @media (min-width: 1200px) {
   .header-inner {
@@ -1198,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #f4c87e;
+  background: #8b11e7;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1412,7 +1412,7 @@ pre .javascript .function {
   box-sizing: border-box;
   margin: 0 auto;
   text-align: center;
-  width: calc(100% - 20px);
+  width: 900px;
 }
 @media (min-width: 1200px) {
   .footer-inner {
@@ -2287,7 +2287,7 @@ mjx-container + br {
 .header {
   margin: 0 auto;
   position: relative;
-  width: calc(100% - 20px);
+  width: 900px;
 }
 @media (min-width: 1200px) {
   .header {

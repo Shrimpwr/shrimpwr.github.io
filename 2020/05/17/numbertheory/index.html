@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="数论—— 本文作者为吉龙行天师傅，上传到此以便查看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数论知识总结">
+<meta property="og:url" content="http://moe.lovmayoi.top/2020/05/17/numbertheory/index.html">
+<meta property="og:site_name" content="Shrimpwr&#39;s Blog">
+<meta property="og:description" content="数论—— 本文作者为吉龙行天师傅，上传到此以便查看">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-17T12:00:09.000Z">
+<meta property="article:modified_time" content="2020-05-21T12:46:34.941Z">
+<meta property="article:author" content="Shrimpwr">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Math">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://moe.lovmayoi.top/2020/05/17/numbertheory/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数论知识总结 | Shrimpwr's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/Shrimpwr" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shrimpwr's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Welcome to VA-11 Hall-A.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/05/17/numbertheory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shrimpwr">
+      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrimpwr's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数论知识总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-17 20:00:09" itemprop="dateCreated datePublished" datetime="2020-05-17T20:00:09+08:00">2020-05-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-21 20:46:34" itemprop="dateModified" datetime="2020-05-21T20:46:34+08:00">2020-05-21</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>845</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h1><p>—— 本文作者为<a href="https://space.bilibili.com/14151182?from=search&amp;seid=3700120856844522831" target="_blank" rel="noopener">吉龙行天</a>师傅，上传到此以便查看<br><a id="more"></a></p>
+<h2 id="数论初步"><a href="#数论初步" class="headerlink" title="数论初步"></a>数论初步</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li><p>抽屉原理（鸽巢定理）：n+1个元素放进n个集合中，必定有一个集合有至少两个元素。</p>
+</li>
+<li><p>如果整数a能被m整除，即$a=k\times m$，那么记作$m|a$。</p>
+</li>
+<li><p>整除具有传递性，即$a|b，b|c$，那么$a|c$。</p>
+</li>
+<li><p>对于线性运算，整除的性质仍然保持，即$a|b,a|c$，那么$a|kb+tc$。</p>
+</li>
+<li><p>设有一个数p，如果除了1与p自身之外，没有数能整除p，那么p就是一个素数。否则被称作合数（数论中大多数证明及应用都围绕着素数展开）。</p>
+</li>
+<li><p>对于$a_1,a_2\dots,a_n$，如果整数d能整除每一个数，那么就将d称作他们的公因数，其中最大的那个d被称作最大公因数，记为$(a_1,a_2\dots,a_n)$。如果整数D能被每一个数整除，那么D被称作他们的公倍数，其中最小的被称作最小公倍数，记作$[a_1,a_2\dots,a_n]$。最小公倍数与最大公因数满足$a\times b=(a,b)\times[a,b]$。</p>
+</li>
+<li><p>求最大公因数一般使用辗转相除法（欧几里得定理）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(a,b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	r = a % b;</span><br><span class="line">    <span class="keyword">if</span>(r)</span><br><span class="line">        <span class="keyword">return</span> gcd(b,r);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>贝祖定理（裴蜀定理）</p>
+<p>$(a,b)=d$等价于存在整数x,y使得$ax+by=d$。</p>
+<p>重要推论：a与b互质的充分必要条件是存在整数x,y使得$ax+by=1$。</p>
+</li>
+<li><p>扩展欧几里得定理</p>
+<p>用来求贝祖定理的x、y。即用来解形如$ax+by=gcd(a,b)$的等式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b==<span class="number">0</span>)&#123;</span><br><span class="line">        x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> q=exgcd(b,a%b,y,x);</span><br><span class="line">    y-=a/b*x;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>素数基本定理</p>
+<p>对于任意数a，都可唯一表示为$a=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，其中$i<j\Rightarrow p_i<p_j$，$a_i>0$。</p>
+</li>
+<li><p>设有两个整数数a、b，如果$m|(a-b)$，那么就称为a与b对模m同余，记作$a\equiv b (mod\ m)$。一般来讲，在模m的意义下，我们就可以认为a与b相同。利用同余我们即可实现最简单的加密。如：</p>
+<p>设明文为x，加密函数$e(x)=ax+b(mod\ m)$，一般$m=26$（即26个英文字母）这就是仿射密码，其中$(a,m)=1$。在a=1的情况下，就是凯撒密码。</p>
+</li>
+<li><p>同余具有自反性、对称型与传递性。</p>
+</li>
+<li><p>将满足$a^x\equiv1(mod\ m)$的最小的正整数x称作a在模m下的阶。其余满足该式的x均能被阶整除。</p>
+</li>
+<li><p>完全剩余系：将所有模m同余的数成为一个等价类，那么显然对于m存在m个等价类，也被称为剩余类。从每个等价类中取出一个数组成一个集合，这个集合被称为模m的剩余系。最基础的剩余系即为$0,1,\dots,m-1$。完全剩余系也被称为完系。</p>
+<p>简化剩余系：在模m的所有剩余类中，若存在一个数与m互质，则其被称作简化剩余类。从m的所有简化剩余类中取一个数出来组成一个集合，这个集合被称为模m的简化剩余系，也被称作缩系。一般即为从$0,1,\dots,m-1$中取出所有与m互质的数组成简化剩余系。</p>
+</li>
+<li><p>欧拉函数：对于整数n，$1,2,\dots,n$中与n互质的数的个数，被称作n的欧拉函数，记作$\phi(n)$。显然$\phi(n)$的值等于n的简化剩余系中元素的个数。其中$\phi(1)=1$。</p>
+</li>
+<li><p>对于任意整数a、n，若存在$a’$满足$a’a\equiv1(mod\ n)$，则称$a’$为a在模n下的乘法逆元（也被称作数论倒数），记作$a^{-1}$。</p>
+</li>
+</ol>
+<h3 id="基本定理"><a href="#基本定理" class="headerlink" title="基本定理"></a>基本定理</h3><h4 id="重要定理（数论四大定理）"><a href="#重要定理（数论四大定理）" class="headerlink" title="重要定理（数论四大定理）"></a>重要定理（数论四大定理）</h4><ol>
+<li><p>欧拉定理：如果$(a,n)=1$，那么$a^{\phi(n)}\equiv 1 (mod\ n)$。</p>
+</li>
+<li><p>费马小定理：如果p为质数，那么对于任意整数a都有$a^p\equiv a(mod\ p)$。特别的，如果a不能被p整除（即a与p互质），那么$a^{p-1}\equiv1(mod\ p)$。</p>
+</li>
+<li><p>威尔逊定理：如果p为质数，那么$(p-1)!\equiv-1(mod\ p)$。</p>
+</li>
+<li><p>中国剩余定理（孙子定理）：对于同余方程S</p>
+<script type="math/tex; mode=display">
+(S):\left\{
+\begin{array}{x}
+x\equiv a_1\ (mod\ m_1)\\
+x\equiv a_2\ (mod\ m_2)\\
+\vdots\\
+x\equiv a_n\ (mod\ m_n)
+\end{array}
+\right.</script><p>若$m_1,m_2,\cdots,m_n$两两互质，则对于任意的$a_i$，该同余方程组必有解。且解法如下：</p>
+<p>令$M=\prod_{i=1}^n m_i$，$M_i=M/m_i$，$t_i=M_i^{-1}(mod\ m_i)$，即$t_i$是$M_i$在模$m_i$意义下的乘法逆元。那么方程组S的通解为$x=kM+\sum_{i=1}^n a_i t_i M_i$。在模M的意义下，方程有唯一解$x\equiv \sum_{i=1}^n a_i t_i M_i$。</p>
+</li>
+</ol>
+<h4 id="其他定理"><a href="#其他定理" class="headerlink" title="其他定理"></a>其他定理</h4><p>​    欧拉降幂公式：</p>
+<script type="math/tex; mode=display">
+a^b\equiv\left\{
+\begin{array}{x}
+a^{b\%\phi(p)}\ \ \ &gcd(a,p)=1\\
+a^b &gcd(a,p)\not=1,b<\phi(p)\\
+a^{b\%\phi(p)+\phi(p)} &gcd(a,p)\not=1,b>\phi(p)
+\end{array}
+\right.
+\ \ \ \ (mod\ p)</script><h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><h4 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h4><ol>
+<li>如果p为质数，$\phi(p)=p-1$。</li>
+<li>对于整数$n=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，$\phi(n)=x\prod_{i=1}^n(1-\frac 1 {p_i})$。</li>
+<li>如果p为质数且$n=p^k$，$\phi(n)=p^k-p^{k-1}$。</li>
+<li>欧拉函数为积性函数，即若m,n互质，则$\phi(mn)=\phi(m)\phi(n)$。</li>
+<li>整数n的所有因数（包括1和他自己）的欧拉函数之和等于n。$n=\sum_{d|n}\phi(d)$。</li>
+<li>小于n的数中，与n互质的数的总和为：$\frac{\phi(n)\times n} 2$。</li>
+</ol>
+<h4 id="乘法逆元"><a href="#乘法逆元" class="headerlink" title="乘法逆元"></a>乘法逆元</h4><ol>
+<li>对于任意整数a、n，若存在$a’$满足$a’a\equiv1(mod\ n)$，则称$a’$为a在模n下的乘法逆元（也被称作数论倒数），记作$a^{-1}$。</li>
+<li>求整数a在模n下的乘法逆元x即为求解同余方程$ax\equiv 1(mod\ n)$，也就是求方程$ax=1-kn$，即求方程$ax+kn=1$的整数解x、k。因此由裴蜀定理可知，该方程有解当且仅当$(a,n)=1$。也就是a在模n下存在乘法逆元的充分必要条件为a、n互质。</li>
+<li>求解a在模n下的乘法逆元时，若n为质数，则由费马小定理可知$a^{n-1}\equiv1(mod\ n)$，两边同乘a的乘法逆元$a’$，则$a’a^{n-1}\equiv a^{n-2}\equiv a’$，因此可得$a’\equiv a^{n-2}$。因此在n为质数时，即可通过快速幂来计算乘法逆元。</li>
+<li>若n不是质数，则需要求解方程ax+kn=1的整数解，因此可以通过扩展欧几里得解出x与k。</li>
+<li>由于同余式满足加减乘的运算，但是除法运算不一定成立，因此在遇到除法时一般通过乘以除数的乘法逆元来代替。</li>
+</ol>
+<h3 id="密码学应用"><a href="#密码学应用" class="headerlink" title="密码学应用"></a>密码学应用</h3><ol>
+<li><p>秘密共享的门限方案</p>
+<p>现在有一段数据需要加密，我们可以将解密的密钥分成n份存储，且要满足解密者必须获得其中m份以上才能恢复源数据。这种方案被称作$(m,n)$门限方案。其中最简单的实现方法就是，将密钥分为$C\binom n {m-1}$块，其中每份持有$C\binom{n-1}{m-1}$块。拿$(3,5)$门限方案举例，即必须获得半数以上的密钥块才能获得完整密钥。我们需要10个密钥块，每份持有6个密钥：</p>
+<script type="math/tex; mode=display">
+\begin{array}{x}
+total=0,1,2,3,4,5,6,7,8,9\\
+\#1=0,1,2,3,4,5\\
+\#2=0,1,2,6,7,8\\
+\#3=0,3,4,6,7,9\\
+\#4=1,3,5,6,8,9\\
+\#5=2,4,5,7,8,9
+\end{array}</script><p>这样就可满足解密者必须获得任意3份及以上的密钥块才能还原出完整密钥。即对于每个密钥块都恰有仨人持有。由抽屉原理可知，任意选三人都能获得每个密钥块至少一次。</p>
+<p>而如果用到数论四大定理中的中国剩余定理，我们能够得到更方便而且也更加难以被破解的方案。假设有一个大整数x，给出m个两两互质的整数，其乘积为M。那么如果我们知道x除以这m个数的余数，我们就可以在0到P-1内确定这个唯一的X。因此可以构造n个数，使得这n个数两两互质，且其中最小的m个数之积大于x，最大的m-1个数之积小于x。这样我们只需去一个在这两个数之间的x，我们就能简单的构造出这么一个门限方案。而且如果我们的数取得足够大就能一定程度的确保其安全性。</p>
+</li>
+<li><p>RSA加密</p>
+<p>RSA加密是现代非对称加密的鼻祖。其安全性基于大整数难以分解质因数。取两个大质数p、q，令$n=p\times q$，另取一个数e作为公钥，使得e与$\phi(n)$互质，且小于$\phi(n)$。但是e取得不能够过小，原因之后会说明。求出e对于$\phi(n)$的乘法逆元d作为私钥。紧接着将p、q销毁。这样我们就获得了RSA加密的两组密钥，公钥$(n,e)$与私钥$(n,d)$。当Alice要向Bob发送消息时，她会使用Bob所给出的公钥对对其进行加密，我们要将原始数据分为多块，使得每块大小不超过n。令明文为m，密文为c，那么$c\equiv m^e(mod\ n)$。解密时$m\equiv c^d(mod\ n)$。</p>
+<p>解密可靠性原理证明如下：</p>
+<p>​    即证明$m^{ed}\equiv m(mod\ n)$</p>
+<p>​    1): 若m与n互素，由$ed\equiv1(mod\ \phi(n))$，则可通过欧拉降幂公式得出$m^{ed}\equiv m^{ed\%\phi(n)}\equiv m(mod\ n)$，满足要求。</p>
+<p>​    2): 若m与n不互素，则由于$ed\equiv1(mod\ \phi(n))$，因此$ed=h\phi(n)+1$，$m^{ed}\equiv m^{h\phi(n)+1}(mod\ n)$。因为m与n不互素且m &lt; n，由于n是素数p、q之积，因此m=kp或kq，不妨令m=kp，此时由于m &lt; n，因此k &lt; q。又因为q为质数，因此k与q互质。由欧拉定理可得出$(kp)^{q-1}\equiv1(mod\ q)$，所以$((kp)^{q-1})^{h(p-1)}\equiv 1(mod\ q)$<br>$\Rightarrow ((kp)^{q-1})^{h(p-1)}\times kp\equiv kp(mod\ q)\Rightarrow(kp)^{h(p-1)(q-1)}\equiv kp(mod\ q)$，即$(kp)^{ed}\equiv kp(mod\ q)$。所以$(kp)^{ed}=kp+tq$。由于等式左边能被p整除，因此等式右边也能被p整除，即$p|kp+tq \Rightarrow p|tq$，由于p、q互质，因此$p|t$。令$t=t’p$。带入等式可得$(kp)^{ed}=kp+t’pq\Rightarrow m^{ed}=m+t’n\Rightarrow m^{ed}\equiv m(mod\ n)$。由此得证。</p>
+<p>然后是e的取值，一般e不能取得太小，如取3。否则$m^3$可能小到仍小于n，这样直接开立方即可得到明文，抑或是暴力每次加上n看是否为完全立方数，易被破解。</p>
+</li>
+<li><p>RSA的共模攻击</p>
+<p>如果在加密中对于同一个n，有两个公钥$e_1,e_2$，假设$e_1,e_2$互质，用这两个公钥加密同一个密文m，得到两个明文$c_1,c_2$。由于$e_1,e_2$互质，由裴蜀定理可知存在x,y使得$e_1x+e_2y=1$，通过扩展欧几里得可求出x、y。而又因为$c_1\equiv m^{e_1}(mod\ n),c_2\equiv m^{e_2}(mod\ n)$，因此$c_1^x\times c_2^y\equiv m^{xe_1}\times m^{ye_2}\equiv m^{xe_1+ye_2}\equiv m(mod\ n)$。这样我们不需要计算出p、q和私钥d即可获得密文。</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/Math/" rel="tag"><i class="fa fa-tag"></i> Math</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/10/cryptotools/" rel="prev" title="Crypto常用在线工具个人向总结">
+      <i class="fa fa-chevron-left"></i> Crypto常用在线工具个人向总结
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/18/BUUCTFCryptoWP/" rel="next" title="BUUCTF Crypto部分WriteUp">
+      BUUCTF Crypto部分WriteUp <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTg5Ny8yNjM4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数论"><span class="nav-number">1.</span> <span class="nav-text">数论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数论初步"><span class="nav-number">1.1.</span> <span class="nav-text">数论初步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本定理"><span class="nav-number">1.1.2.</span> <span class="nav-text">基本定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#重要定理（数论四大定理）"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">重要定理（数论四大定理）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他定理"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">其他定理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要概念"><span class="nav-number">1.1.3.</span> <span class="nav-text">重要概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#欧拉函数的性质"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">欧拉函数的性质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乘法逆元"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">乘法逆元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密码学应用"><span class="nav-number">1.1.4.</span> <span class="nav-text">密码学应用</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Shrimpwr"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Shrimpwr</p>
+  <div class="site-description" itemprop="description">无数渺小的思考填满了人的一生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1349935267&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+
+<div class="copyright" style="display:inline">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-glass-martini-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shrimpwr</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">15k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14 分钟</span>
+    <span class="post-meta-divider">|</span>
+</div>
+
+        
+<div class="busuanzi-count" style = "display:inline">
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='105,105,105' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

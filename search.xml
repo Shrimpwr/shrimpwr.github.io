@@ -111,4 +111,126 @@
         <tag>notes</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数论知识总结</title>
+    <url>/2020/05/17/numbertheory/</url>
+    <content><![CDATA[<h1 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h1><p>—— 本文作者为<a href="https://space.bilibili.com/14151182?from=search&amp;seid=3700120856844522831" target="_blank" rel="noopener">吉龙行天</a>师傅，上传到此以便查看<br><a id="more"></a></p>
+<h2 id="数论初步"><a href="#数论初步" class="headerlink" title="数论初步"></a>数论初步</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ol>
+<li><p>抽屉原理（鸽巢定理）：n+1个元素放进n个集合中，必定有一个集合有至少两个元素。</p>
+</li>
+<li><p>如果整数a能被m整除，即$a=k\times m$，那么记作$m|a$。</p>
+</li>
+<li><p>整除具有传递性，即$a|b，b|c$，那么$a|c$。</p>
+</li>
+<li><p>对于线性运算，整除的性质仍然保持，即$a|b,a|c$，那么$a|kb+tc$。</p>
+</li>
+<li><p>设有一个数p，如果除了1与p自身之外，没有数能整除p，那么p就是一个素数。否则被称作合数（数论中大多数证明及应用都围绕着素数展开）。</p>
+</li>
+<li><p>对于$a_1,a_2\dots,a_n$，如果整数d能整除每一个数，那么就将d称作他们的公因数，其中最大的那个d被称作最大公因数，记为$(a_1,a_2\dots,a_n)$。如果整数D能被每一个数整除，那么D被称作他们的公倍数，其中最小的被称作最小公倍数，记作$[a_1,a_2\dots,a_n]$。最小公倍数与最大公因数满足$a\times b=(a,b)\times[a,b]$。</p>
+</li>
+<li><p>求最大公因数一般使用辗转相除法（欧几里得定理）</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">gcd</span><span class="params">(a,b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	r = a % b;</span><br><span class="line">    <span class="keyword">if</span>(r)</span><br><span class="line">        <span class="keyword">return</span> gcd(b,r);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>贝祖定理（裴蜀定理）</p>
+<p>$(a,b)=d$等价于存在整数x,y使得$ax+by=d$。</p>
+<p>重要推论：a与b互质的充分必要条件是存在整数x,y使得$ax+by=1$。</p>
+</li>
+<li><p>扩展欧几里得定理</p>
+<p>用来求贝祖定理的x、y。即用来解形如$ax+by=gcd(a,b)$的等式。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b==<span class="number">0</span>)&#123;</span><br><span class="line">        x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> q=exgcd(b,a%b,y,x);</span><br><span class="line">    y-=a/b*x;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>素数基本定理</p>
+<p>对于任意数a，都可唯一表示为$a=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，其中$i<j\Rightarrow p_i<p_j$，$a_i>0$。</p>
+</li>
+<li><p>设有两个整数数a、b，如果$m|(a-b)$，那么就称为a与b对模m同余，记作$a\equiv b (mod\ m)$。一般来讲，在模m的意义下，我们就可以认为a与b相同。利用同余我们即可实现最简单的加密。如：</p>
+<p>设明文为x，加密函数$e(x)=ax+b(mod\ m)$，一般$m=26$（即26个英文字母）这就是仿射密码，其中$(a,m)=1$。在a=1的情况下，就是凯撒密码。</p>
+</li>
+<li><p>同余具有自反性、对称型与传递性。</p>
+</li>
+<li><p>将满足$a^x\equiv1(mod\ m)$的最小的正整数x称作a在模m下的阶。其余满足该式的x均能被阶整除。</p>
+</li>
+<li><p>完全剩余系：将所有模m同余的数成为一个等价类，那么显然对于m存在m个等价类，也被称为剩余类。从每个等价类中取出一个数组成一个集合，这个集合被称为模m的剩余系。最基础的剩余系即为$0,1,\dots,m-1$。完全剩余系也被称为完系。</p>
+<p>简化剩余系：在模m的所有剩余类中，若存在一个数与m互质，则其被称作简化剩余类。从m的所有简化剩余类中取一个数出来组成一个集合，这个集合被称为模m的简化剩余系，也被称作缩系。一般即为从$0,1,\dots,m-1$中取出所有与m互质的数组成简化剩余系。</p>
+</li>
+<li><p>欧拉函数：对于整数n，$1,2,\dots,n$中与n互质的数的个数，被称作n的欧拉函数，记作$\phi(n)$。显然$\phi(n)$的值等于n的简化剩余系中元素的个数。其中$\phi(1)=1$。</p>
+</li>
+<li><p>对于任意整数a、n，若存在$a’$满足$a’a\equiv1(mod\ n)$，则称$a’$为a在模n下的乘法逆元（也被称作数论倒数），记作$a^{-1}$。</p>
+</li>
+</ol>
+<h3 id="基本定理"><a href="#基本定理" class="headerlink" title="基本定理"></a>基本定理</h3><h4 id="重要定理（数论四大定理）"><a href="#重要定理（数论四大定理）" class="headerlink" title="重要定理（数论四大定理）"></a>重要定理（数论四大定理）</h4><ol>
+<li><p>欧拉定理：如果$(a,n)=1$，那么$a^{\phi(n)}\equiv 1 (mod\ n)$。</p>
+</li>
+<li><p>费马小定理：如果p为质数，那么对于任意整数a都有$a^p\equiv a(mod\ p)$。特别的，如果a不能被p整除（即a与p互质），那么$a^{p-1}\equiv1(mod\ p)$。</p>
+</li>
+<li><p>威尔逊定理：如果p为质数，那么$(p-1)!\equiv-1(mod\ p)$。</p>
+</li>
+<li><p>中国剩余定理（孙子定理）：对于同余方程S</p>
+<script type="math/tex; mode=display">
+(S):\left\{
+\begin{array}{x}
+x\equiv a_1\ (mod\ m_1)\\
+x\equiv a_2\ (mod\ m_2)\\
+\vdots\\
+x\equiv a_n\ (mod\ m_n)
+\end{array}
+\right.</script><p>若$m_1,m_2,\cdots,m_n$两两互质，则对于任意的$a_i$，该同余方程组必有解。且解法如下：</p>
+<p>令$M=\prod_{i=1}^n m_i$，$M_i=M/m_i$，$t_i=M_i^{-1}(mod\ m_i)$，即$t_i$是$M_i$在模$m_i$意义下的乘法逆元。那么方程组S的通解为$x=kM+\sum_{i=1}^n a_i t_i M_i$。在模M的意义下，方程有唯一解$x\equiv \sum_{i=1}^n a_i t_i M_i$。</p>
+</li>
+</ol>
+<h4 id="其他定理"><a href="#其他定理" class="headerlink" title="其他定理"></a>其他定理</h4><p>​    欧拉降幂公式：</p>
+<script type="math/tex; mode=display">
+a^b\equiv\left\{
+\begin{array}{x}
+a^{b\%\phi(p)}\ \ \ &gcd(a,p)=1\\
+a^b &gcd(a,p)\not=1,b<\phi(p)\\
+a^{b\%\phi(p)+\phi(p)} &gcd(a,p)\not=1,b>\phi(p)
+\end{array}
+\right.
+\ \ \ \ (mod\ p)</script><h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><h4 id="欧拉函数的性质"><a href="#欧拉函数的性质" class="headerlink" title="欧拉函数的性质"></a>欧拉函数的性质</h4><ol>
+<li>如果p为质数，$\phi(p)=p-1$。</li>
+<li>对于整数$n=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，$\phi(n)=x\prod_{i=1}^n(1-\frac 1 {p_i})$。</li>
+<li>如果p为质数且$n=p^k$，$\phi(n)=p^k-p^{k-1}$。</li>
+<li>欧拉函数为积性函数，即若m,n互质，则$\phi(mn)=\phi(m)\phi(n)$。</li>
+<li>整数n的所有因数（包括1和他自己）的欧拉函数之和等于n。$n=\sum_{d|n}\phi(d)$。</li>
+<li>小于n的数中，与n互质的数的总和为：$\frac{\phi(n)\times n} 2$。</li>
+</ol>
+<h4 id="乘法逆元"><a href="#乘法逆元" class="headerlink" title="乘法逆元"></a>乘法逆元</h4><ol>
+<li>对于任意整数a、n，若存在$a’$满足$a’a\equiv1(mod\ n)$，则称$a’$为a在模n下的乘法逆元（也被称作数论倒数），记作$a^{-1}$。</li>
+<li>求整数a在模n下的乘法逆元x即为求解同余方程$ax\equiv 1(mod\ n)$，也就是求方程$ax=1-kn$，即求方程$ax+kn=1$的整数解x、k。因此由裴蜀定理可知，该方程有解当且仅当$(a,n)=1$。也就是a在模n下存在乘法逆元的充分必要条件为a、n互质。</li>
+<li>求解a在模n下的乘法逆元时，若n为质数，则由费马小定理可知$a^{n-1}\equiv1(mod\ n)$，两边同乘a的乘法逆元$a’$，则$a’a^{n-1}\equiv a^{n-2}\equiv a’$，因此可得$a’\equiv a^{n-2}$。因此在n为质数时，即可通过快速幂来计算乘法逆元。</li>
+<li>若n不是质数，则需要求解方程ax+kn=1的整数解，因此可以通过扩展欧几里得解出x与k。</li>
+<li>由于同余式满足加减乘的运算，但是除法运算不一定成立，因此在遇到除法时一般通过乘以除数的乘法逆元来代替。</li>
+</ol>
+<h3 id="密码学应用"><a href="#密码学应用" class="headerlink" title="密码学应用"></a>密码学应用</h3><ol>
+<li><p>秘密共享的门限方案</p>
+<p>现在有一段数据需要加密，我们可以将解密的密钥分成n份存储，且要满足解密者必须获得其中m份以上才能恢复源数据。这种方案被称作$(m,n)$门限方案。其中最简单的实现方法就是，将密钥分为$C\binom n {m-1}$块，其中每份持有$C\binom{n-1}{m-1}$块。拿$(3,5)$门限方案举例，即必须获得半数以上的密钥块才能获得完整密钥。我们需要10个密钥块，每份持有6个密钥：</p>
+<script type="math/tex; mode=display">
+\begin{array}{x}
+total=0,1,2,3,4,5,6,7,8,9\\
+\#1=0,1,2,3,4,5\\
+\#2=0,1,2,6,7,8\\
+\#3=0,3,4,6,7,9\\
+\#4=1,3,5,6,8,9\\
+\#5=2,4,5,7,8,9
+\end{array}</script><p>这样就可满足解密者必须获得任意3份及以上的密钥块才能还原出完整密钥。即对于每个密钥块都恰有仨人持有。由抽屉原理可知，任意选三人都能获得每个密钥块至少一次。</p>
+<p>而如果用到数论四大定理中的中国剩余定理，我们能够得到更方便而且也更加难以被破解的方案。假设有一个大整数x，给出m个两两互质的整数，其乘积为M。那么如果我们知道x除以这m个数的余数，我们就可以在0到P-1内确定这个唯一的X。因此可以构造n个数，使得这n个数两两互质，且其中最小的m个数之积大于x，最大的m-1个数之积小于x。这样我们只需去一个在这两个数之间的x，我们就能简单的构造出这么一个门限方案。而且如果我们的数取得足够大就能一定程度的确保其安全性。</p>
+</li>
+<li><p>RSA加密</p>
+<p>RSA加密是现代非对称加密的鼻祖。其安全性基于大整数难以分解质因数。取两个大质数p、q，令$n=p\times q$，另取一个数e作为公钥，使得e与$\phi(n)$互质，且小于$\phi(n)$。但是e取得不能够过小，原因之后会说明。求出e对于$\phi(n)$的乘法逆元d作为私钥。紧接着将p、q销毁。这样我们就获得了RSA加密的两组密钥，公钥$(n,e)$与私钥$(n,d)$。当Alice要向Bob发送消息时，她会使用Bob所给出的公钥对对其进行加密，我们要将原始数据分为多块，使得每块大小不超过n。令明文为m，密文为c，那么$c\equiv m^e(mod\ n)$。解密时$m\equiv c^d(mod\ n)$。</p>
+<p>解密可靠性原理证明如下：</p>
+<p>​    即证明$m^{ed}\equiv m(mod\ n)$</p>
+<p>​    1): 若m与n互素，由$ed\equiv1(mod\ \phi(n))$，则可通过欧拉降幂公式得出$m^{ed}\equiv m^{ed\%\phi(n)}\equiv m(mod\ n)$，满足要求。</p>
+<p>​    2): 若m与n不互素，则由于$ed\equiv1(mod\ \phi(n))$，因此$ed=h\phi(n)+1$，$m^{ed}\equiv m^{h\phi(n)+1}(mod\ n)$。因为m与n不互素且m &lt; n，由于n是素数p、q之积，因此m=kp或kq，不妨令m=kp，此时由于m &lt; n，因此k &lt; q。又因为q为质数，因此k与q互质。由欧拉定理可得出$(kp)^{q-1}\equiv1(mod\ q)$，所以$((kp)^{q-1})^{h(p-1)}\equiv 1(mod\ q)$<br>$\Rightarrow ((kp)^{q-1})^{h(p-1)}\times kp\equiv kp(mod\ q)\Rightarrow(kp)^{h(p-1)(q-1)}\equiv kp(mod\ q)$，即$(kp)^{ed}\equiv kp(mod\ q)$。所以$(kp)^{ed}=kp+tq$。由于等式左边能被p整除，因此等式右边也能被p整除，即$p|kp+tq \Rightarrow p|tq$，由于p、q互质，因此$p|t$。令$t=t’p$。带入等式可得$(kp)^{ed}=kp+t’pq\Rightarrow m^{ed}=m+t’n\Rightarrow m^{ed}\equiv m(mod\ n)$。由此得证。</p>
+<p>然后是e的取值，一般e不能取得太小，如取3。否则$m^3$可能小到仍小于n，这样直接开立方即可得到明文，抑或是暴力每次加上n看是否为完全立方数，易被破解。</p>
+</li>
+<li><p>RSA的共模攻击</p>
+<p>如果在加密中对于同一个n，有两个公钥$e_1,e_2$，假设$e_1,e_2$互质，用这两个公钥加密同一个密文m，得到两个明文$c_1,c_2$。由于$e_1,e_2$互质，由裴蜀定理可知存在x,y使得$e_1x+e_2y=1$，通过扩展欧几里得可求出x、y。而又因为$c_1\equiv m^{e_1}(mod\ n),c_2\equiv m^{e_2}(mod\ n)$，因此$c_1^x\times c_2^y\equiv m^{xe_1}\times m^{ye_2}\equiv m^{xe_1+ye_2}\equiv m(mod\ n)$。这样我们不需要计算出p、q和私钥d即可获得密文。</p>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Math</tag>
+      </tags>
+  </entry>
 </search>
