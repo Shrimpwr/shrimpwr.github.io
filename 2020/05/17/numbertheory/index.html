@@ -28,7 +28,7 @@
 <meta property="og:description" content="数论—— 本文作者为吉龙行天师傅，上传到此以便查看">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-17T12:00:09.000Z">
-<meta property="article:modified_time" content="2020-05-21T12:46:34.941Z">
+<meta property="article:modified_time" content="2020-05-23T11:01:02.012Z">
 <meta property="article:author" content="Shrimpwr">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Math">
@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-21 20:46:34" itemprop="dateModified" datetime="2020-05-21T20:46:34+08:00">2020-05-21</time>
+                <time title="修改时间：2020-05-23 19:01:02" itemprop="dateModified" datetime="2020-05-23T19:01:02+08:00">2020-05-23</time>
               </span>
 
           
@@ -227,13 +227,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>845</span>
+              <span>5k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
 
         </div>
@@ -271,7 +271,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (b==<span class="number">0</span>)&#123;</span><br><span class="line">        x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> q=exgcd(b,a%b,y,x);</span><br><span class="line">    y-=a/b*x;</span><br><span class="line">    <span class="keyword">return</span> q;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>素数基本定理</p>
-<p>对于任意数a，都可唯一表示为$a=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，其中$i<j\Rightarrow p_i<p_j$，$a_i>0$。</p>
+<p>对于任意数a，都可唯一表示为$a=p_1^{a_1}p_2^{a_2}\dots p_n^{a_n}$，其中$p_i$递增 且$a_i&gt;0$。</p>
 </li>
 <li><p>设有两个整数数a、b，如果$m|(a-b)$，那么就称为a与b对模m同余，记作$a\equiv b (mod\ m)$。一般来讲，在模m的意义下，我们就可以认为a与b相同。利用同余我们即可实现最简单的加密。如：</p>
 <p>设明文为x，加密函数$e(x)=ax+b(mod\ m)$，一般$m=26$（即26个英文字母）这就是仿射密码，其中$(a,m)=1$。在a=1的情况下，就是凯撒密码。</p>
@@ -506,12 +506,12 @@ total=0,1,2,3,4,5,6,7,8,9\\
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">15k</span>
+    <span title="站点总字数">19k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">14 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
     <span class="post-meta-divider">|</span>
 </div>
 
