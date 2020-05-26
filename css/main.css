@@ -1198,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #9920ff;
+  background: #ff6b9e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2207,6 +2207,7 @@ ul.breadcrumb li + li:last-child {
 }
 .search-active .search-popup {
   transform: scale(1);
+  z-index: 1000;
 }
 @media (max-width: 767px) {
   .search-popup {
@@ -2611,7 +2612,7 @@ body {
 }
 .content-wrap {
   width: calc(99% - 260px);
-  opacity: 0.82;
+  opacity: 0.86;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .content-wrap {
@@ -2631,12 +2632,13 @@ body {
   background: rgba(255,255,255,0.85);
 }
 .sidebar {
-  opacity: 0.9;
+  opacity: 0.91;
   background: rgba(255,255,255,0);
 }
 .sidebar-inner {
   background: rgba(255,255,255,0.87);
 }
 .header-inner {
-  opacity: 0.79;
+  z-index: 1000;
+  opacity: 0.8;
 }
