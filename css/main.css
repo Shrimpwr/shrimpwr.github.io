@@ -950,7 +950,7 @@ pre .javascript .function {
 }
 .main-inner {
   margin: 0 auto;
-  width: 900px;
+  width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
   .main-inner {
@@ -972,7 +972,7 @@ pre .javascript .function {
 }
 .header-inner {
   margin: 0 auto;
-  width: 900px;
+  width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
   .header-inner {
@@ -1198,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ed93ff;
+  background: #45ff00;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1412,7 +1412,7 @@ pre .javascript .function {
   box-sizing: border-box;
   margin: 0 auto;
   text-align: center;
-  width: 900px;
+  width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
   .footer-inner {
@@ -1515,7 +1515,7 @@ pre .javascript .function {
 }
 .back-to-top {
   background: #222;
-  bottom: -100px;
+  bottom: 0px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -2287,7 +2287,7 @@ mjx-container + br {
 .header {
   margin: 0 auto;
   position: relative;
-  width: 900px;
+  width: calc(100% - 20px);
 }
 @media (min-width: 1200px) {
   .header {
@@ -2570,4 +2570,73 @@ mjx-container + br {
 }
 .links-of-blogroll-item {
   padding: 0;
+}
+body {
+  background: url("/images/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+.post-block {
+  padding: 40px;
+  width: 91%;
+  background: rgba(255,255,255,0);
+}
+.header {
+  width: 90%;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .header {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .header {
+    width: 100%;
+  }
+}
+.container .main-inner {
+  width: 90%;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .container .main-inner {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .container .main-inner {
+    width: 100%;
+  }
+}
+.content-wrap {
+  width: calc(99% - 260px);
+  opacity: 0.82;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .content-wrap {
+    width: 100%;
+  }
+}
+@media (max-width: 767px) {
+  .content-wrap {
+    width: 100%;
+  }
+}
+.comments {
+  width: calc(90% - 5px);
+  padding: 40px;
+  margin: initial;
+  margin-top: sboffset;
+  background: rgba(255,255,255,0.85);
+}
+.sidebar {
+  opacity: 0.9;
+  background: rgba(255,255,255,0);
+}
+.sidebar-inner {
+  background: rgba(255,255,255,0.87);
+}
+.header-inner {
+  opacity: 0.79;
 }
