@@ -78,6 +78,125 @@
       </tags>
   </entry>
   <entry>
+    <title>Chive8月9日比赛writeup</title>
+    <url>/2020/08/09/CHIVEWP200809/</url>
+    <content><![CDATA[<h2 id="传说中的chive"><a href="#传说中的chive" class="headerlink" title="传说中的chive"></a>传说中的chive</h2><p>打开py文件一看，n = p * q * r * s * t（素因子均满足 % 4 = 3），e = 2，是rabin算法的变形<br><a id="more"></a><br>nc 获得各素因子以及 c 的值<br>通过中国剩余定理推出通解形式，写脚本</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">pp = q * r * s * t</span><br><span class="line">qq = p * r * s * t</span><br><span class="line">rr = p * q * s * t</span><br><span class="line">ss = q * r * p * t</span><br><span class="line">tt = q * r * s * p</span><br><span class="line">mp = pow(c, (p + <span class="number">1</span>) // <span class="number">4</span>, p)</span><br><span class="line">mq = pow(c, (q + <span class="number">1</span>) // <span class="number">4</span>, q)</span><br><span class="line">mr = pow(c, (r + <span class="number">1</span>) // <span class="number">4</span>, r)</span><br><span class="line">ms = pow(c, (s + <span class="number">1</span>) // <span class="number">4</span>, s)</span><br><span class="line">mt = pow(c, (t + <span class="number">1</span>) // <span class="number">4</span>, t)</span><br><span class="line">x = [(invert(pp, p) * pp * mp) % n, (invert(qq, q) * qq * mq) % n, (invert(rr, r) * rr * mr) % n, (invert(ss, s) * ss * ms) % n, (invert(tt, t) * tt * mt) % n]</span><br><span class="line">m = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">                    m.append((x[<span class="number">0</span>] * pow(<span class="number">-1</span>, i) + x[<span class="number">1</span>] * pow(<span class="number">-1</span>, j) + x[<span class="number">2</span>] * pow(<span class="number">-1</span>, k) + x[<span class="number">3</span>] * pow(<span class="number">-1</span>, a) + x[<span class="number">4</span>] * pow(<span class="number">-1</span>, b)) % n)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">    print(long_to_bytes(i))</span><br></pre></td></tr></table></figure>
+<p>有 2^5=32 个可能的解，全部输出就能找到flag</p>
+<h2 id="失落的藏宝图"><a href="#失落的藏宝图" class="headerlink" title="失落的藏宝图"></a>失落的藏宝图</h2><p>提示“笑迎八方客 喜得四面财”，是四方密码<br>四方密码需要两个密钥，第一个密钥，看“Uspaiimsdevcfvl! Rzi hciam iwc km jmvsjmvs, ewp eg xq zzvw rzi uytwgb grg.”这行，是维吉尼亚密码，且可以看出第一个单词是 “Congratulations”，解出“Congratulations! The first key is security. now go to find the second one.”<br>第二个密钥，给出了一行像是乱码的汉字“亠鯛顼魻翳鍫箦泔钿犽妁澡鍫脲鶢轶犻铈矧磲糸镱”（中间的不是空格），正解应该是转成16进制再减128，然而我这么做出来的还是乱码…<br>找了个在线解密的网站试了几个单词，试到 “internet” 的时候解密出来是 “welcmmetochdve”，然后猜出flag是 “welcometochive”  </p>
+<h2 id="神秘信封"><a href="#神秘信封" class="headerlink" title="神秘信封"></a>神秘信封</h2><p>文档中给出一个 n 和一大堆 c ，且告诉了 e &lt; 20000<br>重点是要想到每个 c 对应 flag 中一个字符，第一个就是 ‘f’ ，依此爆破出 e  </p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20000</span>):</span><br><span class="line">    <span class="keyword">if</span>(pow(ord(<span class="string">'f'</span>), i, n) == c[<span class="number">0</span>]):</span><br><span class="line">        e = i</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>然后对于后面的c，在可显示字符的范围内爆破即可<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">flag = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> ci <span class="keyword">in</span> c:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>, <span class="number">127</span>):</span><br><span class="line">        <span class="keyword">if</span>(pow(i, e, n) == ci):</span><br><span class="line">            flag += chr(i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure></p>
+<h2 id="the-golden-apple"><a href="#the-golden-apple" class="headerlink" title="the golden apple"></a>the golden apple</h2><p>mt是个梅森旋转算法伪随机数生成器, 网上找了篇教程 <a href="https://liam.page/2018/01/12/Mersenne-twister/" target="_blank" rel="noopener">https://liam.page/2018/01/12/Mersenne-twister/</a><br>nc 得到的16进制密文，根据已知的明文 “flag{” ，利用异或的性质可以倒推出flag中前面几位字符encrypt时使用的key  </p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">lis = [</span><br><span class="line"><span class="string">b'3ade5de7971dba7dd5b868a0e948f4b5'</span>,<span class="string">b'fe9b368ed33cb05978c15b3b2c0b7783'</span>,<span class="string">b'699ab9e1da0494b69cdf4765f2c31f7d'</span>,<span class="string">b'b2379966cfd83c7996ac7d8508d809bf'</span>,<span class="string">b'b75dd8daa397fba86bd09dbe9a76daa1'</span>,<span class="string">b'7d2eff7d0ae60ff35d760c4139aed543'</span>,<span class="string">b'0486f6e6d6cd6d563364e59aa530e950'</span>,<span class="string">b'7b821fd7a7884d408cc8bc64ad96516b'</span>,<span class="string">b'895f0565a086b26a09b8deb68ce02209'</span>,<span class="string">b'0a8eabc4040282fc853125914d23a276'</span>,<span class="string">b'de77f142e9b977ddf73381dd08f9c7ed'</span>,<span class="string">b'bd021c124584e3e40df78f1fbfb67ac5'</span>,<span class="string">b'9d507c7568044271f08162948d72f598'</span>,<span class="string">b'f4cb00f744f6f64bdde5627012016d1e'</span>,<span class="string">b'92a41e3565cb1326e9faa5e48fc3b787'</span>,<span class="string">b'f91b03e8dbea90ec2fb6e9f1d6fd6472'</span>,<span class="string">b'f5e10df1ae83a7dfd79cbd4513389634'</span>,<span class="string">b'd5cb26984d0795a2951e2fd42f9be372'</span>,<span class="string">b'af70311e6099178965631775c62bfb76'</span>,<span class="string">b'ee4fac89ad29cc727c2544fbaef7b14c'</span>,<span class="string">b'e99fe35c11390a4080ea41b067689db2'</span>,<span class="string">b'55cd7353670d957a59ebf5115313cca8'</span>,<span class="string">b'1cc39396d0d3dcaeb507abd49ad55613'</span>,<span class="string">b'b70cbdb2d54426f4d5d78ea25fefb794'</span>,<span class="string">b'50b4b0c8cd900fbda82080f2fa950921'</span>,<span class="string">b'eb7906c52da040852a1a37d73e3268b2'</span>,<span class="string">b'85383c0af884e2f5f7a611f5c0b3aee7'</span>,<span class="string">b'bb0a2204bc413ebd7488e57eceae7e62'</span>,<span class="string">b'33a7edd88c13d7277867ee463e4d2c3a'</span>,<span class="string">b'5ac447651278f4f7f968ece83df41e93'</span>,<span class="string">b'c0a70c2fb5b9f6111fef8f893d491510'</span>,<span class="string">b'724044beb035a1ad401cbe49d3bf7b52'</span>,<span class="string">b'4680fce6352e85f42e5f916b6c0598e2'</span>,<span class="string">b'5ed5a9d4d70b71437381771fc941b771'</span>,<span class="string">b'576ee233315d0dd52b08b1f8fe36d352'</span>,<span class="string">b'99b04da2cabdda0ce531f1e7b13a4f66'</span>,<span class="string">b'f35d3a57092363effd0b32a2209f5975'</span>,<span class="string">b'b058ab2f6d0c31978a3558a7bf9a4d31'</span>,<span class="string">b'401d9d8fc0ed4f28e90ea5191c686299'</span>,<span class="string">b'65071ffbbdef0d33a2c8ed54419f41d3'</span>,<span class="string">b'01fe1cfee7a19bcdaceb0f282f386457'</span>,<span class="string">b'6e40fe859210a577e8e6595c27b52cbb'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">key4 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    cf = unhexlify(lis[i])</span><br><span class="line">    mf = md5(<span class="string">'flag&#123;'</span>[i].encode()).digest()</span><br><span class="line">    <span class="comment">#cf = XOR(mf , key)</span></span><br><span class="line">    key = XOR(mf, cf)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        key4.append(bytes_to_long(key[j*<span class="number">4</span>:(j+<span class="number">1</span>)*<span class="number">4</span>]))</span><br></pre></td></tr></table></figure>
+<p>key再经过逆向得到Next中的tmp, 即对应的内部寄存器状态state[flag]</p>
+<pre><code class="lang-py">states = []
+
+class TemperInverser:
+    __b = 0x9ddf4680
+    __c = 0xefc65400
+    __d = 0x34adf670
+    __kMaxBits = 0xffffffff
+
+    def __inverse_right_shift_xor(self, value, shift, mask):
+        i, result = 0, 0
+        while i * shift &lt; 32:
+            part_mask = ((self.__kMaxBits &lt;&lt; (32 - shift)) &amp; self.__kMaxBits) &gt;&gt; (i * shift)
+            part = value &amp; part_mask
+            value ^= (part &gt;&gt; shift) &amp; mask
+            result |= part
+            i += 1
+        return result
+
+    def __inverse_left_shift_xor(self, value, shift, mask):
+        i, result = 0, 0
+        while i * shift &lt; 32:
+            part_mask = (self.__kMaxBits &gt;&gt; (32 - shift)) &lt;&lt; (i * shift)
+            part = value &amp; part_mask
+            value ^= (part &lt;&lt; shift) &amp; mask
+            result |= part
+            i += 1
+        return result
+
+    def __inverse_temper(self, tempered):
+        value = tempered
+        value = self.__inverse_right_shift_xor(value, 18, self.__d)
+        value = self.__inverse_left_shift_xor(value, 15, self.__c)
+        value = self.__inverse_left_shift_xor(value, 7, self.__b)
+        value = self.__inverse_right_shift_xor(value, 11, self.__kMaxBits)
+        return value
+
+    def __call__(self, tempered):
+        return self.__inverse_temper(tempered)
+
+inverser  = TemperInverser()
+
+for i in key4:
+    states.append(inverser(i))
+</code></pre>
+<p>待续</p>
+]]></content>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Crypto</tag>
+        <tag>WP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Blog搭建笔记</title>
+    <url>/2020/04/27/blogbuilding/</url>
+    <content><![CDATA[<h3 id="2020-04-27"><a href="#2020-04-27" class="headerlink" title="2020.04.27"></a>2020.04.27</h3><p>第一次将blog部署到github 并设置了个人域名</p>
+<h3 id="2020-04-28"><a href="#2020-04-28" class="headerlink" title="2020.04.28"></a>2020.04.28</h3><p>使用了NexT主题<br><img src="/2020/04/27/blogbuilding/2.png" class=""><br><a id="more"></a></p>
+<h3 id="2020-04-29"><a href="#2020-04-29" class="headerlink" title="2020.04.29"></a>2020.04.29</h3><p>现在可以听歌了（VA11 HALL-A天下第一！）<br><img src="/2020/04/27/blogbuilding/4.png" class=""></p>
+<h3 id="2020-04-30"><a href="#2020-04-30" class="headerlink" title="2020.04.30"></a>2020.04.30</h3><p>添加了LiveRe评论功能<br><img src="/2020/04/27/blogbuilding/5.png" class=""></p>
+<h3 id="2020-05-04"><a href="#2020-05-04" class="headerlink" title="2020.05.04"></a>2020.05.04</h3><p>上传了第一篇post</p>
+<h3 id="2020-05-07"><a href="#2020-05-07" class="headerlink" title="2020.05.07"></a>2020.05.07</h3><p>修改了主题的一些细节 界面更美观了（大概<br><img src="/2020/04/27/blogbuilding/3.png" class=""></p>
+<h3 id="2020-05-13"><a href="#2020-05-13" class="headerlink" title="2020.05.13"></a>2020.05.13</h3><p>参考<a href="https://blog.csdn.net/zhyl8157121/article/details/100551592" target="_blank" rel="noopener">https://blog.csdn.net/zhyl8157121/article/details/100551592</a>配置了CloudFlare CDN，增加安全性并加速访问<br><img src="/2020/04/27/blogbuilding/1.png" class=""></p>
+]]></content>
+      <tags>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Crypto常用python库</title>
+    <url>/2020/05/21/crypto-pylibs/</url>
+    <content><![CDATA[<h2 id="gmpy2"><a href="#gmpy2" class="headerlink" title="gmpy2"></a>gmpy2</h2><p>高精度算法库，支持大整数和一些常用的数学函数<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gmpy2.mpz() <span class="comment">#大整数</span></span><br><span class="line">gmpy2.mpq()  <span class="comment"># 分数</span></span><br><span class="line">gmpy2.mpfr()  <span class="comment"># 高精度浮点数</span></span><br><span class="line">gmpy2.mpc()  <span class="comment"># 复数</span></span><br><span class="line">gmpy2.powmod(a, n, p) <span class="comment">#模幂运算</span></span><br><span class="line">gmpy2.gcd(a, b)</span><br><span class="line">gmpy2.lcm(a, b)</span><br><span class="line">gmpy2.gcdext(a, b) <span class="comment"># 扩展欧几里得</span></span><br><span class="line">gmpy2.invert(a, m) <span class="comment"># 乘法逆元</span></span><br><span class="line">gmpy2.is_prime()</span><br><span class="line">gmpy2.is_even()</span><br><span class="line">gmpy2.is_odd()</span><br></pre></td></tr></table></figure></p>
+<h2 id="libnum"><a href="#libnum" class="headerlink" title="libnum"></a>libnum</h2><p>提供常用数学函数，模运算，数字与字符串转换函数，以及ECC相关的一些函数<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># common math</span></span><br><span class="line">len_in_bits(n) <span class="comment"># number of bits in binary representation of @n</span></span><br><span class="line">randint_bits(size) <span class="comment"># random number with a given bit size</span></span><br><span class="line">extract_prime_power(a, p) <span class="comment"># s,t such that a = p**s * t</span></span><br><span class="line">nroot(x, n) <span class="comment"># truncated n'th root of x</span></span><br><span class="line">gcd(a, b, ...) <span class="comment"># greatest common divisor of all arguments</span></span><br><span class="line">lcm(a, b, ...) <span class="comment"># least common multiplier of all arguments</span></span><br><span class="line">xgcd(a, b) <span class="comment"># Extented Euclid GCD algorithm, returns (x, y, g) : a * x + b * y = gcd(a, b) = g</span></span><br></pre></td></tr></table></figure><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Modular &amp; Modular square roots</span></span><br><span class="line">has_invmod(a, n) <span class="comment"># checks if a has modulo inverse</span></span><br><span class="line">invmod(a, n) <span class="comment"># modulo inverse</span></span><br><span class="line">solve_crt(remainders, modules) <span class="comment"># solve Chinese Remainder Theoreme</span></span><br><span class="line">factorial_mod(n, factors) <span class="comment"># compute factorial modulo composite number, needs factorization</span></span><br><span class="line">nCk_mod(n, k, factors) <span class="comment"># compute combinations number modulo composite number, needs factorization</span></span><br><span class="line">nCk_mod_prime_power(n, k, p, e) <span class="comment"># compute combinations number modulo prime power</span></span><br><span class="line">jacobi(a, b) <span class="comment"># Jacobi symbol</span></span><br><span class="line">has_sqrtmod_prime_power(a, p, k) <span class="comment"># checks if a number has modular square root, modulus is p**k</span></span><br><span class="line">sqrtmod_prime_power(a, p, k) <span class="comment"># modular square root by p**k</span></span><br><span class="line">has_sqrtmod(a, factors) <span class="comment"># checks if a composite number has modular square root, needs factorization</span></span><br><span class="line">sqrtmod(a, factors) <span class="comment"># modular square root by a composite modulus, needs factorization</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># primes</span></span><br><span class="line">primes(n) <span class="comment"># list of primes not greater than @n, slow method</span></span><br><span class="line">generate_prime(size, k=<span class="number">25</span>) <span class="comment"># generates a pseudo-prime with @size bits length. @k is a number of tests.</span></span><br><span class="line">generate_prime_from_string(s, size=<span class="literal">None</span>, k=<span class="number">25</span>) <span class="comment"># generate a pseudo-prime starting with @s in string representation</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#convert</span></span><br><span class="line">libnum.s2n(s) <span class="comment">#packed string to number</span></span><br><span class="line">libnum.n2s(n) <span class="comment">#number to packed string</span></span><br><span class="line">libnum.b2s(b) <span class="comment">#binary string to packed string</span></span><br><span class="line">libnum.s2b(s) <span class="comment">#packed string to binary string</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ECC</span></span><br><span class="line">Curve(a, b, p, g, order, cofactor, seed) <span class="comment"># class for representing elliptic curve. Methods:</span></span><br><span class="line">libnum.is_null(p) <span class="comment"># checks if point is null</span></span><br><span class="line">libnum.is_opposite(p1, p2) <span class="comment"># checks if 2 points are opposite</span></span><br><span class="line">libnum.check(p) <span class="comment"># checks if point is on the curve</span></span><br><span class="line">libnum.check_x(x) <span class="comment"># checks if there are points with given x on the curve (and returns them if any)</span></span><br><span class="line">libnum.find_points_in_range(start, end) <span class="comment"># list of points in range of x coordinate</span></span><br><span class="line">libnum.find_points_rand(count) <span class="comment"># list of count random points</span></span><br><span class="line">libnum.add(p1, p2) <span class="comment"># p1 + p2 on elliptic curve</span></span><br><span class="line">libnum.power(p, n) <span class="comment"># n✕P or (P + P + ... + P) n times</span></span><br><span class="line">libnum.generate(n) <span class="comment"># n✕G</span></span><br><span class="line">libnum.get_order(p, limit) <span class="comment"># slow method, trying to determine order of p; limit is max order to try</span></span><br></pre></td></tr></table></figure>
+<h2 id="pycryptodome"><a href="#pycryptodome" class="headerlink" title="pycryptodome"></a>pycryptodome</h2><p>“PyCryptodome is a self-contained Python package of low-level cryptographic primitives.”<br>提供多种加密算法的加解密功能，以AES为例<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line">key = ‘<span class="number">1234567890</span>abcdef‘</span><br><span class="line">obj = AES.new(key,AES.MODE_ECB)</span><br><span class="line">cipher = obj.encrypt(‘message: pcat.cc‘)</span><br></pre></td></tr></table></figure><br>文档地址<a href="https://www.pycryptodome.org/en/latest/src/introduction.html" target="_blank" rel="noopener">PyCryptodome</a></p>
+<h2 id="base系列"><a href="#base系列" class="headerlink" title="base系列"></a>base系列</h2><p>base64,base36,base58,base91,base92,base62<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">base64.b64encode(s)	<span class="comment"># 对二进制数据(bytes)进行base64编码</span></span><br><span class="line">base64.b64decode(s)	<span class="comment"># 对base64编码的数据进行解码</span></span><br><span class="line">base64.urlsafe_b64encode(s)	<span class="comment"># 对URL进行base64编码</span></span><br><span class="line">base64.urlsafe_b64decode(s)	<span class="comment"># 解码</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="hashlib"><a href="#hashlib" class="headerlink" title="hashlib"></a>hashlib</h2><p>提供常用hash算法<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以md5为例</span></span><br><span class="line">md5 = hashlib.md5(t.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">print(md5.hexdigest())</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Crypto</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Crypto常用在线工具个人向总结</title>
+    <url>/2020/05/10/cryptotools/</url>
+    <content><![CDATA[<h2 id="Cyberchef"><a href="#Cyberchef" class="headerlink" title="Cyberchef"></a>Cyberchef</h2><p><a href="http://cyber.hitwh.club/" target="_blank" rel="noopener">http://cyber.hitwh.club/</a> (镜像站)<br>永远滴神<br><a id="more"></a></p>
+<h2 id="CTF在线工具箱"><a href="#CTF在线工具箱" class="headerlink" title="CTF在线工具箱"></a>CTF在线工具箱</h2><p><a href="http://ctf.ssleye.com/" target="_blank" rel="noopener">http://ctf.ssleye.com/</a><br>也是整合了很多常用功能 和cyberchef相比好处就是中文看起来更方便（</p>
+<h2 id="MD5在线解密"><a href="#MD5在线解密" class="headerlink" title="MD5在线解密"></a>MD5在线解密</h2><p><a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a></p>
+<h2 id="Factordb"><a href="#Factordb" class="headerlink" title="Factordb"></a>Factordb</h2><p><a href="http://www.factordb.com/" target="_blank" rel="noopener">http://www.factordb.com/</a><br>在线分解大整数，解密RSA时可能会用到</p>
+<h2 id="quipqiup"><a href="#quipqiup" class="headerlink" title="quipqiup"></a>quipqiup</h2><p><a href="https://quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a><br>词频分析，用来爆破替换类的古典密码<br>在文本量足够大时效果更好，但文本量小时也可以通过提供线索来尝试爆破</p>
+<h2 id="Vigenere-Solver"><a href="#Vigenere-Solver" class="headerlink" title="Vigenere Solver"></a>Vigenere Solver</h2><p><a href="https://www.guballa.de/vigenere-solver" target="_blank" rel="noopener">https://www.guballa.de/vigenere-solver</a><br>在线爆破维吉尼亚密码</p>
+<h2 id="Substitution-Solver"><a href="#Substitution-Solver" class="headerlink" title="Substitution Solver"></a>Substitution Solver</h2><p><a href="https://www.guballa.de/substitution-solver" target="_blank" rel="noopener">https://www.guballa.de/substitution-solver</a><br>在线爆破替换密码</p>
+<h2 id="W型栅栏密码加密-解密"><a href="#W型栅栏密码加密-解密" class="headerlink" title="W型栅栏密码加密/解密"></a>W型栅栏密码加密/解密</h2><p><a href="http://www.atoolbox.net/Tool.php?Id=777.com" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777.com</a></p>
+<h2 id="与佛论禅"><a href="#与佛论禅" class="headerlink" title="与佛论禅"></a>与佛论禅</h2><p><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br>“由 <a href="http://www.keyfc.net/" target="_blank" rel="noopener">KeyFansClub</a> 我们的梦想 提供”</p>
+<h2 id="与熊论道"><a href="#与熊论道" class="headerlink" title="与熊论道"></a>与熊论道</h2><p><a href="http://hi.pcmoe.net/index.html" target="_blank" rel="noopener">http://hi.pcmoe.net/index.html</a><br>熊曰加密解密</p>
+<h2 id="新约佛论禅"><a href="#新约佛论禅" class="headerlink" title="新约佛论禅"></a>新约佛论禅</h2><p><a href="http://hi.pcmoe.net/buddha.html" target="_blank" rel="noopener">http://hi.pcmoe.net/buddha.html</a><br>新佛曰加密解密</p>
+<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>]]></content>
+      <tags>
+        <tag>CTF</tag>
+        <tag>Crypto</tag>
+        <tag>notes</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>BUUCTF Crypto WriteUp part2</title>
     <url>/2020/06/14/buucry2/</url>
     <content><![CDATA[<h2 id="RSA2"><a href="#RSA2" class="headerlink" title="RSA2"></a>RSA2</h2><p>dp泄露，用脚本爆破<br><a id="more"></a><br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">n = <span class="number">248254007851526241177721526698901802985832766176221609612258877371620580060433101538328030305219918697643619814200930679612109885533801335348445023751670478437073055544724280684733298051599167660303645183146161497485358633681492129668802402065797789905550489547645118787266601929429724133167768465309665906113</span></span><br><span class="line">dp = <span class="number">905074498052346904643025132879518330691925174573054004621877253318682675055421970943552016695528560364834446303196939207056642927148093290374440210503657</span></span><br><span class="line">c = <span class="number">140423670976252696807533673586209400575664282100684119784203527124521188996403826597436883766041879067494280957410201958935737360380801845453829293997433414188838725751796261702622028587211560353362847191060306578510511380965162133472698713063592621028959167072781482562673683090590521214218071160287665180751</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, e + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span>(dp * e % i == <span class="number">1</span>):</span><br><span class="line">        p = (dp * e - <span class="number">1</span>) // i + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span>(n % p == <span class="number">0</span>):</span><br><span class="line">            q = n // p</span><br><span class="line">            phi = gmpy2.mpz((p - <span class="number">1</span>) * (q - <span class="number">1</span>))</span><br><span class="line">            d = gmpy2.invert(e, phi)</span><br><span class="line">            m = gmpy2.powmod(c, d, n)</span><br><span class="line">            print(libnum.n2s(m))</span><br></pre></td></tr></table></figure></p>
@@ -153,125 +272,6 @@
         <tag>CTF</tag>
         <tag>Crypto</tag>
         <tag>WP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Chive8月9日比赛writeup</title>
-    <url>/2020/08/09/CHIVEWP200809/</url>
-    <content><![CDATA[<h2 id="传说中的chive"><a href="#传说中的chive" class="headerlink" title="传说中的chive"></a>传说中的chive</h2><p>打开py文件一看，n = p * q * r * s * t（素因子均满足 % 4 = 3），e = 2，是rabin算法的变形<br><a id="more"></a><br>nc 获得各素因子以及 c 的值<br>通过中国剩余定理推出通解形式，写脚本</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">pp = q * r * s * t</span><br><span class="line">qq = p * r * s * t</span><br><span class="line">rr = p * q * s * t</span><br><span class="line">ss = q * r * p * t</span><br><span class="line">tt = q * r * s * p</span><br><span class="line">mp = pow(c, (p + <span class="number">1</span>) // <span class="number">4</span>, p)</span><br><span class="line">mq = pow(c, (q + <span class="number">1</span>) // <span class="number">4</span>, q)</span><br><span class="line">mr = pow(c, (r + <span class="number">1</span>) // <span class="number">4</span>, r)</span><br><span class="line">ms = pow(c, (s + <span class="number">1</span>) // <span class="number">4</span>, s)</span><br><span class="line">mt = pow(c, (t + <span class="number">1</span>) // <span class="number">4</span>, t)</span><br><span class="line">x = [(invert(pp, p) * pp * mp) % n, (invert(qq, q) * qq * mq) % n, (invert(rr, r) * rr * mr) % n, (invert(ss, s) * ss * ms) % n, (invert(tt, t) * tt * mt) % n]</span><br><span class="line">m = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">            <span class="keyword">for</span> a <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">                <span class="keyword">for</span> b <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">                    m.append((x[<span class="number">0</span>] * pow(<span class="number">-1</span>, i) + x[<span class="number">1</span>] * pow(<span class="number">-1</span>, j) + x[<span class="number">2</span>] * pow(<span class="number">-1</span>, k) + x[<span class="number">3</span>] * pow(<span class="number">-1</span>, a) + x[<span class="number">4</span>] * pow(<span class="number">-1</span>, b)) % n)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> m:</span><br><span class="line">    print(long_to_bytes(i))</span><br></pre></td></tr></table></figure>
-<p>有 2^5=32 个可能的解，全部输出就能找到flag</p>
-<h2 id="失落的藏宝图"><a href="#失落的藏宝图" class="headerlink" title="失落的藏宝图"></a>失落的藏宝图</h2><p>提示“笑迎八方客 喜得四面财”，是四方密码<br>四方密码需要两个密钥，第一个密钥，看“Uspaiimsdevcfvl! Rzi hciam iwc km jmvsjmvs, ewp eg xq zzvw rzi uytwgb grg.”这行，是维吉尼亚密码，且可以看出第一个单词是 “Congratulations”，解出“Congratulations! The first key is security. now go to find the second one.”<br>第二个密钥，给出了一行像是乱码的汉字“亠鯛顼魻翳鍫箦泔钿犽妁澡鍫脲鶢轶犻铈矧磲糸镱”（中间的不是空格），正解应该是转成16进制再减128，然而我这么做出来的还是乱码…<br>找了个在线解密的网站试了几个单词，试到 “internet” 的时候解密出来是 “welcmmetochdve”，然后猜出flag是 “welcometochive”  </p>
-<h2 id="神秘信封"><a href="#神秘信封" class="headerlink" title="神秘信封"></a>神秘信封</h2><p>文档中给出一个 n 和一大堆 c ，且告诉了 e &lt; 20000<br>重点是要想到每个 c 对应 flag 中一个字符，第一个就是 ‘f’ ，依此爆破出 e  </p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20000</span>):</span><br><span class="line">    <span class="keyword">if</span>(pow(ord(<span class="string">'f'</span>), i, n) == c[<span class="number">0</span>]):</span><br><span class="line">        e = i</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>然后对于后面的c，在可显示字符的范围内爆破即可<br><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">flag = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> ci <span class="keyword">in</span> c:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">32</span>, <span class="number">127</span>):</span><br><span class="line">        <span class="keyword">if</span>(pow(i, e, n) == ci):</span><br><span class="line">            flag += chr(i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure></p>
-<h2 id="the-golden-apple"><a href="#the-golden-apple" class="headerlink" title="the golden apple"></a>the golden apple</h2><p>mt是个梅森旋转算法伪随机数生成器, 网上找了篇教程 <a href="https://liam.page/2018/01/12/Mersenne-twister/" target="_blank" rel="noopener">https://liam.page/2018/01/12/Mersenne-twister/</a><br>nc 得到的16进制密文，根据已知的明文 “flag{” ，利用异或的性质可以倒推出flag中前面几位字符encrypt时使用的key  </p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line">key4 = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    cf = unhexlify(lis[i])</span><br><span class="line">    mf = md5(<span class="string">'flag&#123;'</span>[i].encode()).digest()</span><br><span class="line">    <span class="comment">#cf = XOR(mf , key)</span></span><br><span class="line">    key = XOR(mf, cf)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        key4.append(bytes_to_long(key[j*<span class="number">4</span>:(j+<span class="number">1</span>)*<span class="number">4</span>]))</span><br></pre></td></tr></table></figure>
-<p>key再经过逆向得到Next中的tmp, 即对应的内部寄存器状态state[flag]</p>
-<pre><code class="lang-py">states = []
-
-class TemperInverser:
-    __b = 0x9ddf4680
-    __c = 0xefc65400
-    __d = 0x34adf670
-    __kMaxBits = 0xffffffff
-
-    def __inverse_right_shift_xor(self, value, shift, mask):
-        i, result = 0, 0
-        while i * shift &lt; 32:
-            part_mask = ((self.__kMaxBits &lt;&lt; (32 - shift)) &amp; self.__kMaxBits) &gt;&gt; (i * shift)
-            part = value &amp; part_mask
-            value ^= (part &gt;&gt; shift) &amp; mask
-            result |= part
-            i += 1
-        return result
-
-    def __inverse_left_shift_xor(self, value, shift, mask):
-        i, result = 0, 0
-        while i * shift &lt; 32:
-            part_mask = (self.__kMaxBits &gt;&gt; (32 - shift)) &lt;&lt; (i * shift)
-            part = value &amp; part_mask
-            value ^= (part &lt;&lt; shift) &amp; mask
-            result |= part
-            i += 1
-        return result
-
-    def __inverse_temper(self, tempered):
-        value = tempered
-        value = self.__inverse_right_shift_xor(value, 18, self.__d)
-        value = self.__inverse_left_shift_xor(value, 15, self.__c)
-        value = self.__inverse_left_shift_xor(value, 7, self.__b)
-        value = self.__inverse_right_shift_xor(value, 11, self.__kMaxBits)
-        return value
-
-    def __call__(self, tempered):
-        return self.__inverse_temper(tempered)
-
-inverser  = TemperInverser()
-
-for i in key4:
-    states.append(inverser(i))
-</code></pre>
-<p>待续</p>
-]]></content>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Crypto</tag>
-        <tag>WP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Blog搭建笔记</title>
-    <url>/2020/04/27/blogbuilding/</url>
-    <content><![CDATA[<h3 id="2020-04-27"><a href="#2020-04-27" class="headerlink" title="2020.04.27"></a>2020.04.27</h3><p>第一次将blog部署到github 并设置了个人域名</p>
-<h3 id="2020-04-28"><a href="#2020-04-28" class="headerlink" title="2020.04.28"></a>2020.04.28</h3><p>使用了NexT主题<br><img src="/2020/04/27/blogbuilding/2.png" class=""><br><a id="more"></a></p>
-<h3 id="2020-04-29"><a href="#2020-04-29" class="headerlink" title="2020.04.29"></a>2020.04.29</h3><p>现在可以听歌了（VA11 HALL-A天下第一！）<br><img src="/2020/04/27/blogbuilding/4.png" class=""></p>
-<h3 id="2020-04-30"><a href="#2020-04-30" class="headerlink" title="2020.04.30"></a>2020.04.30</h3><p>添加了LiveRe评论功能<br><img src="/2020/04/27/blogbuilding/5.png" class=""></p>
-<h3 id="2020-05-04"><a href="#2020-05-04" class="headerlink" title="2020.05.04"></a>2020.05.04</h3><p>上传了第一篇post</p>
-<h3 id="2020-05-07"><a href="#2020-05-07" class="headerlink" title="2020.05.07"></a>2020.05.07</h3><p>修改了主题的一些细节 界面更美观了（大概<br><img src="/2020/04/27/blogbuilding/3.png" class=""></p>
-<h3 id="2020-05-13"><a href="#2020-05-13" class="headerlink" title="2020.05.13"></a>2020.05.13</h3><p>参考<a href="https://blog.csdn.net/zhyl8157121/article/details/100551592" target="_blank" rel="noopener">https://blog.csdn.net/zhyl8157121/article/details/100551592</a>配置了CloudFlare CDN，增加安全性并加速访问<br><img src="/2020/04/27/blogbuilding/1.png" class=""></p>
-]]></content>
-      <tags>
-        <tag>notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Crypto常用在线工具个人向总结</title>
-    <url>/2020/05/10/cryptotools/</url>
-    <content><![CDATA[<h2 id="Cyberchef"><a href="#Cyberchef" class="headerlink" title="Cyberchef"></a>Cyberchef</h2><p><a href="http://cyber.hitwh.club/" target="_blank" rel="noopener">http://cyber.hitwh.club/</a> (镜像站)<br>永远滴神<br><a id="more"></a></p>
-<h2 id="CTF在线工具箱"><a href="#CTF在线工具箱" class="headerlink" title="CTF在线工具箱"></a>CTF在线工具箱</h2><p><a href="http://ctf.ssleye.com/" target="_blank" rel="noopener">http://ctf.ssleye.com/</a><br>也是整合了很多常用功能 和cyberchef相比好处就是中文看起来更方便（</p>
-<h2 id="MD5在线解密"><a href="#MD5在线解密" class="headerlink" title="MD5在线解密"></a>MD5在线解密</h2><p><a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a></p>
-<h2 id="Factordb"><a href="#Factordb" class="headerlink" title="Factordb"></a>Factordb</h2><p><a href="http://www.factordb.com/" target="_blank" rel="noopener">http://www.factordb.com/</a><br>在线分解大整数，解密RSA时可能会用到</p>
-<h2 id="quipqiup"><a href="#quipqiup" class="headerlink" title="quipqiup"></a>quipqiup</h2><p><a href="https://quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a><br>词频分析，用来爆破替换类的古典密码<br>在文本量足够大时效果更好，但文本量小时也可以通过提供线索来尝试爆破</p>
-<h2 id="Vigenere-Solver"><a href="#Vigenere-Solver" class="headerlink" title="Vigenere Solver"></a>Vigenere Solver</h2><p><a href="https://www.guballa.de/vigenere-solver" target="_blank" rel="noopener">https://www.guballa.de/vigenere-solver</a><br>在线爆破维吉尼亚密码</p>
-<h2 id="Substitution-Solver"><a href="#Substitution-Solver" class="headerlink" title="Substitution Solver"></a>Substitution Solver</h2><p><a href="https://www.guballa.de/substitution-solver" target="_blank" rel="noopener">https://www.guballa.de/substitution-solver</a><br>在线爆破替换密码</p>
-<h2 id="W型栅栏密码加密-解密"><a href="#W型栅栏密码加密-解密" class="headerlink" title="W型栅栏密码加密/解密"></a>W型栅栏密码加密/解密</h2><p><a href="http://www.atoolbox.net/Tool.php?Id=777.com" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777.com</a></p>
-<h2 id="与佛论禅"><a href="#与佛论禅" class="headerlink" title="与佛论禅"></a>与佛论禅</h2><p><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br>“由 <a href="http://www.keyfc.net/" target="_blank" rel="noopener">KeyFansClub</a> 我们的梦想 提供”</p>
-<h2 id="与熊论道"><a href="#与熊论道" class="headerlink" title="与熊论道"></a>与熊论道</h2><p><a href="http://hi.pcmoe.net/index.html" target="_blank" rel="noopener">http://hi.pcmoe.net/index.html</a><br>熊曰加密解密</p>
-<h2 id="新约佛论禅"><a href="#新约佛论禅" class="headerlink" title="新约佛论禅"></a>新约佛论禅</h2><p><a href="http://hi.pcmoe.net/buddha.html" target="_blank" rel="noopener">http://hi.pcmoe.net/buddha.html</a><br>新佛曰加密解密</p>
-<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>]]></content>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Crypto</tag>
-        <tag>notes</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Crypto常用python库</title>
-    <url>/2020/05/21/crypto-pylibs/</url>
-    <content><![CDATA[<h2 id="gmpy2"><a href="#gmpy2" class="headerlink" title="gmpy2"></a>gmpy2</h2><p>高精度算法库，支持大整数和一些常用的数学函数<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gmpy2.mpz() <span class="comment">#大整数</span></span><br><span class="line">gmpy2.mpq()  <span class="comment"># 分数</span></span><br><span class="line">gmpy2.mpfr()  <span class="comment"># 高精度浮点数</span></span><br><span class="line">gmpy2.mpc()  <span class="comment"># 复数</span></span><br><span class="line">gmpy2.powmod(a, n, p) <span class="comment">#模幂运算</span></span><br><span class="line">gmpy2.gcd(a, b)</span><br><span class="line">gmpy2.lcm(a, b)</span><br><span class="line">gmpy2.gcdext(a, b) <span class="comment"># 扩展欧几里得</span></span><br><span class="line">gmpy2.invert(a, m) <span class="comment"># 乘法逆元</span></span><br><span class="line">gmpy2.is_prime()</span><br><span class="line">gmpy2.is_even()</span><br><span class="line">gmpy2.is_odd()</span><br></pre></td></tr></table></figure></p>
-<h2 id="libnum"><a href="#libnum" class="headerlink" title="libnum"></a>libnum</h2><p>提供常用数学函数，模运算，数字与字符串转换函数，以及ECC相关的一些函数<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># common math</span></span><br><span class="line">len_in_bits(n) <span class="comment"># number of bits in binary representation of @n</span></span><br><span class="line">randint_bits(size) <span class="comment"># random number with a given bit size</span></span><br><span class="line">extract_prime_power(a, p) <span class="comment"># s,t such that a = p**s * t</span></span><br><span class="line">nroot(x, n) <span class="comment"># truncated n'th root of x</span></span><br><span class="line">gcd(a, b, ...) <span class="comment"># greatest common divisor of all arguments</span></span><br><span class="line">lcm(a, b, ...) <span class="comment"># least common multiplier of all arguments</span></span><br><span class="line">xgcd(a, b) <span class="comment"># Extented Euclid GCD algorithm, returns (x, y, g) : a * x + b * y = gcd(a, b) = g</span></span><br></pre></td></tr></table></figure><br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Modular &amp; Modular square roots</span></span><br><span class="line">has_invmod(a, n) <span class="comment"># checks if a has modulo inverse</span></span><br><span class="line">invmod(a, n) <span class="comment"># modulo inverse</span></span><br><span class="line">solve_crt(remainders, modules) <span class="comment"># solve Chinese Remainder Theoreme</span></span><br><span class="line">factorial_mod(n, factors) <span class="comment"># compute factorial modulo composite number, needs factorization</span></span><br><span class="line">nCk_mod(n, k, factors) <span class="comment"># compute combinations number modulo composite number, needs factorization</span></span><br><span class="line">nCk_mod_prime_power(n, k, p, e) <span class="comment"># compute combinations number modulo prime power</span></span><br><span class="line">jacobi(a, b) <span class="comment"># Jacobi symbol</span></span><br><span class="line">has_sqrtmod_prime_power(a, p, k) <span class="comment"># checks if a number has modular square root, modulus is p**k</span></span><br><span class="line">sqrtmod_prime_power(a, p, k) <span class="comment"># modular square root by p**k</span></span><br><span class="line">has_sqrtmod(a, factors) <span class="comment"># checks if a composite number has modular square root, needs factorization</span></span><br><span class="line">sqrtmod(a, factors) <span class="comment"># modular square root by a composite modulus, needs factorization</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># primes</span></span><br><span class="line">primes(n) <span class="comment"># list of primes not greater than @n, slow method</span></span><br><span class="line">generate_prime(size, k=<span class="number">25</span>) <span class="comment"># generates a pseudo-prime with @size bits length. @k is a number of tests.</span></span><br><span class="line">generate_prime_from_string(s, size=<span class="literal">None</span>, k=<span class="number">25</span>) <span class="comment"># generate a pseudo-prime starting with @s in string representation</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#convert</span></span><br><span class="line">libnum.s2n(s) <span class="comment">#packed string to number</span></span><br><span class="line">libnum.n2s(n) <span class="comment">#number to packed string</span></span><br><span class="line">libnum.b2s(b) <span class="comment">#binary string to packed string</span></span><br><span class="line">libnum.s2b(s) <span class="comment">#packed string to binary string</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ECC</span></span><br><span class="line">Curve(a, b, p, g, order, cofactor, seed) <span class="comment"># class for representing elliptic curve. Methods:</span></span><br><span class="line">libnum.is_null(p) <span class="comment"># checks if point is null</span></span><br><span class="line">libnum.is_opposite(p1, p2) <span class="comment"># checks if 2 points are opposite</span></span><br><span class="line">libnum.check(p) <span class="comment"># checks if point is on the curve</span></span><br><span class="line">libnum.check_x(x) <span class="comment"># checks if there are points with given x on the curve (and returns them if any)</span></span><br><span class="line">libnum.find_points_in_range(start, end) <span class="comment"># list of points in range of x coordinate</span></span><br><span class="line">libnum.find_points_rand(count) <span class="comment"># list of count random points</span></span><br><span class="line">libnum.add(p1, p2) <span class="comment"># p1 + p2 on elliptic curve</span></span><br><span class="line">libnum.power(p, n) <span class="comment"># n✕P or (P + P + ... + P) n times</span></span><br><span class="line">libnum.generate(n) <span class="comment"># n✕G</span></span><br><span class="line">libnum.get_order(p, limit) <span class="comment"># slow method, trying to determine order of p; limit is max order to try</span></span><br></pre></td></tr></table></figure>
-<h2 id="pycryptodome"><a href="#pycryptodome" class="headerlink" title="pycryptodome"></a>pycryptodome</h2><p>“PyCryptodome is a self-contained Python package of low-level cryptographic primitives.”<br>提供多种加密算法的加解密功能，以AES为例<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line">key = ‘<span class="number">1234567890</span>abcdef‘</span><br><span class="line">obj = AES.new(key,AES.MODE_ECB)</span><br><span class="line">cipher = obj.encrypt(‘message: pcat.cc‘)</span><br></pre></td></tr></table></figure><br>文档地址<a href="https://www.pycryptodome.org/en/latest/src/introduction.html" target="_blank" rel="noopener">PyCryptodome</a></p>
-<h2 id="base系列"><a href="#base系列" class="headerlink" title="base系列"></a>base系列</h2><p>base64,base36,base58,base91,base92,base62<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">base64.b64encode(s)	<span class="comment"># 对二进制数据(bytes)进行base64编码</span></span><br><span class="line">base64.b64decode(s)	<span class="comment"># 对base64编码的数据进行解码</span></span><br><span class="line">base64.urlsafe_b64encode(s)	<span class="comment"># 对URL进行base64编码</span></span><br><span class="line">base64.urlsafe_b64decode(s)	<span class="comment"># 解码</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="hashlib"><a href="#hashlib" class="headerlink" title="hashlib"></a>hashlib</h2><p>提供常用hash算法<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以md5为例</span></span><br><span class="line">md5 = hashlib.md5(t.encode(<span class="string">"utf-8"</span>))</span><br><span class="line">print(md5.hexdigest())</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>CTF</tag>
-        <tag>Crypto</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
