@@ -20,22 +20,24 @@
     var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Cyberchefhttp:&#x2F;&#x2F;cyber.hitwh.club&#x2F; (镜像站)永远滴神">
+  <meta name="description" content="RSA只给出了 n，e，c，提示 n 有多个质因子n 用 factordb 和 yafu 都分解不出来猜测各因子相差不大，尝试枚举质因子个数，对 n 开根后爆破实际上因子的个数就是3个，但是爆破半径需要取十亿，不然出不来   1234567891011121314151617181920from gmpy2 import mpz, iroot, next_prime, is_prime, inve">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Crypto常用在线工具个人向总结">
-<meta property="og:url" content="http://moe.lovmayoi.top/2020/05/10/cryptotools/index.html">
+<meta property="og:title" content="2020国赛初赛crypto writeup">
+<meta property="og:url" content="http://moe.lovmayoi.top/2020/08/23/ciscn2020/index.html">
 <meta property="og:site_name" content="Shrimpwr&#39;s Blog">
-<meta property="og:description" content="Cyberchefhttp:&#x2F;&#x2F;cyber.hitwh.club&#x2F; (镜像站)永远滴神">
+<meta property="og:description" content="RSA只给出了 n，e，c，提示 n 有多个质因子n 用 factordb 和 yafu 都分解不出来猜测各因子相差不大，尝试枚举质因子个数，对 n 开根后爆破实际上因子的个数就是3个，但是爆破半径需要取十亿，不然出不来   1234567891011121314151617181920from gmpy2 import mpz, iroot, next_prime, is_prime, inve">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-10T08:45:54.000Z">
-<meta property="article:modified_time" content="2020-05-27T02:56:22.536Z">
+<meta property="og:image" content="http://moe.lovmayoi.top/2020/08/23/ciscn2020/lfsr.png">
+<meta property="article:published_time" content="2020-08-23T10:24:28.000Z">
+<meta property="article:modified_time" content="2020-08-29T11:10:48.654Z">
 <meta property="article:author" content="Shrimpwr">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="Crypto">
-<meta property="article:tag" content="notes">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://moe.lovmayoi.top/2020/08/23/ciscn2020/lfsr.png">
 
-<link rel="canonical" href="http://moe.lovmayoi.top/2020/05/10/cryptotools/">
+<link rel="canonical" href="http://moe.lovmayoi.top/2020/08/23/ciscn2020/">
 
 
 <script id="page-configurations">
@@ -48,7 +50,7 @@
   };
 </script>
 
-  <title>Crypto常用在线工具个人向总结 | Shrimpwr's Blog</title>
+  <title>2020国赛初赛crypto writeup | Shrimpwr's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167856942-1"></script>
     <script>
@@ -206,7 +208,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/05/10/cryptotools/">
+    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/08/23/ciscn2020/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -219,7 +221,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Crypto常用在线工具个人向总结
+          2020国赛初赛crypto writeup
         </h1>
 
         <div class="post-meta">
@@ -229,14 +231,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-10 16:45:54" itemprop="dateCreated datePublished" datetime="2020-05-10T16:45:54+08:00">2020-05-10</time>
+              <time title="创建时间：2020-08-23 18:24:28" itemprop="dateCreated datePublished" datetime="2020-08-23T18:24:28+08:00">2020-08-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-27 10:56:22" itemprop="dateModified" datetime="2020-05-27T10:56:22+08:00">2020-05-27</time>
+                <time title="修改时间：2020-08-29 19:10:48" itemprop="dateModified" datetime="2020-08-29T19:10:48+08:00">2020-08-29</time>
               </span>
 
           
@@ -251,13 +253,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>616</span>
+              <span>2.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -269,18 +271,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Cyberchef"><a href="#Cyberchef" class="headerlink" title="Cyberchef"></a>Cyberchef</h2><p><a href="http://cyber.hitwh.club/" target="_blank" rel="noopener">http://cyber.hitwh.club/</a> (镜像站)<br>永远滴神<br><a id="more"></a></p>
-<h2 id="CTF在线工具箱"><a href="#CTF在线工具箱" class="headerlink" title="CTF在线工具箱"></a>CTF在线工具箱</h2><p><a href="http://ctf.ssleye.com/" target="_blank" rel="noopener">http://ctf.ssleye.com/</a><br>也是整合了很多常用功能 和cyberchef相比好处就是中文看起来更方便（</p>
-<h2 id="MD5在线解密"><a href="#MD5在线解密" class="headerlink" title="MD5在线解密"></a>MD5在线解密</h2><p><a href="https://www.cmd5.com/" target="_blank" rel="noopener">https://www.cmd5.com/</a></p>
-<h2 id="Factordb"><a href="#Factordb" class="headerlink" title="Factordb"></a>Factordb</h2><p><a href="http://www.factordb.com/" target="_blank" rel="noopener">http://www.factordb.com/</a><br>在线分解大整数，解密RSA时可能会用到</p>
-<h2 id="quipqiup"><a href="#quipqiup" class="headerlink" title="quipqiup"></a>quipqiup</h2><p><a href="https://quipqiup.com/" target="_blank" rel="noopener">https://quipqiup.com/</a><br>词频分析，用来爆破替换类的古典密码<br>在文本量足够大时效果更好，但文本量小时也可以通过提供线索来尝试爆破</p>
-<h2 id="Vigenere-Solver"><a href="#Vigenere-Solver" class="headerlink" title="Vigenere Solver"></a>Vigenere Solver</h2><p><a href="https://www.guballa.de/vigenere-solver" target="_blank" rel="noopener">https://www.guballa.de/vigenere-solver</a><br>在线爆破维吉尼亚密码</p>
-<h2 id="Substitution-Solver"><a href="#Substitution-Solver" class="headerlink" title="Substitution Solver"></a>Substitution Solver</h2><p><a href="https://www.guballa.de/substitution-solver" target="_blank" rel="noopener">https://www.guballa.de/substitution-solver</a><br>在线爆破替换密码</p>
-<h2 id="W型栅栏密码加密-解密"><a href="#W型栅栏密码加密-解密" class="headerlink" title="W型栅栏密码加密/解密"></a>W型栅栏密码加密/解密</h2><p><a href="http://www.atoolbox.net/Tool.php?Id=777.com" target="_blank" rel="noopener">http://www.atoolbox.net/Tool.php?Id=777.com</a></p>
-<h2 id="与佛论禅"><a href="#与佛论禅" class="headerlink" title="与佛论禅"></a>与佛论禅</h2><p><a href="http://www.keyfc.net/bbs/tools/tudoucode.aspx" target="_blank" rel="noopener">http://www.keyfc.net/bbs/tools/tudoucode.aspx</a><br>“由 <a href="http://www.keyfc.net/" target="_blank" rel="noopener">KeyFansClub</a> 我们的梦想 提供”</p>
-<h2 id="与熊论道"><a href="#与熊论道" class="headerlink" title="与熊论道"></a>与熊论道</h2><p><a href="http://hi.pcmoe.net/index.html" target="_blank" rel="noopener">http://hi.pcmoe.net/index.html</a><br>熊曰加密解密</p>
-<h2 id="新约佛论禅"><a href="#新约佛论禅" class="headerlink" title="新约佛论禅"></a>新约佛论禅</h2><p><a href="http://hi.pcmoe.net/buddha.html" target="_blank" rel="noopener">http://hi.pcmoe.net/buddha.html</a><br>新佛曰加密解密</p>
-<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
+        <h2 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h2><p>只给出了 n，e，c，提示 n 有多个质因子<br>n 用 factordb 和 yafu 都分解不出来<br>猜测各因子相差不大，尝试枚举质因子个数，对 n 开根后爆破<br>实际上因子的个数就是3个，但是爆破半径需要取十亿，不然出不来  </p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> mpz, iroot, next_prime, is_prime, invert, gcd</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">n = <span class="number">50142032499469550407421604706771611415193641755639270667473328045908799316205905505167271138079522738272643811917325451177986948493659090203974349370248583120022500722759239305447823602875823849366662503027591858371125301505134216095903796534740686834236150999</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">c = <span class="number">45005399504992587510006608300548120810512973768886391125598523343330913326304417790989607300367232977960116381108873363343598357102136548218343380795022179607741940866191404186680657699739176842869814452906110393321567314747096161480003824583613027819960172221</span></span><br><span class="line">t = iroot(n, <span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># p = next_prime(t - mpz(1e9))</span></span><br><span class="line"><span class="comment"># fac = []</span></span><br><span class="line"><span class="comment"># while p &lt; t + mpz(1e9):</span></span><br><span class="line"><span class="comment">#     print(p)</span></span><br><span class="line"><span class="comment">#     if n % p == 0:</span></span><br><span class="line"><span class="comment">#         fac.append(p)</span></span><br><span class="line"><span class="comment">#     p = next_prime(p)</span></span><br><span class="line"><span class="comment"># print(fac)</span></span><br><span class="line">fac = [mpz(<span class="number">368751654879714877087975516875168751974879716873087714877516875971487715687516888458327</span>), mpz(<span class="number">368751654879714877087975516875168751974879716873087714877516875971487715687518277898523</span>), mpz(<span class="number">368751654879714877087975516875168751974879716873087714877516875971487715687518438089619</span>)]</span><br><span class="line">phi = <span class="number">1</span></span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> fac:</span><br><span class="line">    phi *= (p - <span class="number">1</span>)</span><br><span class="line">d = invert(e, phi)</span><br><span class="line">print(long_to_bytes(pow(c, d, n)))</span><br></pre></td></tr></table></figure>
+<h2 id="bd"><a href="#bd" class="headerlink" title="bd"></a>bd</h2><p>普通的低解密指数攻击，直接套进脚本里就行了  </p>
+<h2 id="lfsr"><a href="#lfsr" class="headerlink" title="lfsr"></a>lfsr</h2><p>加密脚本如下</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">N = <span class="number">100</span></span><br><span class="line">MASK = <span class="number">2</span>**(N+<span class="number">1</span>) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lfsr</span><span class="params">(state, mask)</span>:</span></span><br><span class="line">    feedback = state &amp; mask</span><br><span class="line">    feed_bit = bin(feedback)[<span class="number">2</span>:].count(<span class="string">"1"</span>) &amp; <span class="number">1</span></span><br><span class="line">    output_bit = state &amp; <span class="number">1</span></span><br><span class="line">    state = (state &gt;&gt; <span class="number">1</span>) | (feed_bit &lt;&lt; (N<span class="number">-1</span>))</span><br><span class="line">    <span class="keyword">return</span> state, output_bit</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> flag.startswith(<span class="string">"flag&#123;"</span>)</span><br><span class="line">    <span class="keyword">assert</span> flag.endswith(<span class="string">"&#125;"</span>)</span><br><span class="line"></span><br><span class="line">    mask = int(flag[<span class="number">5</span>:<span class="number">-1</span>])</span><br><span class="line">    <span class="keyword">assert</span> mask.bit_length() == N</span><br><span class="line">    state  = random.randint(<span class="number">0</span>, MASK)</span><br><span class="line">    print(state)</span><br><span class="line">    outputs = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(N**<span class="number">2</span>):</span><br><span class="line">        state, output_bit = lfsr(state, mask)</span><br><span class="line">        outputs += str(output_bit)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">"output.txt"</span>, <span class="string">"w"</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(outputs)</span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>mask 是 flag 的二进制，共100位。每次执行lfsr，都是将 mask &amp; state 的结果中二进制位 1 的个数的奇偶性作为 feed_bit，然后输出 state 最低位，state 左移一位后，再将 feed_bit 补到 state 的开头，使 state 长度保持在100位。<br>给出了长度为10000的二进制输出结果，不难看出 outputs 中的每段 outputs[i + 99: i: -1] 就是一次 lfsr 中使用的 state，而 outputs[i + 100] 就是该次 lfsr 中的 feed_bit ，即 mask &amp; state 的结果中二进制位 1 的个数的奇偶性。<br>取 mask 的各二进制位编号为 $a_0 … a_{99}$ ，假设 state 中所有 1 的位置是 $i…n$，则 bin(mask&amp;state)[2:].count(“1”) 就是$a_i + … + a_n$，而$feed_bit = (a_i + … + a_n)mod2$<br>除去 outputs 中前100位是最初的 state，剩下的9900位都是 feed_bit，因而可以列出9900个形似 $a_i + … + a_n \equiv 0/1 (mod 2)$ 的方程，组成方程组。<br>写脚本生成方程组，使用 mathematica 解方程组得到 mask 的共100位二进制位，从而解出flag。<br><img src="/2020/08/23/ciscn2020/lfsr.png" class=""></p>
+
     </div>
 
     
@@ -292,7 +289,7 @@
           <div class="post-tags">
               <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
               <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
-              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+              <a href="/tags/WP/" rel="tag"><i class="fa fa-tag"></i> WP</a>
           </div>
 
         
@@ -301,13 +298,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/04/WAD-Crypto-Noob-WP/" rel="prev" title="攻防世界Crypto新手练习区WriteUp">
-      <i class="fa fa-chevron-left"></i> 攻防世界Crypto新手练习区WriteUp
+    <a href="/2020/08/09/CHIVEWP200809/" rel="prev" title="Chive8月9日比赛writeup">
+      <i class="fa fa-chevron-left"></i> Chive8月9日比赛writeup
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/05/17/numbertheory/" rel="next" title="数论知识总结">
-      数论知识总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -371,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cyberchef"><span class="nav-number">1.</span> <span class="nav-text">Cyberchef</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CTF在线工具箱"><span class="nav-number">2.</span> <span class="nav-text">CTF在线工具箱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MD5在线解密"><span class="nav-number">3.</span> <span class="nav-text">MD5在线解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factordb"><span class="nav-number">4.</span> <span class="nav-text">Factordb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#quipqiup"><span class="nav-number">5.</span> <span class="nav-text">quipqiup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vigenere-Solver"><span class="nav-number">6.</span> <span class="nav-text">Vigenere Solver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Substitution-Solver"><span class="nav-number">7.</span> <span class="nav-text">Substitution Solver</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#W型栅栏密码加密-解密"><span class="nav-number">8.</span> <span class="nav-text">W型栅栏密码加密&#x2F;解密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与佛论禅"><span class="nav-number">9.</span> <span class="nav-text">与佛论禅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与熊论道"><span class="nav-number">10.</span> <span class="nav-text">与熊论道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新约佛论禅"><span class="nav-number">11.</span> <span class="nav-text">新约佛论禅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-be-continued"><span class="nav-number">12.</span> <span class="nav-text">To be continued</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#RSA"><span class="nav-number">1.</span> <span class="nav-text">RSA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bd"><span class="nav-number">2.</span> <span class="nav-text">bd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lfsr"><span class="nav-number">3.</span> <span class="nav-text">lfsr</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -530,6 +524,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
