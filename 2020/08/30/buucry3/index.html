@@ -20,26 +20,22 @@
     var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="2020.04.27第一次将blog部署到github 并设置了个人域名 2020.04.28使用了NexT主题">
+  <meta name="description" content="[De1CTF2019]babyrsa题目代码分成了四个部分，前面三部分都是常规的 RSA 套路，可以解出">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo Blog搭建笔记">
-<meta property="og:url" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/index.html">
+<meta property="og:title" content="BUUCTF Crypto WriteUp part3">
+<meta property="og:url" content="http://moe.lovmayoi.top/2020/08/30/buucry3/index.html">
 <meta property="og:site_name" content="Shrimpwr&#39;s Blog">
-<meta property="og:description" content="2020.04.27第一次将blog部署到github 并设置了个人域名 2020.04.28使用了NexT主题">
+<meta property="og:description" content="[De1CTF2019]babyrsa题目代码分成了四个部分，前面三部分都是常规的 RSA 套路，可以解出">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/2.png">
-<meta property="og:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/4.png">
-<meta property="og:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/5.png">
-<meta property="og:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/3.png">
-<meta property="og:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/1.png">
-<meta property="article:published_time" content="2020-04-27T10:46:00.000Z">
-<meta property="article:modified_time" content="2020-05-13T11:45:31.205Z">
+<meta property="article:published_time" content="2020-08-30T02:16:47.000Z">
+<meta property="article:modified_time" content="2020-08-30T03:14:58.710Z">
 <meta property="article:author" content="Shrimpwr">
-<meta property="article:tag" content="notes">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="WP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://moe.lovmayoi.top/2020/04/27/blogbuilding/2.png">
 
-<link rel="canonical" href="http://moe.lovmayoi.top/2020/04/27/blogbuilding/">
+<link rel="canonical" href="http://moe.lovmayoi.top/2020/08/30/buucry3/">
 
 
 <script id="page-configurations">
@@ -52,7 +48,7 @@
   };
 </script>
 
-  <title>Hexo Blog搭建笔记 | Shrimpwr's Blog</title>
+  <title>BUUCTF Crypto WriteUp part3 | Shrimpwr's Blog</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167856942-1"></script>
     <script>
@@ -210,7 +206,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/04/27/blogbuilding/">
+    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2020/08/30/buucry3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -223,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo Blog搭建笔记
+          BUUCTF Crypto WriteUp part3
         </h1>
 
         <div class="post-meta">
@@ -232,16 +228,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-04-27 18:46:00" itemprop="dateCreated datePublished" datetime="2020-04-27T18:46:00+08:00">2020-04-27</time>
+              <time title="创建时间：2020-08-30 10:16:47 / 修改时间：11:14:58" itemprop="dateCreated datePublished" datetime="2020-08-30T10:16:47+08:00">2020-08-30</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-13 19:45:31" itemprop="dateModified" datetime="2020-05-13T19:45:31+08:00">2020-05-13</time>
-              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -255,13 +245,13 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-file-word"></i>
               </span>
-              <span>258</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -273,13 +263,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="2020-04-27"><a href="#2020-04-27" class="headerlink" title="2020.04.27"></a>2020.04.27</h3><p>第一次将blog部署到github 并设置了个人域名</p>
-<h3 id="2020-04-28"><a href="#2020-04-28" class="headerlink" title="2020.04.28"></a>2020.04.28</h3><p>使用了NexT主题<br><img src="/2020/04/27/blogbuilding/2.png" class=""><br><a id="more"></a></p>
-<h3 id="2020-04-29"><a href="#2020-04-29" class="headerlink" title="2020.04.29"></a>2020.04.29</h3><p>现在可以听歌了（VA11 HALL-A天下第一！）<br><img src="/2020/04/27/blogbuilding/4.png" class=""></p>
-<h3 id="2020-04-30"><a href="#2020-04-30" class="headerlink" title="2020.04.30"></a>2020.04.30</h3><p>添加了LiveRe评论功能<br><img src="/2020/04/27/blogbuilding/5.png" class=""></p>
-<h3 id="2020-05-04"><a href="#2020-05-04" class="headerlink" title="2020.05.04"></a>2020.05.04</h3><p>上传了第一篇post</p>
-<h3 id="2020-05-07"><a href="#2020-05-07" class="headerlink" title="2020.05.07"></a>2020.05.07</h3><p>修改了主题的一些细节 界面更美观了（大概<br><img src="/2020/04/27/blogbuilding/3.png" class=""></p>
-<h3 id="2020-05-13"><a href="#2020-05-13" class="headerlink" title="2020.05.13"></a>2020.05.13</h3><p>参考<a href="https://blog.csdn.net/zhyl8157121/article/details/100551592" target="_blank" rel="noopener">https://blog.csdn.net/zhyl8157121/article/details/100551592</a>配置了CloudFlare CDN，增加安全性并加速访问<br><img src="/2020/04/27/blogbuilding/1.png" class=""></p>
+        <h2 id="De1CTF2019-babyrsa"><a href="#De1CTF2019-babyrsa" class="headerlink" title="[De1CTF2019]babyrsa"></a>[De1CTF2019]babyrsa</h2><p>题目代码分成了四个部分，前面三部分都是常规的 RSA 套路，可以解出<br><a id="more"></a><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">109935857933867829728985398563235455481120300859311421762540858762721955038310117609456763338082237907005937380873151279351831600225270995344096532750271070807051984097524900957809427861441436796934012393707770012556604479065826879107677002380580866325868240270494148512743861326447181476633546419262340100453</span></span><br><span class="line">e1 = <span class="number">15218928658178</span></span><br><span class="line">e2 = <span class="number">381791429275130</span></span><br><span class="line">q1p = <span class="number">127587319253436643569312142058559706815497211661083866592534217079310497260365307426095661281103710042392775453866174657404985539066741684196020137840472950102380232067786400322600902938984916355631714439668326671310160916766472897536055371474076089779472372913037040153356437528808922911484049460342088834871</span></span><br><span class="line">q1q = <span class="number">127587319253436643569312142058559706815497211661083866592534217079310497260365307426095661281103710042392775453866174657404985539066741684196020137840472950102380232067786400322600902938984916355631714439668326671310160916766472897536055371474076089779472372913037040153356437528808922911484049460342088835693</span></span><br></pre></td></tr></table></figure></p>
+<p>然后是最后一部分对 flag 的加密</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">flag=int(binascii.hexlify(flag),<span class="number">16</span>)</span><br><span class="line">q1=q1p</span><br><span class="line">q2 =  <span class="number">114401188227479584680884046151299704656920536168767132916589182357583461053336386996123783294932566567773695426689447410311969456458574731187512974868297092638677515283584994416382872450167046416573472658841627690987228528798356894803559278308702635288537653192098514966089168123710854679638671424978221959513</span></span><br><span class="line">c1 =  <span class="number">262739975753930281690942784321252339035906196846340713237510382364557685379543498765074448825799342194332681181129770046075018122033421983227887719610112028230603166527303021036386350781414447347150383783816869784006598225583375458609586450854602862569022571672049158809874763812834044257419199631217527367046624888837755311215081173386523806086783266198390289097231168172692326653657393522561741947951887577156666663584249108899327053951891486355179939770150550995812478327735917006194574412518819299303783243886962455399783601229227718787081785391010424030509937403600351414176138124705168002288620664809270046124</span></span><br><span class="line">c2 =  <span class="number">7395591129228876649030819616685821899204832684995757724924450812977470787822266387122334722132760470911599176362617225218345404468270014548817267727669872896838106451520392806497466576907063295603746660003188440170919490157250829308173310715318925771643105064882620746171266499859049038016902162599261409050907140823352990750298239508355767238575709803167676810456559665476121149766947851911064706646506705397091626648713684511780456955453552020460909638016134124590438425738826828694773960514221910109473941451471431637903182205738738109429736425025621308300895473186381826756650667842656050416299166317372707709596</span></span><br><span class="line"><span class="keyword">assert</span>(c1==pow(flag,e1,p*q1))</span><br><span class="line"><span class="keyword">assert</span>(c2==pow(flag,e2,p*q2))</span><br></pre></td></tr></table></figure>
+<p>p、q1、q2都已知，但是我们发现</p>
+<script type="math/tex; mode=display">gcd(e_1, \phi(n_1)) = gcd(e_2, \phi(n_2)) = 14</script><p>出现了 e 与 $\phi(n)$ 不互素的情况。已知  </p>
+<script type="math/tex; mode=display">m^{e}\equiv c\ (mod\ n)</script><p>令 $e’ = e / 14$ ，有  </p>
+<script type="math/tex; mode=display">(m^{14})^{e'}\equiv c\ (mod\ n)</script><p>且 $e’_1$、$e’_2$ 满足</p>
+<script type="math/tex; mode=display">gcd(e'_1, \phi(n_1)) = gcd(e'_2, \phi(n_2)) = 1</script><p>可以求</p>
+<script type="math/tex; mode=display">d' = invert(e', \phi(n))</script><p>从而得出</p>
+<script type="math/tex; mode=display">m^{14}\equiv c^{d'_1}\ (mod\ n_1)</script><script type="math/tex; mode=display">m^{14}\equiv c^{d'_2}\ (mod\ n_2)</script><p>进而可以得到</p>
+<script type="math/tex; mode=display">\begin{cases}m^{14}\equiv c^{d'_1}\ (mod\ p)\\m^{14}\equiv c^{d'_1}\ (mod\ q_1)\\m^{14}\equiv c^{d'_2}\ (mod\ q_2)\\\end{cases}</script><p>通过 CRT 解出 $m^{14}\ (mod\ pq_1q_2)$，再对 $q_1q_2$ 取模，令结果为cc，得到 $m^{14}\equiv cc\ (mod\ q_1q_2)$</p>
+<p>这就是一个新的 RSA 加密，其中 ee = 14 ，nn = q1 * q2，phinn = (q1 - 1) * (q2 - 1)<br>但是仍然有 $gcd(ee, \phi(nn)) = 2$ ，再用之前的方法，令 $dd = invert(ee/2, \ \phi(nn))$ ，得到 $m^2 \equiv cc^{dd}\ (mod\ nn)$</p>
+<p>再尝试对 m 直接开方，就得到了 flag，脚本如下</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">n1 = p * q1</span><br><span class="line">n2 = p * q2</span><br><span class="line">phin1 = (p - <span class="number">1</span>) * (q1 - <span class="number">1</span>)</span><br><span class="line">phin2 = (p - <span class="number">1</span>) * (q2 - <span class="number">1</span>)</span><br><span class="line">ep1 = e1 // <span class="number">14</span></span><br><span class="line">ep2 = e2 // <span class="number">14</span></span><br><span class="line">dp1 = invert(ep1, phin1)</span><br><span class="line">dp2 = invert(ep2, phin2)</span><br><span class="line">m1 = pow(c1, dp1, n1)</span><br><span class="line">m2 = pow(c2, dp2, n2)</span><br><span class="line">m3 = m1 % p</span><br><span class="line">m2 = m2 % q2</span><br><span class="line">m1 = m1 % q1</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">    f1 = pow(<span class="number">-1</span>, i &amp; <span class="number">1</span>)</span><br><span class="line">    f2 = pow(<span class="number">-1</span>, (i &gt;&gt; <span class="number">1</span>) &amp; <span class="number">1</span>)</span><br><span class="line">    f3 = pow(<span class="number">-1</span>, (i &gt;&gt; <span class="number">2</span>) &amp; <span class="number">1</span>)</span><br><span class="line">    m = (f1 * m1 * p * q2 * invert(p * q2, q1) + f2 * m2 * p * q1 * invert(p * q1, q2) + f3 * m3 * q1 * q2 * invert(q1 * q2, p)) % (p * q1 * q2)</span><br><span class="line">    nn = q1 * q2</span><br><span class="line">    m %= nn</span><br><span class="line">    phinn = (q1 - <span class="number">1</span>) * (q2 - <span class="number">1</span>)</span><br><span class="line">    dd = invert(<span class="number">7</span>, phinn)</span><br><span class="line">    m = pow(m, dd, nn)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">b'ctf'</span> <span class="keyword">in</span> long_to_bytes(iroot(m, <span class="number">2</span>)[<span class="number">0</span>]):</span><br><span class="line">        print(long_to_bytes(iroot(m, <span class="number">2</span>)[<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -290,7 +287,9 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/notes/" rel="tag"><i class="fa fa-tag"></i> notes</a>
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
+              <a href="/tags/WP/" rel="tag"><i class="fa fa-tag"></i> WP</a>
           </div>
 
         
@@ -298,11 +297,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/05/04/WAD-Crypto-Noob-WP/" rel="next" title="攻防世界Crypto新手练习区WriteUp">
-      攻防世界Crypto新手练习区WriteUp <i class="fa fa-chevron-right"></i>
+    <a href="/2020/08/23/ciscn2020/" rel="prev" title="2020国赛初赛crypto writeup">
+      <i class="fa fa-chevron-left"></i> 2020国赛初赛crypto writeup
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -366,7 +365,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-04-27"><span class="nav-number">1.</span> <span class="nav-text">2020.04.27</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-04-28"><span class="nav-number">2.</span> <span class="nav-text">2020.04.28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-04-29"><span class="nav-number">3.</span> <span class="nav-text">2020.04.29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-04-30"><span class="nav-number">4.</span> <span class="nav-text">2020.04.30</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-04"><span class="nav-number">5.</span> <span class="nav-text">2020.05.04</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-07"><span class="nav-number">6.</span> <span class="nav-text">2020.05.07</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-13"><span class="nav-number">7.</span> <span class="nav-text">2020.05.13</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#De1CTF2019-babyrsa"><span class="nav-number">1.</span> <span class="nav-text">[De1CTF2019]babyrsa</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,6 +524,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
