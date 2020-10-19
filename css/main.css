@@ -990,7 +990,7 @@ pre .javascript .function {
   padding: 0 10px;
 }
 .headband {
-  background: #222;
+  background: #0684bd;
   height: 3px;
 }
 .site-meta {
@@ -1198,7 +1198,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #a67cfe;
+  background: #c6c9ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1285,14 +1285,14 @@ pre .javascript .function {
   margin-left: 10px;
 }
 .sidebar-nav li:hover {
-  color: #fc6423;
+  color: #0684bd;
 }
 .sidebar-nav .sidebar-nav-active {
-  border-bottom-color: #fc6423;
-  color: #fc6423;
+  border-bottom-color: #0684bd;
+  color: #0684bd;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #fc6423;
+  color: #0684bd;
 }
 .sidebar-panel {
   display: none;
@@ -1321,7 +1321,7 @@ pre .javascript .function {
   }
 }
 .sidebar-toggle:hover .toggle-line {
-  background: #fc6423;
+  background: #0684bd;
 }
 .post-toc {
   font-size: 0.875em;
@@ -1360,14 +1360,14 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  border-bottom-color: #fc6423;
-  color: #fc6423;
+  border-bottom-color: #0684bd;
+  color: #0684bd;
 }
 .post-toc .nav .active-current > a {
-  color: #fc6423;
+  color: #0684bd;
 }
 .post-toc .nav .active-current > a:hover {
-  color: #fc6423;
+  color: #0684bd;
 }
 .site-state {
   display: flex;
@@ -1528,7 +1528,7 @@ pre .javascript .function {
   width: initial;
 }
 .back-to-top:hover {
-  color: #fc6423;
+  color: #0684bd;
 }
 .back-to-top.back-to-top-on {
   bottom: 30px;
@@ -2373,7 +2373,7 @@ mjx-container + br {
   }
 }
 .site-brand-container {
-  background: #222;
+  background: #49b1f5;
 }
 @media (max-width: 991px) {
   .site-brand-container {
@@ -2386,7 +2386,16 @@ mjx-container + br {
 .brand {
   padding: 0;
 }
+.site-title {
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 26px;
+  color: #fffafa;
+  font-weight: normal;
+  margin: 0;
+}
 .site-subtitle {
+  color: #fffafa;
+  font-size: 14px;
   margin: 10px 10px 0;
 }
 .custom-logo-image {
@@ -2461,14 +2470,14 @@ mjx-container + br {
 .sub-menu .menu-item a:hover,
 .sub-menu .menu-item span.exturl:hover {
   background: transparent;
-  color: #fc6423;
+  color: #0684bd;
 }
 .sub-menu .menu-item-active a {
-  border-bottom-color: #fc6423;
-  color: #fc6423;
+  border-bottom-color: #0684bd;
+  color: #0684bd;
 }
 .sub-menu .menu-item-active a:hover {
-  border-bottom-color: #fc6423;
+  border-bottom-color: #0684bd;
 }
 .sidebar {
   background: var(--body-bg-color);
