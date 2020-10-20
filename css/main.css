@@ -1197,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff91be;
+  background: #ff1c5d;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1518,7 +1518,7 @@ pre .javascript .function {
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  left: 30px;
+  right: 30px;
   opacity: 0.6;
   padding: 0px 6px;
   position: fixed;
@@ -2352,6 +2352,17 @@ mjx-container + br {
     width: 100%;
   }
 }
+.with-love {
+  color: #e5e5e5;
+  display: inline-block;
+  margin: 0 5px;
+  animation: iconAnimate 1.33s ease-in-out infinite;
+}
+.footer {
+  color: #e5e5e5;
+  font-size: 0.875em;
+  padding: 20px 0;
+}
 .footer-inner {
   padding-left: 260px;
 }
@@ -2372,7 +2383,7 @@ mjx-container + br {
   }
 }
 .site-brand-container {
-  background: #32375f;
+  background: #2e2e32;
 }
 @media (max-width: 991px) {
   .site-brand-container {
@@ -2581,7 +2592,7 @@ mjx-container + br {
   padding: 0;
 }
 body {
-  background: url("/images/background.png");
+  background: url("/images/background2.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -2651,7 +2662,7 @@ body {
   opacity: 0.8;
 }
 .back-to-top {
-  right: 25px;
+  right: 16px;
 }
 .post-eof {
   height: 2px;
