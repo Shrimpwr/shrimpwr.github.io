@@ -1021,7 +1021,6 @@ pre .javascript .function {
 }
 .site-subtitle {
   color: #ddd;
-  font-size: 0.8125em;
   margin: 10px 0;
 }
 .use-motion .brand {
@@ -1198,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c11c1d;
+  background: #be6353;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2395,7 +2394,7 @@ mjx-container + br {
 }
 .site-subtitle {
   color: #fffafa;
-  font-size: 14px;
+  font-size: 16x;
   margin: 10px 10px 0;
 }
 .custom-logo-image {
