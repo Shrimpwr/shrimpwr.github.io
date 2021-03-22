@@ -1197,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #e7d473;
+  background: #1c2877;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1284,14 +1284,14 @@ pre .javascript .function {
   margin-left: 10px;
 }
 .sidebar-nav li:hover {
-  color: #0684bd;
+  color: #222;
 }
 .sidebar-nav .sidebar-nav-active {
-  border-bottom-color: #0684bd;
-  color: #0684bd;
+  border-bottom-color: #222;
+  color: #222;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #0684bd;
+  color: #222;
 }
 .sidebar-panel {
   display: none;
@@ -1320,7 +1320,7 @@ pre .javascript .function {
   }
 }
 .sidebar-toggle:hover .toggle-line {
-  background: #0684bd;
+  background: #222;
 }
 .post-toc {
   font-size: 0.875em;
@@ -1359,14 +1359,14 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  border-bottom-color: #0684bd;
-  color: #0684bd;
+  border-bottom-color: #222;
+  color: #222;
 }
 .post-toc .nav .active-current > a {
-  color: #0684bd;
+  color: #222;
 }
 .post-toc .nav .active-current > a:hover {
-  color: #0684bd;
+  color: #222;
 }
 .site-state {
   display: flex;
@@ -1527,7 +1527,7 @@ pre .javascript .function {
   width: initial;
 }
 .back-to-top:hover {
-  color: #0684bd;
+  color: #222;
 }
 .back-to-top.back-to-top-on {
   bottom: 30px;
@@ -2480,14 +2480,14 @@ mjx-container + br {
 .sub-menu .menu-item a:hover,
 .sub-menu .menu-item span.exturl:hover {
   background: transparent;
-  color: #0684bd;
+  color: #222;
 }
 .sub-menu .menu-item-active a {
-  border-bottom-color: #0684bd;
-  color: #0684bd;
+  border-bottom-color: #222;
+  color: #222;
 }
 .sub-menu .menu-item-active a:hover {
-  border-bottom-color: #0684bd;
+  border-bottom-color: #222;
 }
 .sidebar {
   background: var(--body-bg-color);
