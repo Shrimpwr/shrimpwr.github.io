@@ -170,7 +170,7 @@ template {
   display: none;
 }
 ::selection {
-  background: #262a30;
+  background: #222;
   color: #eee;
 }
 html,
@@ -1197,7 +1197,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff1d44;
+  background: #e7d473;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
