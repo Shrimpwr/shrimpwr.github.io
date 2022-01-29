@@ -23,6 +23,83 @@
     margin-right: calc(2 * var(--gap-l) + 0.6 * var(--width-left));
   }
 }
+:root .post-list .post-card:hover {
+  box-shadow: 0 1px 4px 0px rgba(0,0,0,0.25), 0 4px 16px 0px rgba(0,0,0,0.25);
+}
+:root .post-list #archive a.post:hover {
+  color: var(--text-p0);
+}
+:root .post-list #archive:hover .archive-header:after {
+  background: var(--text-p1);
+}
+:root .post-list #tags a.tag:hover:before {
+  color: var(--text-p1);
+}
+:root .bread-nav div#breadcrumb:not([style]) a {
+  color: var(--text-p1);
+  text-decoration: none;
+}
+:root .bread-nav div#breadcrumb a.cap:hover {
+  color: var(--text-p0);
+  text-decoration: underline;
+}
+:root article.md p >a:not([class]),
+:root article.md li:not([class]) >a:not([class]) {
+  text-decoration: underline;
+  color: var(--text-p1);
+}
+:root article.md p >a:not([class]):hover,
+:root article.md li:not([class]) >a:not([class]):hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  color: var(--text-p0);
+}
+:root article.md.content h2:hover a.headerlink:before,
+:root article.md.content h3:hover a.headerlink:before,
+:root article.md.content h4:hover a.headerlink:before,
+:root article.md.content h5:hover a.headerlink:before,
+:root article.md.content h6:hover a.headerlink:before {
+  color: var(--text-p1);
+}
+:root article.md.content a.headerlink:hover {
+  color: var(--text-p1);
+  font-weight: bold;
+}
+:root .cap.theme {
+  color: var(--text-p1);
+}
+:root .related-wrap#read-next .body >a:hover {
+  color: var(--text-p0) !important;
+  background: var(--card);
+}
+:root .related-wrap#read-next .body >a:first-child {
+  font-size: 1rem;
+}
+:root .related-wrap#read-next .body >a {
+  font-size: 1rem;
+  color: var(--text-p1);
+}
+:root .l_left .widgets .widget-wrap#recent .widget-body a:hover {
+  color: var(--text-p1);
+}
+:root .l_left .widgets .widget-wrap .widget-header .cap-action:hover .icon {
+  fill: var(--text-p1);
+}
+:root .page-footer a:hover {
+  color: var(--text-p1);
+}
+:root nav.cap a:after {
+  background: var(--text-p1);
+}
+:root #toc a.toc-link:before {
+  background: var(--text-p0);
+}
+:root #toc a.toc-link.active {
+  color: var(--text-p0) !important;
+}
+:root .post-list #cats a.cat:hover .badge {
+  color: var(--text-p1);
+}
 :root {
   --site-bg: #f8f8f8;
   --block: #f2f2f2;
