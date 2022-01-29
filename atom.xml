@@ -3,11 +3,11 @@
   <title>5hr1m9wr&#39;s Blog</title>
   
   <subtitle>Random Thoughts.</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://moe.lovmayoi.top/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="https://moe.lovmayoi.top/"/>
   <updated>2022-01-29T16:11:28.584Z</updated>
-  <id>http://example.com/</id>
+  <id>https://moe.lovmayoi.top/</id>
   
   <author>
     <name>5hr1m9wr</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>重启</title>
-    <link href="http://example.com/2022/01/30/%E9%87%8D%E5%90%AF/"/>
-    <id>http://example.com/2022/01/30/%E9%87%8D%E5%90%AF/</id>
+    <link href="https://moe.lovmayoi.top/2022/01/30/%E9%87%8D%E5%90%AF/"/>
+    <id>https://moe.lovmayoi.top/2022/01/30/%E9%87%8D%E5%90%AF/</id>
     <published>2022-01-29T16:06:16.000Z</published>
     <updated>2022-01-29T16:11:28.584Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="gossip" scheme="http://example.com/categories/gossip/"/>
+    <category term="gossip" scheme="https://moe.lovmayoi.top/categories/gossip/"/>
     
     
-    <category term="blog" scheme="http://example.com/tags/blog/"/>
+    <category term="blog" scheme="https://moe.lovmayoi.top/tags/blog/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2021/08/24/hello-world/"/>
-    <id>http://example.com/2021/08/24/hello-world/</id>
+    <link href="https://moe.lovmayoi.top/2021/08/24/hello-world/"/>
+    <id>https://moe.lovmayoi.top/2021/08/24/hello-world/</id>
     <published>2021-08-24T13:16:06.341Z</published>
     <updated>2021-09-05T03:32:40.225Z</updated>
     
@@ -58,10 +58,10 @@
     
     
     
-    <category term="helloworld" scheme="http://example.com/categories/helloworld/"/>
+    <category term="helloworld" scheme="https://moe.lovmayoi.top/categories/helloworld/"/>
     
     
-    <category term="helloworld" scheme="http://example.com/tags/helloworld/"/>
+    <category term="helloworld" scheme="https://moe.lovmayoi.top/tags/helloworld/"/>
     
   </entry>
   
