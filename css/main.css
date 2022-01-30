@@ -100,6 +100,9 @@
 :root .post-list #cats a.cat:hover .badge {
   color: var(--text-p1);
 }
+:root .l_body.mobile.sidebar .sidebar-toggle.mobile {
+  color: var(--text-p0);
+}
 :root {
   --site-bg: #f8f8f8;
   --block: #f2f2f2;
