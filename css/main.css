@@ -134,7 +134,7 @@
 }
 @media screen and (max-width: 768px) {
   :root {
-    --site-bg: #000;
+    --site-bg: #313438;
     --card: #383e45;
     --block: #222528;
     --block-border: #303439;
