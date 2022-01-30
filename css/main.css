@@ -101,7 +101,16 @@
   color: var(--text-p1);
 }
 :root .l_body.mobile.sidebar .sidebar-toggle.mobile {
+  background: rgba(0,0,0,0);
+  border-color: rgba(0,0,0,0);
   color: var(--text-p0);
+}
+@supports ((-webkit-backdrop-filter: blur(var(--blur-px))) or (backdrop-filter: blur(var(--blur-px)))) {
+  :root .blur {
+    background: #575757 !important;
+    backdrop-filter: saturate(200%) blur(var(--blur-px));
+    -webkit-backdrop-filter: saturate(200%) blur(var(--blur-px));
+  }
 }
 :root {
   --site-bg: #f8f8f8;
