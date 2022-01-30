@@ -112,6 +112,10 @@
     -webkit-backdrop-filter: saturate(200%) blur(var(--blur-px));
   }
 }
+:root .cnzzstats {
+  font-size: 0px;
+  color: rgba(0,0,0,0);
+}
 :root {
   --site-bg: #f8f8f8;
   --block: #f2f2f2;
