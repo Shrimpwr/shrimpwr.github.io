@@ -116,6 +116,12 @@
   font-size: 0px;
   color: rgba(0,0,0,0);
 }
+:root .tag-plugin.about .about-body .tag-plugin.navbar:last-child nav.cap a {
+  color: var(--text-p1);
+}
+:root .tag-plugin.about .about-body .tag-plugin.navbar:last-child nav.cap a:hover {
+  color: var(--text-p0);
+}
 :root {
   --site-bg: #f8f8f8;
   --block: #f2f2f2;
