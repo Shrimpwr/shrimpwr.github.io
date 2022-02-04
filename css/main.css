@@ -79,6 +79,23 @@
   font-size: 1rem;
   color: var(--text-p1);
 }
+:root article.md.content >:first-child {
+  margin-top: 0.7rem;
+}
+:root h1.article-title {
+  margin-bottom: 0.1rem;
+}
+:root .post-excerpt {
+  color: #738a94;
+}
+:root article.md.content h2,
+:root article.md.content h3,
+:root article.md.content h4,
+:root article.md.content h5,
+:root article.md.content h6 {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
 :root .l_left .widgets .widget-wrap#recent .widget-body a:hover {
   color: var(--text-p1);
 }
