@@ -122,6 +122,9 @@
 :root .tag-plugin.about .about-body .tag-plugin.navbar:last-child nav.cap a:hover {
   color: var(--text-p0);
 }
+:root article.md blockquote {
+  border-left: 6px solid #808080;
+}
 :root {
   --site-bg: #f8f8f8;
   --block: #f2f2f2;
