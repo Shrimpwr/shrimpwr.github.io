@@ -28,7 +28,7 @@
 <meta property="og:description" content="Notes of MIT 6.828 Lab1.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-04T11:47:36.000Z">
-<meta property="article:modified_time" content="2022-02-25T13:15:00.362Z">
+<meta property="article:modified_time" content="2022-02-25T13:21:29.505Z">
 <meta property="article:author" content="5hr1m9wr">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="kernel">
@@ -157,7 +157,7 @@
 <li><p>The following code is in function <code>static void cga_putc(int c)</code>, which is used to output characters to CGA/VGA display.  </p>
 <p> The purpose of this piece of code is to deal with the situation where the position of the cursor exceeds the screen.  </p>
 <p> <code>crt_pos</code> is the position of next character to be output, on the other hand, the position of the cursor. And <code>CRT_SIZE</code> = <code>CRT_ROWS</code> * <code>CRT_COLS</code>, so it means the maximum number of characters that can be displayed on the screen.  </p>
-<p> It moves all the characters on the screen upward by one column (using <code>memmove</code>) , and fills the last column with <code>0x0x00 | &#39; &#39;</code>, and ends by recalculating <code>crt_pos</code>.</p>
+<p> It moves all the characters on the screen upward by one row (using <code>memmove</code>) , and fills the last row with <code>0x0x00 | &#39; &#39;</code>, and ends by recalculating <code>crt_pos</code>.</p>
  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// What is the purpose of this?</span></span><br><span class="line"><span class="keyword">if</span> (crt_pos &gt;= CRT_SIZE) &#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line"></span><br><span class="line">  memmove(crt_buf, crt_buf + CRT_COLS, (CRT_SIZE - CRT_COLS) * <span class="keyword">sizeof</span>(<span class="keyword">uint16_t</span>));</span><br><span class="line">  <span class="keyword">for</span> (i = CRT_SIZE - CRT_COLS; i &lt; CRT_SIZE; i++)</span><br><span class="line">    crt_buf[i] = <span class="number">0x0700</span> | <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">  crt_pos -= CRT_COLS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><code>fmt</code> points to the address of format string <code>&quot;x %d, y %x, z %d\n&quot;</code>.</p>
