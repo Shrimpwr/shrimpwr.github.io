@@ -779,13 +779,13 @@ svg.icon {
 }
 h1,
 .h1 {
-  font-size: 1.75rem;
+  font-size: 1.95rem;
   font-weight: 700;
 }
 @media screen and (max-width: 500px) {
   h1,
   .h1 {
-    font-size: 1.75rem;
+    font-size: 1.95rem;
   }
 }
 h2,
@@ -2391,7 +2391,7 @@ article.md.content .quot:not(span) {
   color: var(--text-p0);
 }
 article.md.content h1.quot {
-  font-size: 1.75rem;
+  font-size: 1.95rem;
   font-weight: 900;
   padding: 20px 32px 12px 32px;
 }
