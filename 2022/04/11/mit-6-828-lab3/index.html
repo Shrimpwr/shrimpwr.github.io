@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 6.0.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  <title>MIT 6.828 Lab3 - 5hr1m9wr</title>
+
+  
+
+  
+    <meta name="description" content="Notes of MIT 6.828 Lab3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MIT 6.828 Lab3">
+<meta property="og:url" content="https://moe.lovmayoi.top/2022/04/11/mit-6-828-lab3/index.html">
+<meta property="og:site_name" content="5hr1m9wr">
+<meta property="og:description" content="Notes of MIT 6.828 Lab3">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-11T11:59:16.000Z">
+<meta property="article:modified_time" content="2022-06-22T06:56:23.552Z">
+<meta property="article:author" content="5hr1m9wr">
+<meta property="article:tag" content="OS">
+<meta property="article:tag" content="kernel">
+<meta name="twitter:card" content="summary">
+  
+  
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="5hr1m9wr" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="/images/my_favicon.ico">
+  
+
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+
+<header class="header">
+
+<div class="logo-wrap"><a class="avatar" href="/about/"><div class="bg" style="opacity:0;background-image:url(https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/images/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/image/2659360.svg';"></a><a class="title" href="/"><div class="main">5hr1m9wr</div><div class="sub cap">Random Thoughts.</div></a></div>
+<nav class="menu dis-select"><a class="nav-item active" href="/">文章</a><a class="nav-item" href="/friends/">友人</a><a class="nav-item" href="/about/">关于</a></nav></header>
+
+<div class="widgets">
+
+<div class="widget-wrap single" id="toc"><div class="widget-header cap dis-select"><span class="name">本文目录</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-A-User-Environments-and-Exception-Handling"><span class="toc-text">Part A: User Environments and Exception Handling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Environment-State"><span class="toc-text">Environment State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Allocating-the-Environments-Array"><span class="toc-text">Allocating the Environments Array</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Exercise-1"><span class="toc-text">Exercise 1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-Running-Environments"><span class="toc-text">Creating and Running Environments</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Exercise-2"><span class="toc-text">Exercise 2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Setting-Up-the-IDT"><span class="toc-text">Setting Up the IDT</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Exercise-4-amp-Challenge"><span class="toc-text">Exercise 4 &amp; Challenge</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Question1"><span class="toc-text">Question1</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Challenge"><span class="toc-text">Challenge</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-B-Page-Faults-Breakpoints-Exceptions-and-System-Calls"><span class="toc-text">Part B: Page Faults, Breakpoints Exceptions, and System Calls</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-Page-Faults"><span class="toc-text">Handling Page Faults</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Exercise-5"><span class="toc-text">Exercise 5</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Breakpoint-Exception"><span class="toc-text">The Breakpoint Exception</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Exercise-6"><span class="toc-text">Exercise 6</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Question2"><span class="toc-text">Question2</span></a></li></ol></li></ol></li></ol></div></div></div>
+
+
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" title="RSS" href="/atom.xml" rel="noopener noreferrer"><img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iMzIiIGhlaWdodD0iMzIiCnZpZXdCb3g9IjAgMCAxNzEgMTcxIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIuNDA3OTcsMi40MDc5Nykgc2NhbGUoMC45NzIsMC45NzIpIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSJub25lIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJub25lIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSI1IiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMTQ0LjI4MTI1LDE0NC4yODEyNWgtMjEuMzc1YzAsLTUzLjA2MzQ0IC00My4xMjQwNiwtOTYuMTg3NSAtOTYuMTg3NSwtOTYuMTg3NXYtMjEuMzc1YzY0LjkyNjU2LDAgMTE3LjU2MjUsNTIuNjM1OTQgMTE3LjU2MjUsMTE3LjU2MjV6TTEwNi44NzUsMTQ0LjI4MTI1aC0yMS4zNzVjMCwtMzIuNDM2NTYgLTI2LjM0NDY5LC01OC43ODEyNSAtNTguNzgxMjUsLTU4Ljc4MTI1di0yMS4zNzVjNDQuMjQ2MjUsMCA4MC4xNTYyNSwzNS45MSA4MC4xNTYyNSw4MC4xNTYyNXpNNTguNzgxMjUsMTI4LjI1YzAsOC44NTM4MSAtNy4xNzc0NCwxNi4wMzEyNSAtMTYuMDMxMjUsMTYuMDMxMjVjLTguODUzODEsMCAtMTYuMDMxMjUsLTcuMTc3NDQgLTE2LjAzMTI1LC0xNi4wMzEyNWMwLC04Ljg1MzgxIDcuMTc3NDQsLTE2LjAzMTI1IDE2LjAzMTI1LC0xNi4wMzEyNWM4Ljg1MzgxLDAgMTYuMDMxMjUsNy4xNzc0NCAxNi4wMzEyNSwxNi4wMzEyNXoiPjwvcGF0aD48L2c+PHBhdGggZD0iTTAsMTcxLjk5ODA5di0xNzEuOTk4MDloMTcxLjk5ODA5djE3MS45OTgwOXoiIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PGcgZmlsbD0iI2ZmZmZmZiIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjxwYXRoIGQ9Ik0yNi43MTg3NSwyNi43MTg3NXYyMS4zNzVjNTMuMDYzNDQsMCA5Ni4xODc1LDQzLjEyNDA2IDk2LjE4NzUsOTYuMTg3NWgyMS4zNzVjMCwtNjQuOTI2NTYgLTUyLjYzNTk0LC0xMTcuNTYyNSAtMTE3LjU2MjUsLTExNy41NjI1ek0yNi43MTg3NSw2NC4xMjV2MjEuMzc1YzMyLjQzNjU2LDAgNTguNzgxMjUsMjYuMzQ0NjkgNTguNzgxMjUsNTguNzgxMjVoMjEuMzc1YzAsLTQ0LjI0NjI1IC0zNS45MSwtODAuMTU2MjUgLTgwLjE1NjI1LC04MC4xNTYyNXpNNDIuNzUsMTEyLjIxODc1Yy04Ljg1MzgxLDAgLTE2LjAzMTI1LDcuMTc3NDQgLTE2LjAzMTI1LDE2LjAzMTI1YzAsOC44NTM4MSA3LjE3NzQ0LDE2LjAzMTI1IDE2LjAzMTI1LDE2LjAzMTI1YzguODUzODEsMCAxNi4wMzEyNSwtNy4xNzc0NCAxNi4wMzEyNSwtMTYuMDMxMjVjMCwtOC44NTM4MSAtNy4xNzc0NCwtMTYuMDMxMjUgLTE2LjAzMTI1LC0xNi4wMzEyNXoiPjwvcGF0aD48L2c+PHBhdGggZD0iIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PC9wYXRoPjxwYXRoIGQ9IiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjwvcGF0aD48cGF0aCBkPSIiIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PC9nPjwvZz48L3N2Zz4="/></a><a class="social" title="GitHub" href="https://github.com/Shrimpwr" target="_blank" rel="external nofollow noopener noreferrer"><img alt="svgImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4Igp3aWR0aD0iNTAiIGhlaWdodD0iNTAiCnZpZXdCb3g9IjAgMCAxNzEgMTcxIgpzdHlsZT0iIGZpbGw6IzAwMDAwMDsiPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQuNzI5OTUsNC43Mjk5NSkgc2NhbGUoMC45NDUsMC45NDUpIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSJub25lIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJub25lIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIGZvbnQtZmFtaWx5PSJub25lIiBmb250LXdlaWdodD0ibm9uZSIgZm9udC1zaXplPSJub25lIiB0ZXh0LWFuY2hvcj0ibm9uZSIgc3R5bGU9Im1peC1ibGVuZC1tb2RlOiBub3JtYWwiPjxnIGlkPSJvcmlnaW5hbC1pY29uIDEiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTYuODQsODUuNWMwLC00My4zNzI0NCAzNS4yODQxNCwtNzguNjYgNzguNjYsLTc4LjY2YzQzLjM3NTg2LDAgNzguNjYsMzUuMjg3NTYgNzguNjYsNzguNjZjMCwzNC43NjA4OCAtMjIuNjc0Niw2NC4zMDk2OCAtNTQuMDA1MjIsNzQuNjc5MTJjLTIuNDMxNjIsLTEuMDQ2NTIgLTQuMTM0NzgsLTMuNDY0NDYgLTQuMTM0NzgsLTYuMjc5MTJ2LTE4LjQ2OGMwLC05LjIzNCAtOC4yMDgsLTIyLjU3MiAtMTcuMSwtMjIuNTcydi0wLjEwNjAyYzE5LjAwNDk0LC0wLjc0ODk4IDMxLjE2MzA0LC03LjE2ODMyIDM2Ljg1NzM0LC0xNy4wMTEwOGMxMi42ODEzNiwwLjA2MTU2IDIzLjgyNzE0LDEuMjg1OTIgMzAuMzY2MTgsMi4zMzI0NGMwLjE5ODM2LC0xLjExNDkyIDAuMzY5MzYsLTIuMjQwMSAwLjUxNjQyLC0zLjM3NTU0Yy02LjQzOTg2LC0xLjAyNiAtMTcuMTA2ODQsLTIuMTk5MDYgLTI5LjIzNDE2LC0yLjM1NjM4YzAuNDM3NzYsLTEuMDg0MTQgMC44MDcxMiwtMi4yMDI0OCAxLjExMTUsLTMuMzUxNmMxMi4yNTcyOCwtMC42NTMyMiAyMi44NzI5NiwtMC4xNjc1OCAyOC41ODc3OCwwLjMwNDM4YzAuMDYxNTYsLTEuMTM4ODYgMC4xNjc1OCwtMi4yNjQwNCAwLjE3NDQyLC0zLjQxNjU4Yy01LjczNTM0LC0wLjQ2NTEyIC0xNi4wOTExLC0wLjkzNzA4IC0yOC4wNTc2OCwtMC4zNDg4NGMwLjIyMjMsLTEuNTY2MzYgMC4zNzYyLC0zLjE2MzUgMC4zNzYyLC00LjgxODc4YzAuMzQyLC02LjE1NiAtMS43MSwtMTEuOTcgLTUuNDcyLC0xNy4xYzEuNzEsLTUuNDcyIDQuNDQ2LC0xNy43ODQgLTAuNjg0LC0yMi41NzJjLTkuMjM0LDAgLTE1LjczMiw0LjQ0NiAtMTguODEsNy4xODJjLTUuNDcyLC0yLjM5NCAtMTEuOTcsLTMuNzYyIC0xOS4xNTIsLTMuNzYyYy03LjE4MiwwIC0xMy42OCwxLjM2OCAtMTkuNDkwNTgsMy43NjU0MmMtMy4wNzgsLTIuNzM2IC05LjU3NiwtNy4xODIgLTE4LjgxLC03LjE4MmMtNC43ODgsNC40NDYgLTIuMzk0LDE2Ljc1OCAtMC42ODQsMjIuNTcyYy0zLjc2Miw1LjEzIC01LjgxNCwxMS4yODYgLTUuODE0LDE3LjFjMCwxLjgxOTQ0IDAuMTc0NDIsMy41NjcwNiAwLjQ0NDYsNS4yNzcwNmMtMTEuNjk5ODIsLTAuNTQzNzggLTIxLjc4MTk4LC0wLjA4MjA4IC0yNy40MjE1NiwwLjM3OTYyYzAuMDEzNjgsMS4xNDkxMiAwLjEwNjAyLDIuMjgxMTQgMC4xNzQ0MiwzLjQxNjU4YzUuNjI5MzIsLTAuNDY1MTIgMTUuOTkxOTIsLTAuOTQwNSAyNy45OTk1NCwtMC4zMzE3NGMwLjI4MDQ0LDAuOTkxOCAwLjYxMjE4LDEuOTU5NjYgMC45OTUyMiwyLjkwMzU4Yy0xMS45NzY4NCwwLjIyOTE0IC0yMi4zOTQxNiwxLjQyOTU2IC0yOC41Mzk5LDIuNDQxODhjMC4xNDcwNiwxLjEzMjAyIDAuMzE4MDYsMi4yNTcyIDAuNTE2NDIsMy4zNzU1NGM2LjIyNzgyLC0xLjAzMjg0IDE3LjE0MTA0LC0yLjI3NDMgMjkuNjc1MzQsLTIuNDE3OTRjNS43NjYxMiw5Ljk0ODc4IDE4LjE0OTk0LDE2LjM5MjA2IDM3LjUzNDUsMTcuMDE0NXYwLjA4NTVjLTQuNjIwNDIsMCAtOS4wNDI0OCwzLjYxMTUyIC0xMi4yMzY3Niw4LjM2MTljLTIuNzQyODQsMS40NzA2IC03LjMwMTcsMS44OTgxIC0xNS44MDcyNCwxLjg5ODFjLTUuNDcyLDAgLTguNTUsLTMuMDc4IC0xMS42MjgsLTYuODRjLTIuNzM2LC0zLjc2MiAtNy4xODIsLTYuNDk4IC05LjIzNCwtNi44NGMtMi4wNTIsMCAtMi43MzYsMS4wMjYgLTEuNzEsMS43MWM2LjE1Niw0LjEwNCA3LjE4MiwxMS42MjggOS41NzYsMTYuMDc0YzIuMDUyLDQuMTA0IDYuNDk4LDYuMTU2IDExLjYyOCw2LjE1NmMyLjA1MiwwIDEyLjMxMiwwIDEyLjMxMiwwYzAuMDQ3ODgsLTAuMDEwMjYgMC4wOTIzNCwtMC4wMjA1MiAwLjE0MDIyLC0wLjAzNDJjLTAuMDg1NSwwLjcxMTM2IC0wLjE0MDIyLDEuNDEyNDYgLTAuMTQwMjIsMi4wODYydjE4LjQ2OGMwLDIuODE0NjYgLTEuNzAzMTYsNS4yMzI2IC00LjEzNDc4LDYuMjc5MTJjLTMxLjMzMDYyLC0xMC4zNjk0NCAtNTQuMDA1MjIsLTM5LjkxODI0IC01NC4wMDUyMiwtNzQuNjc5MTJ6Ij48L3BhdGg+PC9nPjxwYXRoIGQ9Ik0wLDE3MS45OTgwOXYtMTcxLjk5ODA5aDE3MS45OTgwOXYxNzEuOTk4MDl6IiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PC9wYXRoPjxnIGlkPSJvcmlnaW5hbC1pY29uIiBmaWxsPSIjZmZmZmZmIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PHBhdGggZD0iTTYwLjg0NTIyLDE2MC4xNzkxMmMyLjQzMTYyLC0xLjA0NjUyIDQuMTM0NzgsLTMuNDY0NDYgNC4xMzQ3OCwtNi4yNzkxMnYtMTguNDY4YzAsLTAuNjczNzQgMC4wNTQ3MiwtMS4zNzQ4NCAwLjE0MDIyLC0yLjA4NjJjLTAuMDQ3ODgsMC4wMTM2OCAtMC4wOTIzNCwwLjAyMzk0IC0wLjE0MDIyLDAuMDM0MmMwLDAgLTEwLjI2LDAgLTEyLjMxMiwwYy01LjEzLDAgLTkuNTc2LC0yLjA1MiAtMTEuNjI4LC02LjE1NmMtMi4zOTQsLTQuNDQ2IC0zLjQyLC0xMS45NyAtOS41NzYsLTE2LjA3NGMtMS4wMjYsLTAuNjg0IC0wLjM0MiwtMS43MSAxLjcxLC0xLjcxYzIuMDUyLDAuMzQyIDYuNDk4LDMuMDc4IDkuMjM0LDYuODRjMy4wNzgsMy43NjIgNi4xNTYsNi44NCAxMS42MjgsNi44NGM4LjUwNTU0LDAgMTMuMDY0NCwtMC40Mjc1IDE1LjgwNzI0LC0xLjg5ODFjMy4xOTQyOCwtNC43NTAzOCA3LjYxNjM0LC04LjM2MTkgMTIuMjM2NzYsLTguMzYxOXYtMC4wODU1Yy0xOS4zODQ1NiwtMC42MjI0NCAtMzEuNzY4MzgsLTcuMDY1NzIgLTM3LjUzNDUsLTE3LjAxNDVjLTEyLjUzNDMsMC4xNDM2NCAtMjMuNDQ3NTIsMS4zODUxIC0yOS42NzUzNCwyLjQxNzk0Yy0wLjE5ODM2LC0xLjExODM0IC0wLjM2OTM2LC0yLjI0MzUyIC0wLjUxNjQyLC0zLjM3NTU0YzYuMTQ1NzQsLTEuMDEyMzIgMTYuNTYzMDYsLTIuMjEyNzQgMjguNTM5OSwtMi40NDE4OGMtMC4zODMwNCwtMC45NDM5MiAtMC43MTQ3OCwtMS45MTE3OCAtMC45OTUyMiwtMi45MDM1OGMtMTIuMDA3NjIsLTAuNjA4NzYgLTIyLjM3MDIyLC0wLjEzMzM4IC0yNy45OTk1NCwwLjMzMTc0Yy0wLjA2ODQsLTEuMTM1NDQgLTAuMTYwNzQsLTIuMjY3NDYgLTAuMTc0NDIsLTMuNDE2NThjNS42Mzk1OCwtMC40NjE3IDE1LjcyMTc0LC0wLjkyMzQgMjcuNDIxNTYsLTAuMzc5NjJjLTAuMjcwMTgsLTEuNzEgLTAuNDQ0NiwtMy40NTc2MiAtMC40NDQ2LC01LjI3NzA2YzAsLTUuODE0IDIuMDUyLC0xMS45NyA1LjgxNCwtMTcuMWMtMS43MSwtNS44MTQgLTQuMTA0LC0xOC4xMjYgMC42ODQsLTIyLjU3MmM5LjIzNCwwIDE1LjczMiw0LjQ0NiAxOC44MSw3LjE4MmM1LjgxMDU4LC0yLjM5NzQyIDEyLjMwODU4LC0zLjc2NTQyIDE5LjQ5MDU4LC0zLjc2NTQyYzcuMTgyLDAgMTMuNjgsMS4zNjggMTkuMTUyLDMuNzYyYzMuMDc4LC0yLjczNiA5LjU3NiwtNy4xODIgMTguODEsLTcuMTgyYzUuMTMsNC43ODggMi4zOTQsMTcuMSAwLjY4NCwyMi41NzJjMy43NjIsNS4xMyA1LjgxNCwxMC45NDQgNS40NzIsMTcuMWMwLDEuNjU1MjggLTAuMTUzOSwzLjI1MjQyIC0wLjM3NjIsNC44MTg3OGMxMS45NjY1OCwtMC41ODgyNCAyMi4zMjIzNCwtMC4xMTYyOCAyOC4wNTc2OCwwLjM0ODg0Yy0wLjAwNjg0LDEuMTUyNTQgLTAuMTEyODYsMi4yNzc3MiAtMC4xNzQ0MiwzLjQxNjU4Yy01LjcxNDgyLC0wLjQ3MTk2IC0xNi4zMzA1LC0wLjk1NzYgLTI4LjU4Nzc4LC0wLjMwNDM4Yy0wLjMwNDM4LDEuMTQ5MTIgLTAuNjczNzQsMi4yNjc0NiAtMS4xMTE1LDMuMzUxNmMxMi4xMjczMiwwLjE1NzMyIDIyLjc5NDMsMS4zMzAzOCAyOS4yMzQxNiwyLjM1NjM4Yy0wLjE0NzA2LDEuMTM1NDQgLTAuMzE4MDYsMi4yNjA2MiAtMC41MTY0MiwzLjM3NTU0Yy02LjUzOTA0LC0xLjA0NjUyIC0xNy42ODQ4MiwtMi4yNzA4OCAtMzAuMzY2MTgsLTIuMzMyNDRjLTUuNjk0Myw5Ljg0Mjc2IC0xNy44NTI0LDE2LjI2MjEgLTM2Ljg1NzM0LDE3LjAxMTA4djAuMTA2MDJjOC44OTIsMCAxNy4xLDEzLjMzOCAxNy4xLDIyLjU3MnYxOC40NjhjMCwyLjgxNDY2IDEuNzAzMTYsNS4yMzI2IDQuMTM0NzgsNi4yNzkxMmMzMS4zMzA2MiwtMTAuMzY5NDQgNTQuMDA1MjIsLTM5LjkxODI0IDU0LjAwNTIyLC03NC42NzkxMmMwLC00My4zNzI0NCAtMzUuMjg0MTQsLTc4LjY2IC03OC42NiwtNzguNjZjLTQzLjM3NTg2LDAgLTc4LjY2LDM1LjI4NzU2IC03OC42Niw3OC42NmMwLDM0Ljc2MDg4IDIyLjY3NDYsNjQuMzA5NjggNTQuMDA1MjIsNzQuNjc5MTJ6Ij48L3BhdGg+PC9nPjxwYXRoIGQ9IiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjwvcGF0aD48cGF0aCBkPSIiIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PHBhdGggZD0iIiBmaWxsPSJub25lIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciI+PC9wYXRoPjxwYXRoIGQ9IiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiPjwvcGF0aD48cGF0aCBkPSIiIGZpbGw9Im5vbmUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWpvaW49Im1pdGVyIj48L3BhdGg+PC9nPjwvZz48L3N2Zz4="/></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+<div class="bread-nav fs12"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/notes/">notes</a></div><div id="post-meta">发布于&nbsp;<time datetime="2022-04-11T11:59:16.000Z">2022-04-11</time></div></div>
+
+<article class='content md post'>
+<h1 class="article-title"><span>MIT 6.828 Lab3</span></h1><p class="post-excerpt">Notes of MIT 6.828 Lab3</p>
+<h2 id="Part-A-User-Environments-and-Exception-Handling"><a href="#Part-A-User-Environments-and-Exception-Handling" class="headerlink" title="Part A: User Environments and Exception Handling"></a>Part A: User Environments and Exception Handling</h2><h3 id="Environment-State"><a href="#Environment-State" class="headerlink" title="Environment State"></a>Environment State</h3><p>In JOS, Environment is a similar concept to process, which couples the concepts of “thread” and “address space”. The thread is defined primarily by the saved registers (the <code>env_tf</code> field), and the address space is defined by the page directory and page tables pointed to by <code>env_pgdir</code>.  </p>
+<p>We use <code>Env</code> structure to hold each environment.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Env</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Trapframe</span> <span class="title">env_tf</span>;</span>    <span class="comment">// Saved registers</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">env_link</span>;</span>        <span class="comment">// Next free Env</span></span><br><span class="line">    <span class="keyword">envid_t</span> env_id;            <span class="comment">// Unique environment identifier</span></span><br><span class="line">    <span class="keyword">envid_t</span> env_parent_id;        <span class="comment">// env_id of this env&#x27;s parent</span></span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">EnvType</span> <span class="title">env_type</span>;</span>        <span class="comment">// Indicates special system environments</span></span><br><span class="line">    <span class="keyword">unsigned</span> env_status;        <span class="comment">// Status of the environment</span></span><br><span class="line">    <span class="keyword">uint32_t</span> env_runs;        <span class="comment">// Number of times environment has run</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Address space</span></span><br><span class="line">    <span class="keyword">pde_t</span> *env_pgdir;        <span class="comment">// Kernel virtual address of page dir</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>The kernel maintains three main global variables pertaining to environments:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">envs</span> =</span> <span class="literal">NULL</span>;        <span class="comment">// All environments</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">curenv</span> =</span> <span class="literal">NULL</span>;        <span class="comment">// The current env</span></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">env_free_list</span>;</span>    <span class="comment">// Free environment list</span></span><br></pre></td></tr></table></figure>
+<h3 id="Allocating-the-Environments-Array"><a href="#Allocating-the-Environments-Array" class="headerlink" title="Allocating the Environments Array"></a>Allocating the Environments Array</h3><p>Modify <code>mem_init()</code> further to allocate a similar array of Env structures, called envs.</p>
+<h4 id="Exercise-1"><a href="#Exercise-1" class="headerlink" title="Exercise 1"></a>Exercise 1</h4><p>Like above, we use <code>boot_alloc()</code> to allocate space for <code>envs</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">envs = (struct Env *) <span class="built_in">boot_alloc</span>(NENV * <span class="built_in"><span class="keyword">sizeof</span></span>(struct Env));</span><br><span class="line"><span class="built_in">memset</span>(envs, <span class="number">0</span>, NENV * <span class="built_in"><span class="keyword">sizeof</span></span>(struct Env));</span><br></pre></td></tr></table></figure>
+<h3 id="Creating-and-Running-Environments"><a href="#Creating-and-Running-Environments" class="headerlink" title="Creating and Running Environments"></a>Creating and Running Environments</h3><p>Implement the following functions to create a user environment, load a static binary image that is embedded within the kernel and run the environment.</p>
+<h4 id="Exercise-2"><a href="#Exercise-2" class="headerlink" title="Exercise 2"></a>Exercise 2</h4><p><code>env_init()</code> initializes all of the <code>Env</code> structures in the <code>env</code> array and add them to the <code>env_free_list</code>. Also calls <code>env_init_percpu</code>, which configures the segmentation hardware with separate segments for privilege level 0 (kernel) and privilege level 3 (user).  </p>
+<p>We need to make sure the environments are in the free list in the same order they are in the envs array, so the order of loop is reverse.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">env_init</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Set up envs array</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = NENV - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i) &#123;</span><br><span class="line">        envs[i].env_id = <span class="number">0</span>;</span><br><span class="line">        envs[i].env_status = ENV_FREE;</span><br><span class="line">        envs[i].env_link = env_free_list;</span><br><span class="line">        env_free_list = &amp;envs[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Per-CPU part of the initialization</span></span><br><span class="line">    <span class="built_in">env_init_percpu</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>env_setup_vm()</code> allocates a page directory for a new environment and initialize the kernel portion of the new environment’s address space.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span></span></span><br><span class="line"><span class="function"><span class="title">env_setup_vm</span><span class="params">(struct Env *e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">PageInfo</span> *<span class="title">p</span> =</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Allocate a page for the page directory</span></span><br><span class="line">    <span class="keyword">if</span> (!(p = <span class="built_in">page_alloc</span>(ALLOC_ZERO)))</span><br><span class="line">        <span class="keyword">return</span> -E_NO_MEM;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Now, set e-&gt;env_pgdir and initialize the page directory.</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// Hint:</span></span><br><span class="line">    <span class="comment">//    - The VA space of all envs is identical above UTOP</span></span><br><span class="line">    <span class="comment">//  (except at UVPT, which we&#x27;ve set below).</span></span><br><span class="line">    <span class="comment">//  See inc/memlayout.h for permissions and layout.</span></span><br><span class="line">    <span class="comment">//  Can you use kern_pgdir as a template?  Hint: Yes.</span></span><br><span class="line">    <span class="comment">//  (Make sure you got the permissions right in Lab 2.)</span></span><br><span class="line">    <span class="comment">//    - The initial VA below UTOP is empty.</span></span><br><span class="line">    <span class="comment">//    - You do not need to make any more calls to page_alloc.</span></span><br><span class="line">    <span class="comment">//    - Note: In general, pp_ref is not maintained for</span></span><br><span class="line">    <span class="comment">//  physical pages mapped only above UTOP, but env_pgdir</span></span><br><span class="line">    <span class="comment">//  is an exception -- you need to increment env_pgdir&#x27;s</span></span><br><span class="line">    <span class="comment">//  pp_ref for env_free to work correctly.</span></span><br><span class="line">    <span class="comment">//    - The functions in kern/pmap.h are handy.</span></span><br><span class="line"></span><br><span class="line">    p-&gt;pp_ref++;</span><br><span class="line">    e-&gt;env_pgdir = (<span class="keyword">pde_t</span> *)<span class="built_in">page2kva</span>(p); </span><br><span class="line">    <span class="built_in">memcpy</span>(e-&gt;env_pgdir, kern_pgdir, PGSIZE);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// UVPT maps the env&#x27;s own page table read-only.</span></span><br><span class="line">    <span class="comment">// Permissions: kernel R, user R</span></span><br><span class="line">    e-&gt;env_pgdir[<span class="built_in">PDX</span>(UVPT)] = <span class="built_in">PADDR</span>(e-&gt;env_pgdir) | PTE_P | PTE_U;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>region_alloc()</code> allocates and maps physical memory for an environment.<br>This function will be used in <code>load_icode</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">region_alloc</span><span class="params">(struct Env *e, <span class="keyword">void</span> *va, <span class="keyword">size_t</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Hint: It is easier to use region_alloc if the caller can pass</span></span><br><span class="line">    <span class="comment">//   &#x27;va&#x27; and &#x27;len&#x27; values that are not page-aligned.</span></span><br><span class="line">    <span class="comment">//   You should round va down, and round (va + len) up.</span></span><br><span class="line">    <span class="comment">//   (Watch out for corner-cases!)</span></span><br><span class="line">    <span class="keyword">uint32_t</span> beginva = <span class="built_in">ROUNDDOWN</span>((<span class="keyword">uint32_t</span>)va, PGSIZE);</span><br><span class="line">    <span class="keyword">uint32_t</span> endva = <span class="built_in">ROUNDUP</span>((<span class="keyword">uint32_t</span>)va + len, PGSIZE);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">PageInfo</span> *<span class="title">pp</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(beginva &lt; endva) &#123;</span><br><span class="line">        pp = <span class="built_in">page_alloc</span>(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (pp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="built_in">panic</span>(<span class="string">&quot;region_alloc: %e&quot;</span>, -E_NO_MEM);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">page_insert</span>(e-&gt;env_pgdir, pp, (<span class="keyword">void</span> *)beginva, (PTE_U | PTE_W)) == -E_NO_MEM) &#123;</span><br><span class="line">            <span class="built_in">panic</span>(<span class="string">&quot;region_alloc: %e&quot;</span>, -E_NO_MEM);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        beginva += PGSIZE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>load_icode()</code> parses an ELF binary image, much like the boot loader already does, and load its contents into the user address space of a new environment.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">load_icode</span><span class="params">(struct Env *e, <span class="keyword">uint8_t</span> *binary)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// parse elf header </span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Elf</span> *<span class="title">elfhdr</span> =</span> (struct Elf *)binary;</span><br><span class="line">    <span class="keyword">if</span> (elfhdr-&gt;e_magic != ELF_MAGIC)</span><br><span class="line">        <span class="built_in">panic</span>(<span class="string">&quot;invalid ELF header&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// parse program header</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Proghdr</span> *<span class="title">ph</span>, *<span class="title">eph</span>;</span></span><br><span class="line">    ph = (struct Proghdr *) ((<span class="keyword">uint8_t</span> *) elfhdr + elfhdr-&gt;e_phoff);</span><br><span class="line">    eph = ph + elfhdr-&gt;e_phnum;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// load env pgdir to copy data</span></span><br><span class="line">    <span class="built_in">lcr3</span>(<span class="built_in">PADDR</span>(e-&gt;env_pgdir));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// load each segment</span></span><br><span class="line">    <span class="keyword">for</span> (; ph &lt; eph; ph++) &#123;</span><br><span class="line">        <span class="built_in">region_alloc</span>(e, (<span class="keyword">void</span> *)ph-&gt;p_va, ph-&gt;p_memsz);</span><br><span class="line">        <span class="built_in">memset</span>((<span class="keyword">void</span> *)ph-&gt;p_va, <span class="number">0</span>, ph-&gt;p_memsz);</span><br><span class="line">        <span class="keyword">if</span> (ph-&gt;p_type == ELF_PROG_LOAD)</span><br><span class="line">            <span class="built_in">memcpy</span>((<span class="keyword">void</span> *)ph-&gt;p_va, (<span class="keyword">void</span> *)binary + ph-&gt;p_offset, ph-&gt;p_filesz);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// load kernel pgdir back</span></span><br><span class="line">    <span class="built_in">lcr3</span>(<span class="built_in">PADDR</span>(kern_pgdir));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// set eip to program entry point</span></span><br><span class="line">    e-&gt;env_tf.tf_eip = elfhdr-&gt;e_entry;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Now map one page for the program&#x27;s initial stack</span></span><br><span class="line">    <span class="comment">// at virtual address USTACKTOP - PGSIZE.</span></span><br><span class="line">    <span class="built_in">region_alloc</span>(e, (<span class="keyword">void</span> *)(USTACKTOP - PGSIZE), PGSIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>env_create()</code> allocates an environment with env_alloc and call load_icode to load an ELF binary into it.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">env_create</span><span class="params">(<span class="keyword">uint8_t</span> *binary, <span class="keyword">enum</span> EnvType type)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Env</span> *<span class="title">e</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">env_alloc</span>(&amp;e, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">load_icode</span>(e, binary);</span><br><span class="line">    e-&gt;env_type = type;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Setting-Up-the-IDT"><a href="#Setting-Up-the-IDT" class="headerlink" title="Setting Up the IDT"></a>Setting Up the IDT</h3><h4 id="Exercise-4-amp-Challenge"><a href="#Exercise-4-amp-Challenge" class="headerlink" title="Exercise 4 &amp; Challenge"></a>Exercise 4 &amp; Challenge</h4><h4 id="Question1"><a href="#Question1" class="headerlink" title="Question1"></a>Question1</h4><ol>
+<li><p>The purpose of having an individual handler function for each exception/interrupt is to set a unique interrupt number for each exception/interrupt. So different exception/interrupt can be identified later.  </p>
+</li>
+<li><p>The result is caused by the DPL bit in the interrupt descriptor. In <code>trap_init()</code>, we set the DPLs of all exceptions except <code>T_BRKPT</code> and <code>T_SYSCALL</code> to 0.</p>
+<p>When a user program invokes <code>int $14</code>, the cpu detects that it tries to violate the privilege level. Therefore, general protect exception is produced.</p>
+<p>If the kernel actually allows softint’s <code>int $14</code> instruction to invoke the kernel’s page fault handler, there will be security issues.</p>
+</li>
+</ol>
+<h3 id="Challenge"><a href="#Challenge" class="headerlink" title="Challenge"></a>Challenge</h3><h2 id="Part-B-Page-Faults-Breakpoints-Exceptions-and-System-Calls"><a href="#Part-B-Page-Faults-Breakpoints-Exceptions-and-System-Calls" class="headerlink" title="Part B: Page Faults, Breakpoints Exceptions, and System Calls"></a>Part B: Page Faults, Breakpoints Exceptions, and System Calls</h2><h3 id="Handling-Page-Faults"><a href="#Handling-Page-Faults" class="headerlink" title="Handling Page Faults"></a>Handling Page Faults</h3><h4 id="Exercise-5"><a href="#Exercise-5" class="headerlink" title="Exercise 5"></a>Exercise 5</h4><h3 id="The-Breakpoint-Exception"><a href="#The-Breakpoint-Exception" class="headerlink" title="The Breakpoint Exception"></a>The Breakpoint Exception</h3><h4 id="Exercise-6"><a href="#Exercise-6" class="headerlink" title="Exercise 6"></a>Exercise 6</h4><h4 id="Question2"><a href="#Question2" class="headerlink" title="Question2"></a>Question2</h4><ol>
+<li><p>In <code>trap_init()</code>, we set the DPL of <code>T_BRKPT</code> to 3, so that the user can invoke the breakpoint exception and won’t trigger a general protection exception.</p>
+</li>
+<li><p>The point of these mechanisms is to isolate user from invoking system exceptions by specifying the privilege bit in <code>IDT</code>.</p>
+</li>
+</ol>
+
+
+<div class="article-footer reveal fs14"><section id="license"><div class="header"><span>许可协议</span></div><div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div></section></div>
+
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="header cap theme"><span>接下来阅读</span></section><section class="body fs14"><a id="next" href="/2022/04/04/mit-6-828-hw5/">MIT 6.828 HW5 xv6 CPU alarm<span class="note">较早</span></a><div class="line"></div><a id="prev" href="/2022/04/19/mit-6-828-hw6/">MIT 6.828 HW6 Threads and Locking<span class="note">较新</span></a></section></div>
+
+
+
+
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="sitemap"><div class="sitemap-group"><span class="fs14">博客</span><a href="/">近期</a><a href="/categories">分类</a><a href="/tags">标签</a><a href="/archives">归档</a></div><div class="sitemap-group"><span class="fs14">社交</span><a href="/friends">友链</a><a target="_blank" rel="noopener" href="https://twitter.com/5hr1m9wr_">Twitter</a></div><div class="sitemap-group"><span class="fs14">更多</span><a href="/about">关于</a></div></div><div class="text"><p>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+<p>本站由 <a href="https://moe.lovmayoi.top/">@5hr1m9wr</a> 创建，使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0" title="v1.7.0">Stellar</a> 作为主题。</p>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.7.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js',
+    sitesjs: '/js/plugins/sites.js',
+    friendsjs: '/js/plugins/friends.js',
+  };
+
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@6/swiper-bundle.min.css","js":"https://unpkg.com/swiper@6/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti/umd/heti.min.css","js":"https://unpkg.com/heti/umd/heti-addon.min.js"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+
+
+<!-- inject -->
+
+  
+    <div class="cnzzstats"><script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278945960&web_id=1278945960"></script></div>
+  
+
+
+  </div>
+</body>
+</html>

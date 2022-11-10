@@ -31,7 +31,7 @@
 <meta property="og:description" content="Notes of MIT 6.828 Lab2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-14T13:01:52.000Z">
-<meta property="article:modified_time" content="2022-04-04T12:07:16.679Z">
+<meta property="article:modified_time" content="2022-04-13T03:17:53.232Z">
 <meta property="article:author" content="5hr1m9wr">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="kernel">
@@ -244,11 +244,10 @@
 <li>Size of <code>pages</code> = npages * sizeof(struct PageInfo);</li>
 <li>Size of <code>kern_pgdir</code> = PGSIZE</li>
 <li>Total size of all page tables = PGSIZE * 1K</li>
+<li>Revisit the page table setup in kern/entry.S and kern/entrypgdir.c. Immediately after we turn on paging, EIP is still a low number (a little over 1MB). At what point do we transition to running at an EIP above KERNBASE? What makes it possible for us to continue executing at a low EIP between when we enable paging and when we begin running at an EIP above KERNBASE? Why is this transition necessary?<ul>
+<li><code>jmp *%eax</code> does the trasition. Because we set up a <code>entry_pgdir</code> to map virtual addresses [KERNBASE, KERNBASE+4MB) to physical addresses [0, 4MB). Because we need kernel to run at the virtual space above <code>KERNBASE</code>, leaving the virtual space below for user process.</li>
 </ul>
 </li>
-<li><p>Revisit the page table setup in kern/entry.S and kern/entrypgdir.c. Immediately after we turn on paging, EIP is still a low number (a little over 1MB). At what point do we transition to running at an EIP above KERNBASE? What makes it possible for us to continue executing at a low EIP between when we enable paging and when we begin running at an EIP above KERNBASE? Why is this transition necessary?</p>
-<ul>
-<li><code>jmp *%eax</code> does the trasition. Because we set up a <code>entry_pgdir</code> to map virtual addresses [KERNBASE, KERNBASE+4MB) to physical addresses [0, 4MB). Because we need kernel to run at the virtual space above <code>KERNBASE</code>, leaving the virtual space below for user process.</li>
 </ul>
 </li>
 </ul>
